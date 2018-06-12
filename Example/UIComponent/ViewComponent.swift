@@ -63,44 +63,6 @@ class ViewContainer:BaseComponentRenderable<ViewState>{
                         }
                     }
                 }
-                <<< NibContainerComponent<UserProfile>(){
-                    $0.render = { view in
-                        view.userName = "111"
-                    }
-                    $0.children
-                        <<< Label(){
-                            $0.text = self.state.userName
-                            $0.layout = { c, view in
-                                constrain(view){ view in
-                                    view.width == 200
-                                    view.height == 200
-                                    view.center == view.superview!.center
-                                }
-                            }
-                        }
-                        <<< Label(){
-                            $0.text = self.state.userName
-                            $0.layout = { root, current in
-                                constrain(current){ current in
-                                    current.width == 200
-                                    current.height == 200
-                                    current.center == current.superview!.center
-                                }
-                            }
-                    }
-                }
-                <<< StackComponent(){
-                    $0.axis = StackComponent.Axis.vertical
-                    $0.distribution = StackComponent.Distribution.fillEqually
-                    $0.children
-                        <<< Label(){
-                            $0.text = self.state.userName
-                        }
-                        <<< Label(){
-                            $0.text = self.state.userName
-                    }
-                }
-    
             }
     }
 }
