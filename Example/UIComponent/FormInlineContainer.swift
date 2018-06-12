@@ -10,7 +10,7 @@ import Foundation
 import UIComponent
 import Eureka
 
-class FormInlineComponent:BaseComponentRenderable<FormInlineComponent.ViewState>{
+class FormInlineContainer:BaseComponentRenderable<FormInlineContainer.ViewState>{
     struct ViewState{
         var userName:String
         var avatarUrl:String
@@ -19,16 +19,13 @@ class FormInlineComponent:BaseComponentRenderable<FormInlineComponent.ViewState>
     
     weak var viewController: ViewController?
     
-    public init(controller: ViewController, state: FormInlineComponent.ViewState){
+    public init(controller: ViewController, state: FormInlineContainer.ViewState){
         self.viewController = controller
         super.init(state: state)
     }
     
-    open override func render(_ state: FormInlineComponent.ViewState) -> ComponentContainer {
-        return NibContainerComponent<UserProfile>(){
-            $0.layout = { c, view in
-                view.loFillInParent()
-            }
+    open override func render(_ state: FormInlineContainer.ViewState) -> ComponentContainer {
+        return EmptyViewComponent(){
             $0.children
                 <<< FormComponent(viewController!){
                     $0.render = { form in

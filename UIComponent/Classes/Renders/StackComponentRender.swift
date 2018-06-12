@@ -25,12 +25,12 @@ extension StackComponent: UIKitRenderable {
         stackView.backgroundColor = .white
         stackView.alignment = convertAlignment(self.alignment)
         stackView.distribution = convertDistribution(self.distribution)
-
+        self.applyBaseAttributes(to: stackView)
         return .node(self, stackView, children)
     }
     
     public func autoLayout(view: UIView) {
-        self.layout(self, view)
+        self.layout?(self, view)
     }
 
     public func updateUIKit(

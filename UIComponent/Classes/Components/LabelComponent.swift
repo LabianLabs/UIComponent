@@ -8,7 +8,7 @@
 
 import Foundation
 
-public final class Label: BaseComponent, ComponentType {
+public final class LabelComponent: BaseComponent, ComponentType {
     public var text: String?
     public var textColor: Color = Color.black
 }

@@ -25,23 +25,26 @@ class ViewContainer:BaseComponentRenderable<ViewState>{
     }
     
     open override func render(_ state: ViewState) -> ComponentContainer {
-        return NibContainerComponent<UserProfile>(){
-            $0.layout = { c, view in
-                view.loFillInParent()
-            }
+        return EmptyViewComponent(){
             $0.children
-                <<< NibComponent<UserProfile>(){
+                <<< SearchBarComponent(){
+                        $0.placeholder = "Search"
+                        $0.tag = "SEARCHBAR"
+                    }
+                <<< SegmentComponent(["1", "2", "3"]){                    
+                    $0.tag = "SEGMENT"
+                    $0.layout = { c, view in
+                        view.loBellow(c.viewByTag("SEARCHBAR") as! UIView)
+                    }
+                }
+                <<< ViewComponent<UserProfile>(){
+                    $0.nibFile = "UserProfile"
                     $0.render = { view in
                         view.userName = "111"
                     }
                     $0.layout = { c, view in
-                        constrain(view){ view in
-                            view.left == view.superview!.left
-                            view.top == view.superview!.top
-                            view.width == view.superview!.width
-                            view.height == view.superview!.height * 0.3
-                        }
-                    }
+                        view.loHeightInParent(0.3).loBellow(c.viewByTag("SEGMENT") as! UIView)
+                    }                    
                 }
                 <<< FormComponent(viewController!){
                     $0.render = { form in

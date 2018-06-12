@@ -20,8 +20,8 @@ class ViewController: UIViewController {
         // Render container
         self.viewContainer = ViewContainer(controller: self, state: initState)
         
-//        let initState = FormInlineComponent.ViewState(userName: "test", avatarUrl: "test", step:2)
-//        self.viewContainer = FormInlineComponent(controller: self, state: initState)
+//        let initState = FormInlineContainer.ViewState(userName: "test", avatarUrl: "test", step:2)
+//        self.viewContainer = FormInlineContainer(controller: self, state: initState)
         RenderView.render(container: viewContainer, in: self)
         
         // Update state

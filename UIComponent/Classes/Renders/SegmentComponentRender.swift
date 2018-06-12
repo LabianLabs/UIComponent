@@ -1,0 +1,40 @@
+//
+//  SegmentComponentRender.swift
+//  UIComponent
+//
+//  Created by Duc Ngo on 6/12/18.
+//
+
+import Foundation
+import UIKit
+
+extension SegmentComponent: UIKitRenderable{
+    public func renderUIKit() -> UIKitRenderTree {
+        let segment = UISegmentedControl(items: items)
+        segment.selectedSegmentIndex = self.selectedIndex
+        segment.addTarget(self, action: #selector(onSemgentValueChange), for: UIControlEvents.valueChanged)
+        applyBaseAttributes(to: segment)
+        return .leaf(self, segment)
+    }
+    
+    public func updateUIKit(_ view: UIView, change: Changes, newComponent: UIKitRenderable, renderTree: UIKitRenderTree) -> UIKitRenderTree {
+        guard let segment = view as? UISegmentedControl else {fatalError()}
+        guard let component = newComponent as? SegmentComponent else {fatalError()}
+        segment.selectedSegmentIndex = component.selectedIndex
+        return .leaf(newComponent, view)
+    }
+    
+    public func autoLayout(view: UIView) {
+        if let layout = self.layout{
+            layout(self, view)
+        } else {
+            view.loFillInParent()
+        }
+    }
+}
+
+extension SegmentComponent{
+    @objc func onSemgentValueChange(sender:UISegmentedControl){
+        self.callbackOnSelectedChanged?(sender.selectedSegmentIndex)
+    }
+}

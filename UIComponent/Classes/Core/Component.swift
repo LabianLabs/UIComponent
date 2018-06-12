@@ -7,6 +7,12 @@
 //
 
 import Foundation
+
+public protocol Initializable{
+    init()
+}
+
+
 /**
  Type for a simple component without child components, such as a Button
  or a text field.
@@ -50,10 +56,18 @@ public extension ComponentContainer{
 }
 
 
-open class BaseComponent: Component{
+open class BaseComponent: NSObject, Component{
     public var tag:String?
-    public var layout:LayoutBlock = {_, _  in}
+    public var layout:LayoutBlock?
     public var viewByTag: (String) -> Any? = {_ in return nil }
+    public var alpha:CGFloat = 1.0
+    public var backgroundColor:Color?
+    public var tintColor:Color?
+    public var isUserInteractionEnabled:Bool = true
+    public var isHidden:Bool = false
+    public var cornerRadius:CGFloat = -1.0
+    public var borderWidth:CGFloat = -1.0
+    public var borderColor:Color?
     public required init(_ tag: String? = nil) {
         self.tag = tag
     }

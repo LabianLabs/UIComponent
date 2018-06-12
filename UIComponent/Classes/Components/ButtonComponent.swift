@@ -8,6 +8,6 @@
 
 import Foundation
 
-public final class Button: BaseComponent, ComponentType {
+public final class ButtonComponent: BaseComponent, ComponentType {
     var title: String?
 }

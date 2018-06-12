@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		0FC5B33320CD916A0058676D /* UserProfile.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FC5B33220CD916A0058676D /* UserProfile.xib */; };
 		0FC5B33520CD96720058676D /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC5B33420CD96720058676D /* UserProfile.swift */; };
-		0FC5B57020CEB26F0058676D /* ViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC5B56F20CEB26F0058676D /* ViewComponent.swift */; };
-		0FC5B58320CEC6310058676D /* FormInlineComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC5B58220CEC6310058676D /* FormInlineComponent.swift */; };
+		0FC5B57020CEB26F0058676D /* ViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC5B56F20CEB26F0058676D /* ViewContainer.swift */; };
+		0FC5B58320CEC6310058676D /* FormInlineContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC5B58220CEC6310058676D /* FormInlineContainer.swift */; };
 		0FC5B58520CECCD40058676D /* CustomCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC5B58420CECCD40058676D /* CustomCells.swift */; };
 		0FC5B58720CECCFF0058676D /* LabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FC5B58620CECCFF0058676D /* LabelCell.xib */; };
 		0FC5B58920CED4F90058676D /* WeekDaysCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FC5B58820CED4F90058676D /* WeekDaysCell.xib */; };
@@ -37,8 +37,8 @@
 /* Begin PBXFileReference section */
 		0FC5B33220CD916A0058676D /* UserProfile.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserProfile.xib; sourceTree = "<group>"; };
 		0FC5B33420CD96720058676D /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
-		0FC5B56F20CEB26F0058676D /* ViewComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewComponent.swift; sourceTree = "<group>"; };
-		0FC5B58220CEC6310058676D /* FormInlineComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormInlineComponent.swift; sourceTree = "<group>"; };
+		0FC5B56F20CEB26F0058676D /* ViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewContainer.swift; sourceTree = "<group>"; };
+		0FC5B58220CEC6310058676D /* FormInlineContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormInlineContainer.swift; sourceTree = "<group>"; };
 		0FC5B58420CECCD40058676D /* CustomCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCells.swift; sourceTree = "<group>"; };
 		0FC5B58620CECCFF0058676D /* LabelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LabelCell.xib; sourceTree = "<group>"; };
 		0FC5B58820CED4F90058676D /* WeekDaysCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeekDaysCell.xib; sourceTree = "<group>"; };
@@ -108,8 +108,8 @@
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				0FC5B58220CEC6310058676D /* FormInlineComponent.swift */,
-				0FC5B56F20CEB26F0058676D /* ViewComponent.swift */,
+				0FC5B58220CEC6310058676D /* FormInlineContainer.swift */,
+				0FC5B56F20CEB26F0058676D /* ViewContainer.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				0FC5B33420CD96720058676D /* UserProfile.swift */,
 				0FC5B58420CECCD40058676D /* CustomCells.swift */,
@@ -367,9 +367,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0FC5B57020CEB26F0058676D /* ViewComponent.swift in Sources */,
+				0FC5B57020CEB26F0058676D /* ViewContainer.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
-				0FC5B58320CEC6310058676D /* FormInlineComponent.swift in Sources */,
+				0FC5B58320CEC6310058676D /* FormInlineContainer.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				0FC5B58520CECCD40058676D /* CustomCells.swift in Sources */,
 				0FC5B33520CD96720058676D /* UserProfile.swift in Sources */,

@@ -8,8 +8,7 @@
 
 import Foundation
 
-public final class StackComponent: BaseContainerComponent, ComponentType{
-    public var backgroundColor: Color = Color.white
+public final class StackComponent: BaseContainerComponent, ComponentType{    
     public var alignment: Alignment = Alignment.fill
     public var distribution: Distribution = Distribution.fill
     public var axis: Axis = Axis.horizontal

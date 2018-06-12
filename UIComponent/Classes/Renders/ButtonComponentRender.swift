@@ -8,16 +8,17 @@
 
 import UIKit
 
-extension Button: UIKitRenderable {
+extension ButtonComponent: UIKitRenderable {
     public func renderUIKit() -> UIKitRenderTree {
         let button = UIButton(type: .custom)
         button.setTitle(self.title, for: UIControlState())
         button.setTitleColor(.blue, for: UIControlState())
+        self.applyBaseAttributes(to: button)
         return .leaf(self, button)
     }
     
     public func autoLayout(view: UIView) {
-        self.layout(self, view)
+        self.layout?(self, view)
     }
     
 }

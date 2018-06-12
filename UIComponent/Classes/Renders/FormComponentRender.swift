@@ -28,12 +28,13 @@ extension FormComponent: UIKitRenderable{
         let formController = FormViewController()
         host.addChildViewController(formController)
         formController.didMove(toParentViewController: host)
+        self.applyBaseAttributes(to: formController.view)
         self.render?(formController.form)
         return .leaf(self, formController.view)
     }
     
     public func autoLayout(view: UIView) {
-        self.layout(self, view)
+        self.layout?(self, view)
     }
 }
 

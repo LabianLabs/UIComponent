@@ -1,24 +1,18 @@
 //
-//  NibContainerComponentRender.swift
+//  ViewRender.swift
 //  UIComponent
 //
-//  Created by Duc Ngo on 6/11/18.
+//  Created by Duc Ngo on 6/12/18.
 //
 
 import Foundation
-extension NibContainerComponent: UIKitRenderable{
+import UIKit
+extension EmptyViewComponent: UIKitRenderable{
     public func renderUIKit() -> UIKitRenderTree {
-        guard let nibFile = self.nibFile else { return .leaf(self, UIView()) }
-        let bundle = Bundle.main
-        if let view = bundle.loadNibNamed(nibFile, owner: nil, options: nil)?.first as? UIView{            
-            if let tview = view as? T{
-                self.render?(tview)
-            }
-            let children = renderChildren(in: view)
-            return .node(self, view, children)
-        }else{
-            fatalError()
-        }
+        let view = UIView()
+        self.applyBaseAttributes(to: view)
+        let children = renderChildren(in: view)
+        return .node(self, view, children)
     }
     
     public func updateUIKit(
@@ -28,7 +22,7 @@ extension NibContainerComponent: UIKitRenderable{
         renderTree: UIKitRenderTree
         ) -> UIKitRenderTree {
         
-        guard let newComponent = newComponent as? NibContainerComponent else { fatalError() }
+        guard let newComponent = newComponent as? EmptyViewComponent else { fatalError() }
         
         guard case let .node(_, _, childTree) = renderTree else { fatalError() }
         
@@ -73,7 +67,11 @@ extension NibContainerComponent: UIKitRenderable{
     }
     
     public func autoLayout(view: UIView) {
-        self.layout(self, view)
+        if let layout = self.layout{
+            layout(self, view)
+        }else{
+            view.loFillInParent()
+        }
     }
     
     private func renderChildren(in parent: UIView)-> [UIKitRenderTree]{

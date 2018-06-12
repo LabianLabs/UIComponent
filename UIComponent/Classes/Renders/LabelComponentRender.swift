@@ -8,12 +8,13 @@
 
 import UIKit
 
-extension Label: UIKitRenderable {
+extension LabelComponent: UIKitRenderable {
 
     public func renderUIKit() -> UIKitRenderTree {
         let label = UILabel()
         label.text = self.text
         label.textColor = UIColor(rgba: self.textColor.hexString)
+        self.applyBaseAttributes(to: label)
         return .leaf(self, label)
     }
 
@@ -24,7 +25,7 @@ extension Label: UIKitRenderable {
         renderTree: UIKitRenderTree) -> UIKitRenderTree
     {
         guard let view = view as? UILabel else { fatalError() }
-        guard let newComponent = newComponent as? Label else { fatalError() }
+        guard let newComponent = newComponent as? LabelComponent else { fatalError() }
 
         view.text = newComponent.text
 
@@ -32,6 +33,6 @@ extension Label: UIKitRenderable {
     }
 
     public func autoLayout( view: UIView) {
-        self.layout(self, view)
+        self.layout?(self, view)
     }
 }
