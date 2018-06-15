@@ -13,12 +13,26 @@ extension ButtonComponent: UIKitRenderable {
         let button = UIButton(type: .custom)
         button.setTitle(self.title, for: UIControlState())
         button.setTitleColor(.blue, for: UIControlState())
+        button.backgroundColor = UIColor.white
+        button.addTarget(self, action: #selector(onButtonDidTouch), for: UIControlEvents.touchUpInside)
         self.applyBaseAttributes(to: button)
         return .leaf(self, button)
     }
     
     public func autoLayout(view: UIView) {
-        self.layout?(self, view)
+        if let layout = self.layout{
+            layout(self, view)
+        } else {
+            constrain(view) { button in
+                button.top == button.superview!.top
+                button.left == button.superview!.left
+                button.right == button.superview!.right
+                button.height == 44
+            }
+        }
     }
     
+    @objc public func onButtonDidTouch(sender:UIButton){
+        self.callbackOnClick?(sender)
+    }
 }

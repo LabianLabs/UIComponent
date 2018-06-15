@@ -37,9 +37,9 @@ extension UIView /*AutoLayout*/{
     public func loBellow(_ view: UIView)->UIView{
         constrain(self, view){ v1, v2 in
             v1.left == v1.superview!.left
-            v1.right == v1.superview!.right
             v1.top == v2.bottom
-            v1.width == v2.width
+            v1.width == v1.superview!.width
+            v1.bottom == v1.superview!.bottom
         }
         return self
     }

@@ -16,7 +16,7 @@ struct ViewState{
     var step:Int = 3
 }
 
-class ViewContainer:BaseComponentRenderable<ViewState>{
+class BasicComponentContainer:BaseComponentRenderable<ViewState>{
     weak var viewController: ViewController?
     
     public init(controller: ViewController, state: ViewState){
@@ -37,8 +37,8 @@ class ViewContainer:BaseComponentRenderable<ViewState>{
                         view.loBellow(c.viewByTag("SEARCHBAR") as! UIView)
                     }
                 }
-                <<< ViewComponent<UserProfile>(){
-                    $0.nibFile = "UserProfile"
+                <<< ViewComponent<CustomViewComponent>(){
+                    $0.nibFile = "CustomViewComponent"
                     $0.render = { view in
                         view.userName = "111"
                     }

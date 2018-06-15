@@ -8,6 +8,11 @@
 
 import Foundation
 
-public final class ButtonComponent: BaseComponent, ComponentType {
-    var title: String?
+public final class ButtonComponent: BaseComponent, ComponentType{
+    public var title: String?
+    public var callbackOnClick:((Any?)->Void)?
+    public func onClick(_ callback: ((Any?)->Void)?)->ButtonComponent{
+        self.callbackOnClick = callback
+        return self
+    }
 }

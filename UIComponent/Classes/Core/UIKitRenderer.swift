@@ -73,8 +73,7 @@ public final class RenderView: Renderer {
                     $0.removeFromSuperview()
                 }
                 self.lastRenderTree = renderTree
-                self.view.addSubview(renderTree.view)
-                renderTree.view.loFillInParent()
+                self.view.addSubview(renderTree.view)                
                 updateRenderTreeInfo(renderView: self, renderTree: renderTree)
                 applyLayout(renderTree: renderTree)
             }

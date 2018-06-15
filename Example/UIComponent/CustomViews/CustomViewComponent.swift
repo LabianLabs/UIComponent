@@ -1,5 +1,5 @@
 //
-//  UserProfile.swift
+//  CustomViewComponent.swift
 //  UIComponent_Example
 //
 //  Created by Duc Ngo on 6/11/18.
@@ -9,6 +9,6 @@
 import Foundation
 import UIComponent
 
-class UserProfile:UIView{
+class CustomViewComponent:UIView{
     var userName :String?   
 }
