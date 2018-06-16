@@ -12,7 +12,7 @@ extension ViewComponent: UIKitRenderable{
     public func renderUIKit() -> UIKitRenderTree {
         var view:UIView?
         if let nibFile = self.nibFile {
-            let bundle = Bundle.main
+            let bundle = Bundle(for: type(of: T.self) as! AnyClass)
             view = bundle.loadNibNamed(nibFile, owner: nil, options: nil)?.first as? UIView
         } else{
             view = T() as? UIView
