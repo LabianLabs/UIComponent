@@ -20,6 +20,7 @@ class BasicComponentContainer:BaseComponentRenderable<ViewState>{
     weak var viewController: ViewController?
     
     public init(controller: ViewController, state: ViewState){
+      
         self.viewController = controller
         super.init(state: state)
     }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol Initializable{
+public protocol Initializable:class{
     init()
 }
 
