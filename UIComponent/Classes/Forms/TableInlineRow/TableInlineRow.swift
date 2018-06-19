@@ -10,6 +10,7 @@ import Eureka
 import UIKit
 
 open class TableInlineCell<T: Equatable>: Cell<T>, CellType {
+    private var inlineCell:BaseCell?
     
     required public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -21,13 +22,29 @@ open class TableInlineCell<T: Equatable>: Cell<T>, CellType {
     
     override open func setup() {
         super.setup()
+        textLabel?.text = nil
+        detailTextLabel?.text = nil
         accessoryType = .none
         editingAccessoryType =  .none
+        
+        if let inlineCell = (self.row as? _TableInlineRow)?.inlineCellProvider?.makeCell(style: UITableViewCellStyle.default) as? Cell<T>{
+            inlineCell.row = self.row
+            inlineCell.setup()
+            _ = self.contentView.subviews.map({$0.removeFromSuperview()})
+            self.contentView.addSubview(inlineCell.contentView)
+            inlineCell.contentView.loFillInParent()
+            self.inlineCell = inlineCell
+            self.layoutIfNeeded()
+            (self.row as? _TableInlineRow)?.callbackOnSetupCell?(inlineCell)
+        }
     }
     
     override open func update() {
         super.update()
+        textLabel?.text = nil
+        detailTextLabel?.text = nil
         selectionStyle = row.isDisabled ? .none : .default
+        self.inlineCell?.update()
     }
     
     override open func didSelect() {
@@ -37,24 +54,35 @@ open class TableInlineCell<T: Equatable>: Cell<T>, CellType {
 }
 
 open class _TableInlineRow<T> : Row<TableInlineCell<T>>, NoValueDisplayTextConformance where T: Equatable {
+    open var values = [T]()
     
-    open var options = [T]()
-    public var tableCellNibName: String?
+    public var callbackOnSetupCell: ((UITableViewCell) -> Void)?
+    public var callbackOnSetupSubCell: ((UITableViewCell, T, Int) -> Void)?
+    public var callbackOnSelectItem: ((T) -> Void)?
+    
+    public var inlineCellProvider:TableCellProvider?
+    
+    public var inlineSubCellProvider:TableCellProvider?
+    
     public var noValueDisplayText: String?
+    
     private var subcellConfigurator: (UITableViewCell, T, Int) -> Void = { _, _, _ in }
     
+    public required init(tag: String?) {
+        super.init(tag: tag)
+    }
+    
     public func setupInlineRow(_ inlineRow: TableRow<T>) {
-        inlineRow.options = options
-        inlineRow.tableCellNibName = self.tableCellNibName
-        inlineRow.displayValueFor = displayValueFor
-        inlineRow.configureCell(subcellConfigurator)
+        inlineRow.values = values
+        inlineRow.callbackOnSetupSubCell = callbackOnSetupSubCell
+        inlineRow.callbackOnSelectItem = self.callbackOnSelectItem
+        inlineRow.inlineCellProvider = self.inlineSubCellProvider
         inlineRow.value = value
     }
     
-    /// The block used to configure cells of underlying `SelectionListRow`
     @discardableResult
-    open func configureSubcell(_ configurator: @escaping (UITableViewCell, T, Int) -> Void) -> Self {
-        subcellConfigurator = configurator
+    open func onSetupSubCell(_ callback: @escaping (UITableViewCell, T, Int) -> Void) -> Self {
+        callbackOnSetupSubCell = callback
         return self
     }
 }
@@ -88,13 +116,26 @@ final public class TableInlineRow<T>: _TableInlineRow<T>, RowType, InlineRowType
     
     override public func setupInlineRow(_ inlineRow: InlineRow) {
         super.setupInlineRow(inlineRow)
-        inlineRow.onDidSelect { [weak self] _ in
-            if self?.collapseOnInlineRowSelection ?? true {
-                self?.toggleInlineRow()
-            }
-        }
+//        inlineRow.onDidSelectItem { [weak self] _ in
+//            if self?.collapseOnInlineRowSelection ?? true {
+//                self?.toggleInlineRow()
+//            }
+//        }
         inlineRow.textColor = subcellTextColor
         inlineRow.horizontalContentInset = subcellHorizontalInset
+    }
+    
+    /// The block used to configure cells
+    @discardableResult
+    open func onSetupCell(_ callback: @escaping (UITableViewCell) -> Void) -> TableInlineRow {
+        callbackOnSetupCell = callback
+        return self
+    }
+    
+    @discardableResult
+    open func onDidSelectSubItem(_ callback: @escaping (T) -> Void) -> TableInlineRow {
+        callbackOnSelectItem = callback
+        return self
     }
     
     /// This block gets called immediately and on `expanded/collapsed` state changes,

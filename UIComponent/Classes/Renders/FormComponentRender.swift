@@ -251,12 +251,14 @@ class CustomFormViewController:FormViewController{
         }
         self.spinnerControl = spinner
         self.refreshControl = refreshControl
+        self.forceInlineTableLayout()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.updateInfiniteScrollState()
     }
+
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath){        
         if ((indexPath.row + 1) * (indexPath.section + 1) == self.form.allRows.count) {
@@ -264,7 +266,33 @@ class CustomFormViewController:FormViewController{
         }
     }
     
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return UITableViewAutomaticDimension
+//    }
+//    
+//    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return UITableViewAutomaticDimension
+//    }
+//    
+//    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return UITableViewAutomaticDimension
+//    }
+//    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        super.tableView(tableView, didSelectRowAt: indexPath)
+        self.forceInlineTableLayout()
+    }
+    
     @objc func handleRefresh(){
         self.component?.callbackOnRefresh?()
+    }
+    
+    private func forceInlineTableLayout(){
+        DispatchQueue.main.async {
+            UIView.setAnimationsEnabled(false)
+            self.tableView.beginUpdates()
+            self.tableView.endUpdates()
+            UIView.setAnimationsEnabled(true)
+        }
     }
 }

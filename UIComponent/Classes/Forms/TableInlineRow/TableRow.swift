@@ -12,7 +12,9 @@ import UIKit
 open class TableCell<T>: Cell<T>, CellType, UITableViewDelegate, UITableViewDataSource where T: Equatable {
     
     private let tableView = IntrinsicSizeTableView()
+    
     private lazy var tableHorizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[table]-0-|", options: [], metrics: nil, views: ["table": tableView])
+    private lazy var tableVerticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[table]-0-|", options: [], metrics: nil, views: ["table": tableView])
     
     private var listRow: TableRow<T>? {
         return row as? TableRow<T>
@@ -20,11 +22,10 @@ open class TableCell<T>: Cell<T>, CellType, UITableViewDelegate, UITableViewData
     
     required public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        contentView.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addConstraints(tableHorizontalConstraints)
-        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[picker]-0-|", options: [], metrics: nil, views: ["picker": tableView]))
+        self.contentView.addSubview(tableView)
+        self.contentView.addConstraints(tableHorizontalConstraints)
+        self.contentView.addConstraints(tableVerticalConstraints)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CellIdentifier")
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -33,89 +34,78 @@ open class TableCell<T>: Cell<T>, CellType, UITableViewDelegate, UITableViewData
     
     override open func setup() {
         super.setup()
+        textLabel?.text = nil
+        detailTextLabel?.text = nil
         accessoryType = .none
         editingAccessoryType = .none
-        height = { UITableViewAutomaticDimension }
-        tableView.rowHeight = 44
-        tableView.isScrollEnabled = false
-        tableView.delegate = self
-        tableView.dataSource = self
-        if let nibCell = listRow?.tableCellNibName{
-            tableView.register(UINib(nibName: nibCell, bundle: nil), forCellReuseIdentifier: nibCell)
-        }else{
-            tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CellIdentifier")
-        }
         if let inset = listRow?.horizontalContentInset {
             tableHorizontalConstraints.forEach { $0.constant = inset }
         }
-        tableView.tableHeaderView = headerView(with: listRow?.title)
-    }
-    
-    private func headerView(with text: String?) -> UIView? {
-        guard let text = text else { return nil }
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: -1, height: tableView.rowHeight))
-        label.text = text
-        label.textAlignment = .center
-        label.textColor = .darkGray
-        label.backgroundColor = UIColor(white: 0.9, alpha: 1)
-        return label
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.isScrollEnabled = false
+        tableView.delegate = self
+        tableView.dataSource = self
+        DispatchQueue.main.async {
+            self.tableView.invalidateIntrinsicContentSize()
+            self.tableView.layoutIfNeeded()
+        }
     }
     
     override open func update() {
         super.update()
         textLabel?.text = nil
         detailTextLabel?.text = nil
+        self.tableView.reloadData()
+    }
+    
+
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    public func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
     
     open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.tableView.rowCount = listRow?.options.count ?? 0
-        return self.tableView.rowCount
+        let count = listRow?.values.count ?? 0
+        return count
     }
     
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell:UITableViewCell?
-        if let nibName = listRow?.tableCellNibName{
-            cell = tableView.dequeueReusableCell(withIdentifier: nibName, for: indexPath)
+        if let cellProvider = self.listRow?.inlineCellProvider{
+            cell = cellProvider.makeCell(style: UITableViewCellStyle.default)
         }else{
             cell = tableView.dequeueReusableCell(withIdentifier: "CellIdentifier", for: indexPath)
         }
-        listRow?.configure(cell: cell!, row: indexPath.row)
+        listRow?.configure(subCell: cell!, row: indexPath.row)
+        cell?.layoutIfNeeded()
         return cell!
     }
     
-    open func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if let selectedValue = listRow?.value, listRow?.options.index(of: selectedValue) == indexPath.row {
-            cell.accessoryType = .checkmark
-        } else {
-            cell.accessoryType = .none
-        }
-    }
-    
     open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let selectedValue = listRow?.value, let index = listRow?.options.index(of: selectedValue) {
-            tableView.cellForRow(at: IndexPath(row: index, section: 0))?.accessoryType = .none
-        }
-        tableView.deselectRow(at: indexPath, animated: true)
-        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        tableView.deselectRow(at: indexPath, animated: false)
         listRow?.select(at: indexPath.row)
     }
 }
 
-open class TableRowCell<T>:Cell<T> where T:Equatable{
-    public weak var tableRow:TableRow<T>?
+open class SubCell<T:Equatable>:Cell<T>{
+    public var subValue:T?
 }
 
 public final class TableRow<T>: Row<TableCell<T>>, RowType where T: Equatable {
     
-    public var tableCellNibName: String?
+    public var values = [T]()
+    public var inlineCellProvider:TableCellProvider?
     
-    open var options = [T]()
+    public var callbackOnSetupSubCell: ((UITableViewCell, T, Int) -> Void)?
     
-    private var configurationCallback: ((UITableViewCell, T, Int) -> Void)?
-    private var selectionCallback: ((T) -> Void)?
+    public var callbackOnSelectItem: ((T) -> Void)?
     
     /// Sets textLabel color
     open var textColor = UIColor.gray
+    
     /// Sets horizontal insets
     open var horizontalContentInset: CGFloat = 0
     
@@ -124,35 +114,33 @@ public final class TableRow<T>: Row<TableCell<T>>, RowType where T: Equatable {
     }
     
     fileprivate func select(at index: Int) {
-        guard index < options.count else { return }
-        value = options[index]
-        selectionCallback?(options[index])        
+        guard index < values.count else { return }
+        callbackOnSelectItem?(values[index])
     }
     
     /// This block gets called on option selection
     @discardableResult
-    open func onDidSelect(_ callback: @escaping (T) -> Void) -> TableRow {
-        selectionCallback = callback
+    open func onDidSelectItem(_ callback: @escaping (T) -> Void) -> TableRow {
+        callbackOnSelectItem = callback
         return self
     }
     
-    /// The block used to configure cells
     @discardableResult
-    open func configureCell(_ configurator: @escaping (UITableViewCell, T, Int) -> Void) -> TableRow {
-        configurationCallback = configurator
+    open func onSetupSubCell(_ callback: @escaping ((UITableViewCell, T, Int) -> Void)) -> TableRow{
+        callbackOnSetupSubCell = callback
         return self
     }
     
-    fileprivate func configure(cell: UITableViewCell, row: Int) {
-        guard row < options.count else { return }
-        if let c = cell as? TableRowCell<T>{
-            c.tableRow = self
-            c.tableRow?.value = self.options[row]
-            c.update()
-        }else{
-            cell.textLabel?.text = displayValueFor?(options[row])
+    fileprivate func configure(subCell: UITableViewCell, row: Int) {
+        guard row < values.count else { return }
+        if let cell = subCell as? SubCell<T>{
+            cell.subValue = values[row]
+            cell.setup()
+            cell.update()
+        }else if self.inlineCellProvider == nil{
+            cell.textLabel?.text = displayValueFor?(values[row])
             cell.textLabel?.textColor = textColor
         }
-        configurationCallback?(cell, options[row], row)
+        callbackOnSetupSubCell?(cell, values[row], row)
     }
 }

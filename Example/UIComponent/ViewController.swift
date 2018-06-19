@@ -25,6 +25,8 @@ class ViewController: UIViewController {
                     self.navigationController?.pushViewController(vc, animated: true)
                     break
                 default:
+                    let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "FormTableViewController")
+                    self.navigationController?.pushViewController(vc, animated: true)                    
                     break
             }
         }

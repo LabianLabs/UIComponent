@@ -9,10 +9,14 @@
 import UIKit
 
 final class IntrinsicSizeTableView: UITableView {
-    var rowCount = 0
-    
     override var intrinsicContentSize: CGSize {
-        let headerHeight = tableHeaderView?.bounds.height ?? 0
-        return CGSize(width: -1, height: headerHeight + CGFloat(rowCount) * rowHeight)
+        self.layoutIfNeeded()
+        return self.contentSize
+    }
+    
+    override var contentSize: CGSize {
+        didSet{
+            self.invalidateIntrinsicContentSize()
+        }
     }
 }

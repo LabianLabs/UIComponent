@@ -31,6 +31,7 @@
 		0FC5B57F20CEC5450058676D /* TableInlineRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC5B57C20CEC5450058676D /* TableInlineRow.swift */; };
 		0FC5B58020CEC5450058676D /* TableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC5B57D20CEC5450058676D /* TableRow.swift */; };
 		0FC5B58120CEC5450058676D /* IntrinsicContentSizeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC5B57E20CEC5450058676D /* IntrinsicContentSizeTableView.swift */; };
+		0FD749D820D8AF230093C7F9 /* TableCellProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD749D720D8AF230093C7F9 /* TableCellProvider.swift */; };
 		127A824879BB5AC2FD473790A83D4231 /* LayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DEF5F804748003F330DCFBFDBEB085 /* LayoutGuide.swift */; };
 		14511B7EA3ADFBA368101A98EF02E5A1 /* GenericMultipleSelectorRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAD9707C10E3A7DCF366459C42C35CA /* GenericMultipleSelectorRow.swift */; };
 		147E245550C9AB76276EC9B334632385 /* FormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACB8BDED93AE6E3609745662C54BA88 /* FormComponent.swift */; };
@@ -234,6 +235,7 @@
 		0FC5B57C20CEC5450058676D /* TableInlineRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableInlineRow.swift; sourceTree = "<group>"; };
 		0FC5B57D20CEC5450058676D /* TableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableRow.swift; sourceTree = "<group>"; };
 		0FC5B57E20CEC5450058676D /* IntrinsicContentSizeTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntrinsicContentSizeTableView.swift; sourceTree = "<group>"; };
+		0FD749D720D8AF230093C7F9 /* TableCellProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellProvider.swift; sourceTree = "<group>"; };
 		11294F82F93A646219F5CDB4681C8A91 /* LayoutSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LayoutSupport.swift; sourceTree = "<group>"; };
 		122E0EF29F2EBFBF51BA446C8B80BEFA /* UIComponent-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIComponent-dummy.m"; sourceTree = "<group>"; };
 		154FA60658DA6BF89423FB26E2DEF48B /* RuleRange.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RuleRange.swift; path = Source/Validations/RuleRange.swift; sourceTree = "<group>"; };
@@ -484,6 +486,7 @@
 				0FC5B57C20CEC5450058676D /* TableInlineRow.swift */,
 				0FC5B57D20CEC5450058676D /* TableRow.swift */,
 				0FC5B57E20CEC5450058676D /* IntrinsicContentSizeTableView.swift */,
+				0FD749D720D8AF230093C7F9 /* TableCellProvider.swift */,
 			);
 			path = TableInlineRow;
 			sourceTree = "<group>";
@@ -1168,6 +1171,7 @@
 				0FC5B56D20CEB1580058676D /* ButtonComponent.swift in Sources */,
 				A85370CC1B4A318506790FA8DEB46934 /* Edge.swift in Sources */,
 				A65B748BD13529D42F0B349E96F3ECFB /* Edges.swift in Sources */,
+				0FD749D820D8AF230093C7F9 /* TableCellProvider.swift in Sources */,
 				0F89770520CFEB32003E4931 /* SearchBarComponentRender.swift in Sources */,
 				0A5DDB8DF6EAB47493C5B4325C8E5847 /* Expression.swift in Sources */,
 				4E28541BE195B1ECE95618E4AAF82ECB /* Extensions.swift in Sources */,
