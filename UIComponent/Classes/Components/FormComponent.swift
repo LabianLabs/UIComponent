@@ -2,7 +2,7 @@
 //  FormComponent.swift
 //  UIComponent
 //
-//  Created by Duc Ngo on 6/11/18.
+//  Created by labs01 on 6/11/18.
 //
 
 import Foundation

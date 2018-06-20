@@ -3,7 +3,7 @@ This application makes use of the following third party libraries:
 
 ## UIComponent
 
-Copyright (c) 2018 ducn <ngoduc.smpt@gmail.com>
+Copyright (c) 2018 LabianLabs <ngoduc.smpt@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

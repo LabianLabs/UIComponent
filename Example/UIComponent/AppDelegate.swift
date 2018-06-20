@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  UIComponent
 //
-//  Created by ducn on 06/09/2018.
-//  Copyright (c) 2018 ducn. All rights reserved.
+//  Created by labs01 on 06/09/2018.
+//  Copyright (c) 2018 LabianLabs. All rights reserved.
 //
 
 import UIKit

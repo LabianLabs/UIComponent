@@ -14,7 +14,7 @@ Lightweight UI library for iOS app
                        DESC
   s.homepage         = 'https://github.com/LabianLabs/UIComponent.git'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'labs01' => 'labianlabs@gmail.com' }
+  s.author           = { 'Created by labs01' => 'labianlabs@gmail.com' }
   s.source           = { :git => 'https://github.com/LabianLabs/UIComponent.git', :tag => s.version.to_s }
   s.ios.deployment_target = '9.0'
   s.source_files = 'UIComponent/Classes/**/*'
