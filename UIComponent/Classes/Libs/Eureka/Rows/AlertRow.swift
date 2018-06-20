@@ -56,6 +56,12 @@ open class _AlertRow<Cell: CellType>: AlertOptionsRow<Cell>, PresenterRowType wh
             }
         }
     }
+    
+    override public func update(from row:BaseRowType){
+        super.update(from: row)
+        guard let updatedRow = row as? _AlertRow<Cell> else {return}
+        self.onPresentCallback = updatedRow.onPresentCallback
+    }
 }
 
 /// An options row where the user can select an option from a modal Alert

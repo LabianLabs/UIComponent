@@ -62,6 +62,13 @@ open class _PickerInlineRow<T> : Row<PickerInlineCell<T>>, NoValueDisplayTextCon
     required public init(tag: String?) {
         super.init(tag: tag)
     }
+    
+    override public func update(from row:BaseRowType){
+        super.update(from: row)
+        guard let updatedRow = row as? _PickerInlineRow<T> else {return}
+        self.options = updatedRow.options
+        self.noValueDisplayText = updatedRow.noValueDisplayText
+    }
 }
 
 /// A generic inline row where the user can pick an option from a picker view which shows and hides itself automatically

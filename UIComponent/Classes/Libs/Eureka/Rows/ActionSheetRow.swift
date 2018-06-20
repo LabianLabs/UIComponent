@@ -85,6 +85,12 @@ public class _ActionSheetRow<Cell: CellType>: AlertOptionsRow<Cell>, PresenterRo
             }
         }
     }
+    
+    override public func update(from row:BaseRowType){
+        super.update(from: row)
+        guard let updatedRow = row as? _ActionSheetRow<Cell> else {return}
+        self.onPresentCallback = updatedRow.onPresentCallback
+    }
 }
 
 /// An options row where the user can select an option from an ActionSheet

@@ -11,11 +11,11 @@ import UIComponent
 
 class CustomSubCell:SubCell<CustomType>, CellType{
     override func setup() {
-        print("CustomInlineCell setup \(self.subValue)")
+        //print("CustomInlineCell setup \(self.subValue)")
     }
     
     override func update() {
         //print("\(self.row.value)")
-        print("CustomInlineCell update \(self.subValue)")
+        //print("CustomInlineCell update \(self.subValue)")
     }
 }

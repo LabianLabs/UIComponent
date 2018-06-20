@@ -88,7 +88,10 @@ extension Form{
             }
         }
     }
+    
 }
+
+
 extension FormComponent{
     func updateFormComponent(with newComponent:FormComponent){
         guard let host = hostController else { fatalError()}
@@ -155,16 +158,17 @@ extension FormComponent{
         
         migrateDeletionRows(to: oldFormController.form, deletedIndexes: deletedRows)
         migrateInsertionRows(from: newFormController.form, to: oldFormController.form, insertedRows: insertedRows)
-        migrateUpdationRows(to: oldFormController.form, updatedIndexes: updatedRows)
-        migrateUpdationSections(to: oldFormController.form, updatedSections: updatedSections)
+        migrateUpdationRows(from: newFormController.form, to: oldFormController.form, updatedIndexes: updatedRows)
+        migrateUpdationSections(from: newFormController.form, to: oldFormController.form, updatedSections: updatedSections)
         migrateDeletionSections(to: oldFormController.form, deletedSections: deletedSections)
         oldFormController.form.expandRows(rows: expandedRows)
         oldFormController.stopPullToRefresh()
     }
     
-    func migrateUpdationSections(to originalForm:Form, updatedSections:[String:Bool]){
+    func migrateUpdationSections(from updatedForm: Form, to originalForm:Form, updatedSections:[String:Bool]){
         let indexes = updatedSections.keys.map({return Int($0)})
         for idx in indexes{
+            originalForm.allSections[idx!].update(from: updatedForm.allSections[idx!])
             originalForm.allSections[idx!].reload()
         }
     }
@@ -175,7 +179,6 @@ extension FormComponent{
         for section in indexes{
             updatedForm.remove(at: section!)
         }
-        
     }
     
     func migrateDeletionRows(to originalForm:Form, deletedIndexes:[String:[String]]){
@@ -189,10 +192,11 @@ extension FormComponent{
         }
     }
     
-    func migrateUpdationRows(to originalForm:Form, updatedIndexes:[String:Bool]){
+    func migrateUpdationRows(from updatedForm:Form, to originalForm:Form, updatedIndexes:[String:Bool]){
         for key in updatedIndexes.keys{
             let indexes = key.split(separator: "-").map({return Int($0)})
             let row = originalForm.allRows[indexes[0]! + indexes[1]!]
+            row.update(from: updatedForm.allRows[indexes[0]! + indexes[1]!])
             row.reload()
         }
     }

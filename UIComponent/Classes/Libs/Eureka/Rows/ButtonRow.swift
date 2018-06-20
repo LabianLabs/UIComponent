@@ -91,6 +91,12 @@ open class _ButtonRowOf<T: Equatable> : Row<ButtonCellOf<T>> {
         super.prepare(for: segue)
         (segue.destination as? RowControllerType)?.onDismissCallback = presentationMode?.onDismissCallback
     }
+    
+    override public func update(from row:BaseRowType){
+        super.update(from: row)
+        guard let updatedRow = row as? _ButtonRowOf<T> else {return}
+        self.presentationMode = updatedRow.presentationMode
+    }
 }
 
 /// A generic row with a button. The action of this button can be anything but normally will push a new view controller

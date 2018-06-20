@@ -110,6 +110,14 @@ open class _DatePickerRow: Row<DatePickerCell>, DatePickerRowProtocol {
         super.init(tag: tag)
         displayValueFor = nil
     }
+    
+    override public func update(from row:BaseRowType){
+        super.update(from: row)
+        guard let updatedRow = row as? _DatePickerRow else {return}
+        self.minimumDate = updatedRow.minimumDate
+        self.maximumDate = updatedRow.maximumDate
+        self.minuteInterval = updatedRow.minuteInterval
+    }
 }
 
 /// A row with an Date as value where the user can select a date directly.

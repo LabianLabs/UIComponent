@@ -82,4 +82,14 @@ open class GenericMultipleSelectorRow<T, Cell: CellType>: Row<Cell>, PresenterRo
         onPresentCallback?(cell.formViewController()!, rowVC)
         rowVC.row = self
     }
+    
+    override public func update(from row:BaseRowType){
+        super.update(from: row)
+        guard let updatedRow = row as? GenericMultipleSelectorRow<T,Cell> else {return}
+        self.presentationMode = updatedRow.presentationMode
+        self.onPresentCallback = updatedRow.onPresentCallback
+        self.selectorTitle = updatedRow.selectorTitle
+        self.noValueDisplayText = updatedRow.noValueDisplayText
+        self.optionsProvider = updatedRow.optionsProvider
+    }
 }

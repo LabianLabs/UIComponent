@@ -15,7 +15,6 @@
 		0F07E78820DA11E2001A32E1 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F07E74020DA11E2001A32E1 /* Cell.swift */; };
 		0F07E78A20DA11E2001A32E1 /* PresenterRowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F07E74220DA11E2001A32E1 /* PresenterRowType.swift */; };
 		0F07E78B20DA11E2001A32E1 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F07E74320DA11E2001A32E1 /* Helpers.swift */; };
-		0F07E78C20DA11E2001A32E1 /* BaseRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F07E74420DA11E2001A32E1 /* BaseRow.swift */; };
 		0F07E78D20DA11E2001A32E1 /* RowProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F07E74520DA11E2001A32E1 /* RowProtocols.swift */; };
 		0F07E78E20DA11E2001A32E1 /* HeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F07E74620DA11E2001A32E1 /* HeaderFooterView.swift */; };
 		0F07E78F20DA11E2001A32E1 /* SwipeActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F07E74720DA11E2001A32E1 /* SwipeActions.swift */; };
@@ -72,7 +71,8 @@
 		0F07E7C220DA11E2001A32E1 /* SelectorAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F07E78220DA11E2001A32E1 /* SelectorAlertController.swift */; };
 		0F07E7C320DA11E2001A32E1 /* ButtonRowWithPresent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F07E78320DA11E2001A32E1 /* ButtonRowWithPresent.swift */; };
 		0F07E7C420DA11E2001A32E1 /* PickerInputRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F07E78420DA11E2001A32E1 /* PickerInputRow.swift */; };
-		0F07E7CA20DA16D4001A32E1 /* InlineRowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F07E7C920DA16D4001A32E1 /* InlineRowType.swift */; };
+		0F4788B020DA598F001D8D99 /* BaseRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4788AE20DA598F001D8D99 /* BaseRow.swift */; };
+		0F4788B120DA598F001D8D99 /* InlineRowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4788AF20DA598F001D8D99 /* InlineRowType.swift */; };
 		0F9F3FC96CBA55D973C65C18333ABCB4 /* Pods-UIComponent_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B734DFC350DC74ED716E0A8DD74BCF45 /* Pods-UIComponent_Example-dummy.m */; };
 		10CA2F194F469191374C95B663F22876 /* Constrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19915815D3B7588C70592247ADC75DE /* Constrain.swift */; };
 		18EA4E0D8B74F2B2BBF8F39B49F49BF9 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7843C520ED7D11392D872D57034A1BC /* XCTest.framework */; };
@@ -203,7 +203,6 @@
 		0F07E74020DA11E2001A32E1 /* Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		0F07E74220DA11E2001A32E1 /* PresenterRowType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresenterRowType.swift; sourceTree = "<group>"; };
 		0F07E74320DA11E2001A32E1 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
-		0F07E74420DA11E2001A32E1 /* BaseRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRow.swift; sourceTree = "<group>"; };
 		0F07E74520DA11E2001A32E1 /* RowProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowProtocols.swift; sourceTree = "<group>"; };
 		0F07E74620DA11E2001A32E1 /* HeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderFooterView.swift; sourceTree = "<group>"; };
 		0F07E74720DA11E2001A32E1 /* SwipeActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeActions.swift; sourceTree = "<group>"; };
@@ -261,7 +260,8 @@
 		0F07E78220DA11E2001A32E1 /* SelectorAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectorAlertController.swift; sourceTree = "<group>"; };
 		0F07E78320DA11E2001A32E1 /* ButtonRowWithPresent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonRowWithPresent.swift; sourceTree = "<group>"; };
 		0F07E78420DA11E2001A32E1 /* PickerInputRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerInputRow.swift; sourceTree = "<group>"; };
-		0F07E7C920DA16D4001A32E1 /* InlineRowType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InlineRowType.swift; sourceTree = "<group>"; };
+		0F4788AE20DA598F001D8D99 /* BaseRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRow.swift; sourceTree = "<group>"; };
+		0F4788AF20DA598F001D8D99 /* InlineRowType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InlineRowType.swift; sourceTree = "<group>"; };
 		0F64C8C54ACCB3D3973171EBB225D8DC /* Context.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		0F9716E7359EE1ED721E8D0EDCA3033A /* LayoutSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LayoutSupport.swift; sourceTree = "<group>"; };
 		1374B79237CAC07693E99442FBED1F15 /* FBSnapshotTestController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestController.h; path = FBSnapshotTestCase/FBSnapshotTestController.h; sourceTree = "<group>"; };
@@ -418,7 +418,6 @@
 		0F07E73D20DA11E2001A32E1 /* Eureka */ = {
 			isa = PBXGroup;
 			children = (
-				0F07E7C620DA169D001A32E1 /* Modified */,
 				0F07E73E20DA11E2001A32E1 /* Core */,
 				0F07E75320DA11E2001A32E1 /* Resources */,
 				0F07E75620DA11E2001A32E1 /* Validations */,
@@ -433,8 +432,9 @@
 				0F07E73F20DA11E2001A32E1 /* CellType.swift */,
 				0F07E74020DA11E2001A32E1 /* Cell.swift */,
 				0F07E74220DA11E2001A32E1 /* PresenterRowType.swift */,
+				0F4788AE20DA598F001D8D99 /* BaseRow.swift */,
+				0F4788AF20DA598F001D8D99 /* InlineRowType.swift */,
 				0F07E74320DA11E2001A32E1 /* Helpers.swift */,
-				0F07E74420DA11E2001A32E1 /* BaseRow.swift */,
 				0F07E74520DA11E2001A32E1 /* RowProtocols.swift */,
 				0F07E74620DA11E2001A32E1 /* HeaderFooterView.swift */,
 				0F07E74720DA11E2001A32E1 /* SwipeActions.swift */,
@@ -539,14 +539,6 @@
 				0F07E78220DA11E2001A32E1 /* SelectorAlertController.swift */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		0F07E7C620DA169D001A32E1 /* Modified */ = {
-			isa = PBXGroup;
-			children = (
-				0F07E7C920DA16D4001A32E1 /* InlineRowType.swift */,
-			);
-			path = Modified;
 			sourceTree = "<group>";
 		};
 		12EAE5DA33D17860ED0FC9289A2C9215 /* Extensions */ = {
@@ -1043,8 +1035,8 @@
 				085B4CA922E146DC2429DC8666ECA6FC /* Align.swift in Sources */,
 				20F1A74F7708CB8ED3A8967C25E9FE23 /* AutoresizingMaskLayoutProxy.swift in Sources */,
 				0F07E7A920DA11E2001A32E1 /* TextAreaRow.swift in Sources */,
+				0F4788B020DA598F001D8D99 /* BaseRow.swift in Sources */,
 				0F07E79820DA11E2001A32E1 /* Core.swift in Sources */,
-				0F07E78C20DA11E2001A32E1 /* BaseRow.swift in Sources */,
 				0F07E7A220DA11E2001A32E1 /* RuleClosure.swift in Sources */,
 				0F07E7BB20DA11E2001A32E1 /* PickerRow.swift in Sources */,
 				BE69E8382C096E746B19A1294CDE81EC /* ButtonComponent.swift in Sources */,
@@ -1109,6 +1101,7 @@
 				D4BAF15D5BD4086A5A1EFDCA0B195525 /* LayoutGuideProxy.swift in Sources */,
 				3F755AF46942B2F5D29CC69CFD8FBFCF /* LayoutItem.swift in Sources */,
 				0F07E7A720DA11E2001A32E1 /* PickerInlineRow.swift in Sources */,
+				0F4788B120DA598F001D8D99 /* InlineRowType.swift in Sources */,
 				D83F5E4A523E1DAADAE2E480CB22A686 /* LayoutProxy+TypeErasure.swift in Sources */,
 				0F07E7A620DA11E2001A32E1 /* StepperRow.swift in Sources */,
 				0F07E79220DA11E2001A32E1 /* Operators.swift in Sources */,
@@ -1149,7 +1142,6 @@
 				B982CB834FDA10A24B90471F748AC3BA /* UIColorHex.swift in Sources */,
 				B9B0E9731AFFF96E7B5AC0CF95292AB8 /* UIComponent-dummy.m in Sources */,
 				0F07E7B920DA11E2001A32E1 /* DatePickerRow.swift in Sources */,
-				0F07E7CA20DA16D4001A32E1 /* InlineRowType.swift in Sources */,
 				0F07E79420DA11E2001A32E1 /* SelectableSection.swift in Sources */,
 				1DDC29D624665DE9C79E85BD47FA61A8 /* UIKitLayout.swift in Sources */,
 				B9C43C281708C83888FF7D63AA606C10 /* UIKitReconciler.swift in Sources */,

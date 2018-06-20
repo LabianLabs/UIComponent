@@ -31,6 +31,7 @@ open class _PushRow<Cell: CellType>: SelectorRow<Cell> where Cell: BaseCell {
         presentationMode = .show(controllerProvider: ControllerProvider.callback { return SelectorViewController<SelectorRow<Cell>> { _ in } }, onDismiss: { vc in
             let _ = vc.navigationController?.popViewController(animated: true) })
     }
+    
 }
 
 /// A selector row where the user can pick an option from a pushed view controller

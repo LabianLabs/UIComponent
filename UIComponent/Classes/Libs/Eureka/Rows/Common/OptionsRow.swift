@@ -34,4 +34,12 @@ open class OptionsRow<Cell: CellType> : Row<Cell>, NoValueDisplayTextConformance
     required public init(tag: String?) {
         super.init(tag: tag)
     }
+    
+    override public func update(from row:BaseRowType){
+        super.update(from: row)
+        guard let updatedRow = row as? OptionsRow<Cell> else {return}
+        self.selectorTitle = updatedRow.selectorTitle
+        self.noValueDisplayText = updatedRow.noValueDisplayText
+        self.optionsProvider = updatedRow.optionsProvider
+    }
 }

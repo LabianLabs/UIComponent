@@ -69,7 +69,7 @@ open class _SwitchRow: Row<SwitchCell> {
     required public init(tag: String?) {
         super.init(tag: tag)
         displayValueFor = nil
-    }
+    }    
 }
 
 /// Boolean row that has a UISwitch as accessoryType

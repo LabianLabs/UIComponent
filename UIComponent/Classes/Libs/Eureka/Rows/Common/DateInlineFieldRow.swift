@@ -76,4 +76,15 @@ open class _DateInlineFieldRow: Row<DateInlineCell>, DatePickerRowProtocol, NoVa
             return formatter.string(from: val)
         }
     }
+    
+    
+    override public func update(from row:BaseRowType){
+        super.update(from: row)
+        guard let updatedRow = row as? _DateInlineFieldRow else {return}
+        self.minimumDate = updatedRow.minimumDate
+        self.maximumDate = updatedRow.maximumDate
+        self.minuteInterval = updatedRow.minuteInterval
+        self.dateFormatter = updatedRow.dateFormatter
+        self.noValueDisplayText = updatedRow.noValueDisplayText
+    }
 }

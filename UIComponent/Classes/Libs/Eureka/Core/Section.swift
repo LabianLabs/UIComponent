@@ -203,6 +203,16 @@ open class Section {
     var headerView: UIView?
     var footerView: UIView?
     var hiddenCache = false
+    
+    /**
+     Update data of current row from another section
+     **/
+    public func update(from section:Section){
+        self.tag = section.tag
+        self.header = section.header
+        self.footer = section.footer
+        self.hidden = section.hidden
+    }
 }
 
 extension Section: MutableCollection, BidirectionalCollection {
@@ -488,5 +498,14 @@ open class MultivaluedSection: Section {
      */
     public func values() -> [Any?] {
         return kvoWrapper._allRows.filter({ $0.baseValue != nil }).map({ $0.baseValue })
+    }
+    
+    public override func update(from section:Section){
+        super.update(from: section)
+        guard let updated = section as? MultivaluedSection else {return}
+        self.multivaluedOptions = updated.multivaluedOptions
+        self.showInsertIconInAddButton = updated.showInsertIconInAddButton
+        self.addButtonProvider = updated.addButtonProvider
+        self.multivaluedRowToInsertAt = updated.multivaluedRowToInsertAt
     }
 }

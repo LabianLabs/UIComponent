@@ -134,4 +134,13 @@ open class _DateFieldRow: Row<DateCell>, DatePickerRowProtocol, NoValueDisplayTe
             return formatter.string(from: val)
         }
     }
+    
+    override public func update(from row:BaseRowType){
+        super.update(from: row)
+        guard let updatedRow = row as? _DateFieldRow else {return}
+        self.minimumDate = updatedRow.minimumDate
+        self.maximumDate = updatedRow.minimumDate
+        self.dateFormatter = updatedRow.dateFormatter
+        self.noValueDisplayText = updatedRow.noValueDisplayText
+    }
 }

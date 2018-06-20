@@ -77,7 +77,13 @@ open class FormatteableRow<Cell: CellType>: Row<Cell>, FormatterConformance wher
             return formatter.string(for: v)
         }
     }
-
+    
+    override public func update(from row:BaseRowType){
+        super.update(from: row)
+        guard let updatedRow = row as? FormatteableRow<Cell> else {return}
+        self.useFormatterDuringInput = updatedRow.useFormatterDuringInput
+        self.useFormatterOnDidBeginEditing = updatedRow.useFormatterOnDidBeginEditing
+    }
 }
 
 open class FieldRow<Cell: CellType>: FormatteableRow<Cell>, FieldRowConformance, KeyboardReturnHandler where Cell: BaseCell, Cell: TextFieldCell {
@@ -107,6 +113,14 @@ open class FieldRow<Cell: CellType>: FormatteableRow<Cell>, FieldRowConformance,
 
     public required init(tag: String?) {
         super.init(tag: tag)
+    }
+    
+    override public func update(from row:BaseRowType){
+        super.update(from: row)
+        guard let updatedRow = row as? FieldRow<Cell> else {return}
+        self.titlePercentage = updatedRow.titlePercentage
+        self.placeholder = updatedRow.placeholder
+        self.placeholderColor = updatedRow.placeholderColor
     }
 }
 

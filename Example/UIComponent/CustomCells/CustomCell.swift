@@ -30,10 +30,10 @@ class CustomType2:CustomType{
 class CustomCell:Cell<CustomType>, CellType{
     
     override func setup() {
-        print("CustomCell setup \(self.row.value)")
+        //print("CustomCell setup \(self.row.value)")
     }
     
     override func update() {        
-        print("CustomCell update \(self.row.value)")
+        //print("CustomCell update \(self.row.value)")
     }
 }

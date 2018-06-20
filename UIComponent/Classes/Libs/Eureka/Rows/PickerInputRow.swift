@@ -126,7 +126,13 @@ open class _PickerInputRow<T> : Row<PickerInputCell<T>>, NoValueDisplayTextConfo
 
     required public init(tag: String?) {
         super.init(tag: tag)
-
+    }
+    
+    override public func update(from row:BaseRowType){
+        super.update(from: row)
+        guard let updatedRow = row as? _PickerInputRow<T> else {return}
+        self.options = updatedRow.options
+        self.noValueDisplayText = updatedRow.noValueDisplayText
     }
 }
 

@@ -84,6 +84,14 @@ open class _TableInlineRow<T> : Row<TableInlineCell<T>>, NoValueDisplayTextConfo
         callbackOnSetupSubCell = callback
         return self
     }
+    
+    override public func update(from row:BaseRowType){
+        super.update(from: row)
+        if let updatedRow = row as? _TableInlineRow<T>{
+            self.value = updatedRow.value
+            self.subValues = updatedRow.subValues
+        }
+    }
 }
 
 final public class TableInlineRow<T>: _TableInlineRow<T>, RowType, InlineRowType where T: Equatable {

@@ -101,6 +101,12 @@ open class _PickerRow<T> : Row<PickerCell<T>> where T: Equatable {
     required public init(tag: String?) {
         super.init(tag: tag)
     }
+    
+    override public func update(from row:BaseRowType){
+        super.update(from: row)
+        guard let updatedRow = row as? _PickerRow<T> else {return}
+        self.options = updatedRow.options
+    }
 }
 
 /// A generic row where the user can pick an option from a picker view

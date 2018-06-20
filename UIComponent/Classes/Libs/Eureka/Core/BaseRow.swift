@@ -25,7 +25,6 @@
 import Foundation
 
 open class BaseRow: BaseRowType {
-
     var callbackOnChange: (() -> Void)?
     var callbackCellUpdate: (() -> Void)?
     var callbackCellSetup: Any?
@@ -141,6 +140,15 @@ open class BaseRow: BaseRowType {
             if newValue && !disabledCache {
                 baseCell.cellResignFirstResponder()
             }
+        }
+    }
+    /**
+     Update data of current row from another row
+     **/
+    public func update(from row:BaseRowType){
+        if let r = row as? BaseRow{
+            self.baseValue = r.baseValue
+            self.tag = r.tag
         }
     }
 }

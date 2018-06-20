@@ -161,4 +161,13 @@ public final class SliderRow: Row<SliderCell>, RowType {
     required public init(tag: String?) {
         super.init(tag: tag)
     }
+    
+    override public func update(from row:BaseRowType){
+        super.update(from: row)
+        guard let updatedRow = row as? SliderRow else {return}
+        self.minimumValue = updatedRow.minimumValue
+        self.maximumValue = updatedRow.maximumValue
+        self.steps = updatedRow.steps
+        self.shouldHideValue = updatedRow.shouldHideValue
+    }
 }

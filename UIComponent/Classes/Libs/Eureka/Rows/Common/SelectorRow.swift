@@ -85,4 +85,11 @@ open class SelectorRow<Cell: CellType>: OptionsRow<Cell>, PresenterRowType where
         onPresentCallback?(cell.formViewController()!, rowVC)
         rowVC.row = self
     }
+    
+    override public func update(from row:BaseRowType){
+        super.update(from: row)
+        guard let updatedRow = row as? SelectorRow<Cell> else {return}
+        self.presentationMode = updatedRow.presentationMode
+        self.onPresentCallback = updatedRow.onPresentCallback
+    }
 }
