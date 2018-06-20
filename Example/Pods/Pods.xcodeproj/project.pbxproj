@@ -72,7 +72,6 @@
 		0F07E7C220DA11E2001A32E1 /* SelectorAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F07E78220DA11E2001A32E1 /* SelectorAlertController.swift */; };
 		0F07E7C320DA11E2001A32E1 /* ButtonRowWithPresent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F07E78320DA11E2001A32E1 /* ButtonRowWithPresent.swift */; };
 		0F07E7C420DA11E2001A32E1 /* PickerInputRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F07E78420DA11E2001A32E1 /* PickerInputRow.swift */; };
-		0F07E7C520DA11E2001A32E1 /* Eureka.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F07E78520DA11E2001A32E1 /* Eureka.h */; };
 		0F07E7CA20DA16D4001A32E1 /* InlineRowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F07E7C920DA16D4001A32E1 /* InlineRowType.swift */; };
 		0F9F3FC96CBA55D973C65C18333ABCB4 /* Pods-UIComponent_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B734DFC350DC74ED716E0A8DD74BCF45 /* Pods-UIComponent_Example-dummy.m */; };
 		10CA2F194F469191374C95B663F22876 /* Constrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19915815D3B7588C70592247ADC75DE /* Constrain.swift */; };
@@ -220,7 +219,6 @@
 		0F07E75120DA11E2001A32E1 /* Row.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Row.swift; sourceTree = "<group>"; };
 		0F07E75220DA11E2001A32E1 /* NavigationAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationAccessoryView.swift; sourceTree = "<group>"; };
 		0F07E75420DA11E2001A32E1 /* Eureka.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Eureka.bundle; sourceTree = "<group>"; };
-		0F07E75520DA11E2001A32E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0F07E75720DA11E2001A32E1 /* RuleEqualsToRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleEqualsToRow.swift; sourceTree = "<group>"; };
 		0F07E75820DA11E2001A32E1 /* RuleRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleRange.swift; sourceTree = "<group>"; };
 		0F07E75920DA11E2001A32E1 /* RuleLength.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleLength.swift; sourceTree = "<group>"; };
@@ -263,8 +261,6 @@
 		0F07E78220DA11E2001A32E1 /* SelectorAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectorAlertController.swift; sourceTree = "<group>"; };
 		0F07E78320DA11E2001A32E1 /* ButtonRowWithPresent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonRowWithPresent.swift; sourceTree = "<group>"; };
 		0F07E78420DA11E2001A32E1 /* PickerInputRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerInputRow.swift; sourceTree = "<group>"; };
-		0F07E78520DA11E2001A32E1 /* Eureka.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Eureka.h; sourceTree = "<group>"; };
-		0F07E78620DA11E2001A32E1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F07E7C920DA16D4001A32E1 /* InlineRowType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InlineRowType.swift; sourceTree = "<group>"; };
 		0F64C8C54ACCB3D3973171EBB225D8DC /* Context.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		0F9716E7359EE1ED721E8D0EDCA3033A /* LayoutSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LayoutSupport.swift; sourceTree = "<group>"; };
@@ -425,11 +421,8 @@
 				0F07E7C620DA169D001A32E1 /* Modified */,
 				0F07E73E20DA11E2001A32E1 /* Core */,
 				0F07E75320DA11E2001A32E1 /* Resources */,
-				0F07E75520DA11E2001A32E1 /* Assets.xcassets */,
 				0F07E75620DA11E2001A32E1 /* Validations */,
 				0F07E75F20DA11E2001A32E1 /* Rows */,
-				0F07E78520DA11E2001A32E1 /* Eureka.h */,
-				0F07E78620DA11E2001A32E1 /* Info.plist */,
 			);
 			path = Eureka;
 			sourceTree = "<group>";
@@ -905,7 +898,6 @@
 				43FE5716B2F8DE900C62B15290FA98DF /* Cartography.h in Headers */,
 				D0E688CB408C985F95F01F1291F347F2 /* UIComponent-umbrella.h in Headers */,
 				7166AF6DB84B59CC5C47B506457CCB9B /* UIComponent.h in Headers */,
-				0F07E7C520DA11E2001A32E1 /* Eureka.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
