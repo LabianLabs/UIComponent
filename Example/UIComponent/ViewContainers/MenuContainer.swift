@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Eureka
 import UIComponent
 
 enum Menu {

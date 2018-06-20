@@ -8,7 +8,6 @@
 
 import Foundation
 import UIComponent
-import Eureka
 
 struct FormViewState{
     var userName:String
@@ -30,26 +29,37 @@ class FormContainer:BaseComponentRenderable<FormViewState>{
             $0.children
                 <<< FormComponent(viewController!){
                     $0.render = { form in
+                        form.inlineRowHideOptions = InlineRowHideOptions.Never
                         form +++ Section()
-                            <<< TableRow<String> { row in
+                            <<< TableRow<CustomType> { row in
                                 row.inlineCellProvider = TableCellProvider(nibName: "CustomSubCell", bundle: Bundle.main)
-                                row.values = ["1"]
+                                row.values = [CustomType2()]
                             }
-                            <<< TableInlineRow<String> { row in
-                                row.value = "test TableInlineRow"
+                            <<< TableInlineRow<CustomType> { row in
+                                row.value = CustomType1()
                                 row.inlineCellProvider = TableCellProvider(nibName: "CustomCell", bundle: Bundle.main)
                                 row.inlineSubCellProvider = TableCellProvider(nibName: "CustomSubCell", bundle: Bundle.main)
-                                row.values = ["1", "2", "3"]
+                                row.subValues = [CustomType2(), CustomType2()]
                             }.onSetupCell({ (cell) in
                                 //print(cell)
                             }).onSetupSubCell({ (cell, item, index) in
                                 //print(cell)
                             })
+                            <<< TableInlineRow<CustomType> { row in
+                                row.value = CustomType1()
+                                row.inlineCellProvider = TableCellProvider(nibName: "CustomCell", bundle: Bundle.main)
+                                row.inlineSubCellProvider = TableCellProvider(nibName: "CustomSubCell", bundle: Bundle.main)
+                                row.subValues = [CustomType2(), CustomType2()]
+                            }
                     }
                     $0.layout = { c, view in
                         view.loFillInParent()
                     }
-                }
+                    }.onRefresh(callback: {
+                        self.update {
+                            self.state.userName = "aaa"
+                        }
+                    })
         }
     }
 }

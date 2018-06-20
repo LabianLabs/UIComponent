@@ -25,6 +25,9 @@
 import Foundation
 
 public protocol BaseInlineRowType {
+    var isExpanded: Bool { get }
+    
+    var isCollapsed: Bool { get }
     /**
      Method that can be called to expand (open) an inline row
      */

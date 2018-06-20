@@ -8,7 +8,6 @@
 
 import Foundation
 import UIComponent
-import Eureka
 
 struct ViewState{
     var userName:String

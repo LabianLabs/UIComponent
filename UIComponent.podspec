@@ -7,7 +7,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'UIComponent'
-  s.version          = '0.1.5'
+  s.version          = '0.1.6'
   s.summary          = 'Lightweight UI library for iOS app'
   s.description      = <<-DESC
 Lightweight UI library for iOS app
@@ -19,7 +19,7 @@ Lightweight UI library for iOS app
   s.ios.deployment_target = '9.0'
   s.source_files = 'UIComponent/Classes/**/*'
   s.frameworks = 'UIKit', 'Foundation'
-  s.dependency 'Eureka', '~> 4.1.1'
+  #s.dependency 'Eureka', '~> 4.1.1'
   s.requires_arc = true
   s.swift_version = '4.0'
 end

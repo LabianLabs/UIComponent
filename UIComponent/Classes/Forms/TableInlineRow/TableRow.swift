@@ -6,7 +6,6 @@
 //  Copyright © 2018 Anton Kovtun. All rights reserved.
 //
 
-import Eureka
 import UIKit
 
 open class TableCell<T>: Cell<T>, CellType, UITableViewDelegate, UITableViewDataSource where T: Equatable {

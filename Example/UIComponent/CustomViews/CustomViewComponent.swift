@@ -8,7 +8,6 @@
 
 import Foundation
 import UIComponent
-import Eureka
 
 class CustomViewComponent:UIView{
     var userName :String?   

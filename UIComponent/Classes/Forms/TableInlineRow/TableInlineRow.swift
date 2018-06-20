@@ -6,7 +6,6 @@
 //  Copyright © 2018 Anton Kovtun. All rights reserved.
 //
 
-import Eureka
 import UIKit
 
 open class TableInlineCell<T: Equatable>: Cell<T>, CellType {
@@ -54,7 +53,7 @@ open class TableInlineCell<T: Equatable>: Cell<T>, CellType {
 }
 
 open class _TableInlineRow<T> : Row<TableInlineCell<T>>, NoValueDisplayTextConformance where T: Equatable {
-    open var values = [T]()
+    open var subValues = [T]()
     
     public var callbackOnSetupCell: ((UITableViewCell) -> Void)?
     public var callbackOnSetupSubCell: ((UITableViewCell, T, Int) -> Void)?
@@ -73,7 +72,7 @@ open class _TableInlineRow<T> : Row<TableInlineCell<T>>, NoValueDisplayTextConfo
     }
     
     public func setupInlineRow(_ inlineRow: TableRow<T>) {
-        inlineRow.values = values
+        inlineRow.values = subValues
         inlineRow.callbackOnSetupSubCell = callbackOnSetupSubCell
         inlineRow.callbackOnSelectItem = self.callbackOnSelectItem
         inlineRow.inlineCellProvider = self.inlineSubCellProvider
@@ -106,7 +105,7 @@ final public class TableInlineRow<T>: _TableInlineRow<T>, RowType, InlineRowType
             cell.detailTextLabel?.textColor = cell.tintColor
         }
     }
-    
+
     override public func customDidSelect() {
         super.customDidSelect()
         if !isDisabled {

@@ -11,6 +11,7 @@
 #endif
 
 #import "Cartography.h"
+#import "UIComponent.h"
 
 FOUNDATION_EXPORT double UIComponentVersionNumber;
 FOUNDATION_EXPORT const unsigned char UIComponentVersionString[];

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Eureka
 
 public final class FormComponent: BaseComponent, ComponentType{
     public var render:((Form)->Void)?    

@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import Eureka
 
 extension FormComponent: UIKitRenderable{
     
@@ -42,6 +41,7 @@ extension FormComponent: UIKitRenderable{
         guard let formController = host.childViewControllers.compactMap({return ($0 is CustomFormViewController) ? $0 : nil }).first as? CustomFormViewController else {fatalError()}
         updateFormComponent(with: formComponent)
         formController.updateInfiniteScrollState()
+        formController.forceInlineTableLayout()
         return .leaf(self, formController.view)
     }
     
@@ -54,14 +54,51 @@ extension FormComponent: UIKitRenderable{
     }
 }
 
+extension Form{
+    var allExpandedRows:[BaseRow]{
+        var res = [BaseRow]()
+        for row in rows{
+            if let inline = row as? BaseInlineRowType{
+                if inline.isExpanded{
+                    res.append(row)
+                }
+            }
+        }
+        return res
+    }
+    
+    var allCollapseRows:[BaseRow] {
+        get {
+            let rows = self.allRows
+            for row in rows{
+                if let inline = row as? BaseInlineRowType{
+                    if inline.isExpanded{
+                        inline.collapseInlineRow()
+                    }
+                }
+            }
+            return self.allRows
+        }
+    }
+    
+    func expandRows(rows:[BaseRow]){
+        for row in rows{
+            if let inline = row as? BaseInlineRowType{
+                inline.expandInlineRow()
+            }
+        }
+    }
+}
 extension FormComponent{
     func updateFormComponent(with newComponent:FormComponent){
         guard let host = hostController else { fatalError()}
         guard let oldFormController = host.childViewControllers.compactMap({return ($0 is CustomFormViewController) ? $0 : nil }).first as? CustomFormViewController else {fatalError()}
         let newFormController = CustomFormViewController()
         newComponent.render?(newFormController.form)
-        let oldRows = oldFormController.form.allRows.map({return "\($0.indexPath!.section)-\($0.indexPath!.row)"})
-        let newRows = newFormController.form.allRows.map({return "\($0.indexPath!.section)-\($0.indexPath!.row)"})
+        let expandedRows = oldFormController.form.allExpandedRows
+        let collapseRows = oldFormController.form.allCollapseRows
+        let oldRows = collapseRows.map({return "\($0.indexPath!.section)-\($0.indexPath!.row)"})
+        let newRows = newFormController.form.allCollapseRows.map({return "\($0.indexPath!.section)-\($0.indexPath!.row)"})
         let oldSections = oldFormController.form.allSections.map({return "\($0.index!)"})
         let newSections = newFormController.form.allSections.map({return "\($0.index!)"})
         
@@ -75,7 +112,7 @@ extension FormComponent{
         var deletedSections:[String] = [String]()
         var updatedSections:[String:Bool] = [:]
         
-        oldFormController.form.allRows.forEach { row in
+        collapseRows.forEach { row in
             updatedRows["\(row.indexPath!.section)-\(row.indexPath!.row)"] = true
         }
         oldFormController.form.allSections.forEach { section in
@@ -121,6 +158,7 @@ extension FormComponent{
         migrateUpdationRows(to: oldFormController.form, updatedIndexes: updatedRows)
         migrateUpdationSections(to: oldFormController.form, updatedSections: updatedSections)
         migrateDeletionSections(to: oldFormController.form, deletedSections: deletedSections)
+        oldFormController.form.expandRows(rows: expandedRows)
         oldFormController.stopPullToRefresh()
     }
     
@@ -287,7 +325,7 @@ class CustomFormViewController:FormViewController{
         self.component?.callbackOnRefresh?()
     }
     
-    private func forceInlineTableLayout(){
+    public func forceInlineTableLayout(){
         DispatchQueue.main.async {
             UIView.setAnimationsEnabled(false)
             self.tableView.beginUpdates()

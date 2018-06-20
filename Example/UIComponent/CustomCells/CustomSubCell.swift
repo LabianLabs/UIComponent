@@ -7,10 +7,9 @@
 //
 
 import Foundation
-import Eureka
 import UIComponent
 
-class CustomSubCell:SubCell<String>, CellType{
+class CustomSubCell:SubCell<CustomType>, CellType{
     override func setup() {
         print("CustomInlineCell setup \(self.subValue)")
     }

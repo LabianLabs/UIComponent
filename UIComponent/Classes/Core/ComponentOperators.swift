@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Eureka
 
 @discardableResult
 public func <<< (left: Children, right:Component) -> Children {

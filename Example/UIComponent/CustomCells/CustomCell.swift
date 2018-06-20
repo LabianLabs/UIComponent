@@ -7,10 +7,27 @@
 //
 
 import Foundation
-import Eureka
 import UIComponent
 
-class CustomCell:Cell<String>, CellType{
+class CustomType:Equatable{
+    static func == (lhs: CustomType, rhs: CustomType) -> Bool {
+        return true
+    }
+    
+    public init(){
+        
+    }
+}
+
+class CustomType1:CustomType{
+    
+}
+
+class CustomType2:CustomType{
+    
+}
+
+class CustomCell:Cell<CustomType>, CellType{
     
     override func setup() {
         print("CustomCell setup \(self.row.value)")

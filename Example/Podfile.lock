@@ -1,12 +1,10 @@
 PODS:
-  - Eureka (4.1.1)
   - FBSnapshotTestCase (2.1.4):
     - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
-  - UIComponent (0.1.0):
-    - Eureka (~> 4.1.1)
+  - UIComponent (0.1.5)
 
 DEPENDENCIES:
   - FBSnapshotTestCase (~> 2.1.4)
@@ -14,7 +12,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - Eureka
     - FBSnapshotTestCase
 
 EXTERNAL SOURCES:
@@ -22,9 +19,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Eureka: b88fb930e42c79f8c03c373d0fcdc28c1d6c50ed
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  UIComponent: 0862cd75f5479caf97c3092a87d901fa01ebc3d4
+  UIComponent: b1c9aec1ddff417466d4042e3440348b5db47c00
 
 PODFILE CHECKSUM: 177852096c61f6a3c2d337e01236e3496cc4a2a6
 
