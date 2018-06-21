@@ -73,6 +73,8 @@
 		0F07E7C420DA11E2001A32E1 /* PickerInputRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F07E78420DA11E2001A32E1 /* PickerInputRow.swift */; };
 		0F4788B020DA598F001D8D99 /* BaseRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4788AE20DA598F001D8D99 /* BaseRow.swift */; };
 		0F4788B120DA598F001D8D99 /* InlineRowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4788AF20DA598F001D8D99 /* InlineRowType.swift */; };
+		0F4788B320DA6386001D8D99 /* IFComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4788B220DA6386001D8D99 /* IFComponent.swift */; };
+		0F4788B520DA6409001D8D99 /* IFComponentRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4788B420DA6409001D8D99 /* IFComponentRender.swift */; };
 		0F9F3FC96CBA55D973C65C18333ABCB4 /* Pods-UIComponent_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B734DFC350DC74ED716E0A8DD74BCF45 /* Pods-UIComponent_Example-dummy.m */; };
 		10CA2F194F469191374C95B663F22876 /* Constrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19915815D3B7588C70592247ADC75DE /* Constrain.swift */; };
 		18EA4E0D8B74F2B2BBF8F39B49F49BF9 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7843C520ED7D11392D872D57034A1BC /* XCTest.framework */; };
@@ -262,6 +264,8 @@
 		0F07E78420DA11E2001A32E1 /* PickerInputRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerInputRow.swift; sourceTree = "<group>"; };
 		0F4788AE20DA598F001D8D99 /* BaseRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRow.swift; sourceTree = "<group>"; };
 		0F4788AF20DA598F001D8D99 /* InlineRowType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InlineRowType.swift; sourceTree = "<group>"; };
+		0F4788B220DA6386001D8D99 /* IFComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFComponent.swift; sourceTree = "<group>"; };
+		0F4788B420DA6409001D8D99 /* IFComponentRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFComponentRender.swift; sourceTree = "<group>"; };
 		0F64C8C54ACCB3D3973171EBB225D8DC /* Context.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		0F9716E7359EE1ED721E8D0EDCA3033A /* LayoutSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LayoutSupport.swift; sourceTree = "<group>"; };
 		1374B79237CAC07693E99442FBED1F15 /* FBSnapshotTestController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestController.h; path = FBSnapshotTestCase/FBSnapshotTestController.h; sourceTree = "<group>"; };
@@ -749,6 +753,7 @@
 				9CE77E2BC93DFA7036161798DB6F043E /* SegmentComponent.swift */,
 				95AE05EC1FDD3808967C20BF070369A6 /* StackComponent.swift */,
 				C0606A216BEFC5D4766FB45F4623F9AF /* ViewComponent.swift */,
+				0F4788B220DA6386001D8D99 /* IFComponent.swift */,
 			);
 			name = Components;
 			path = UIComponent/Classes/Components;
@@ -867,6 +872,7 @@
 				F4EDC4A46D0F068410074AFDFB17B0CD /* SegmentComponentRender.swift */,
 				91434A649819ABA0B8469381398EA142 /* StackComponentRender.swift */,
 				DD4F5E81291EEE0B83A64C446DC5322B /* ViewComponentRender.swift */,
+				0F4788B420DA6409001D8D99 /* IFComponentRender.swift */,
 			);
 			name = Renders;
 			path = UIComponent/Classes/Renders;
@@ -1062,9 +1068,11 @@
 				0F07E7BF20DA11E2001A32E1 /* PushRow.swift in Sources */,
 				2BBD0AD6870DC5EDDD12C78D6863D0A4 /* Dimension.swift in Sources */,
 				685E71E89EDB165E12124C30AF2BA9CB /* Distribute.swift in Sources */,
+				0F4788B320DA6386001D8D99 /* IFComponent.swift in Sources */,
 				0F07E7AA20DA11E2001A32E1 /* AlertRow.swift in Sources */,
 				0F07E78E20DA11E2001A32E1 /* HeaderFooterView.swift in Sources */,
 				0F07E7A420DA11E2001A32E1 /* SliderRow.swift in Sources */,
+				0F4788B520DA6409001D8D99 /* IFComponentRender.swift in Sources */,
 				0F07E78720DA11E2001A32E1 /* CellType.swift in Sources */,
 				0F07E7B220DA11E2001A32E1 /* Protocols.swift in Sources */,
 				0F07E7BE20DA11E2001A32E1 /* SwitchRow.swift in Sources */,

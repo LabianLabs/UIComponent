@@ -4,18 +4,55 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" userLabel="CustomViewComponent" customClass="CustomViewComponent" customModule="UIComponent_Example">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" userLabel="CustomViewComponent" customClass="CustomViewComponent" customModule="UIComponent_Example">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="134"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eog-M1-M6y">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="134"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wXh-uu-ywU">
+                            <rect key="frame" x="15" y="11" width="105" height="103"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="105" id="d8e-28-eRD"/>
+                                <constraint firstAttribute="height" constant="103" id="g3H-O4-8hP"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1u-Jv-hMD">
+                            <rect key="frame" x="135" y="15" width="215" height="109"/>
+                            <string key="text">Cartography supports all built-in attributes as of iOS 8 and OS X 10.9, those are:Cartography supports all built-in attributes as of iOS 8 and OS X 10.9, those are:Cartography supports all built-in attributes as of iOS 8 and OS X 10.9, those are:</string>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="h1u-Jv-hMD" secondAttribute="trailing" constant="25" id="253-Mn-LxR"/>
+                        <constraint firstItem="h1u-Jv-hMD" firstAttribute="top" secondItem="Eog-M1-M6y" secondAttribute="top" constant="15" id="FbB-MF-2pU"/>
+                        <constraint firstItem="wXh-uu-ywU" firstAttribute="leading" secondItem="Eog-M1-M6y" secondAttribute="leading" constant="15" id="J6t-DN-rdC"/>
+                        <constraint firstAttribute="bottom" secondItem="h1u-Jv-hMD" secondAttribute="bottom" constant="10" id="Nmr-D6-Gg3"/>
+                        <constraint firstItem="h1u-Jv-hMD" firstAttribute="leading" secondItem="wXh-uu-ywU" secondAttribute="trailing" constant="15" id="hRy-rm-mqo"/>
+                        <constraint firstItem="wXh-uu-ywU" firstAttribute="top" secondItem="Eog-M1-M6y" secondAttribute="top" constant="11" id="wh6-4Z-9e2"/>
+                    </constraints>
+                </view>
+            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <constraints>
+                <constraint firstItem="Eog-M1-M6y" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="IcM-IZ-1gt"/>
+                <constraint firstItem="Eog-M1-M6y" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="ObD-kx-Ke4"/>
+                <constraint firstItem="Eog-M1-M6y" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="hjK-5Q-Mgy"/>
+                <constraint firstItem="Eog-M1-M6y" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="vNj-TW-1cf"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-90.5" y="-162"/>
         </view>
     </objects>
 </document>

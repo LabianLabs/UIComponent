@@ -31,6 +31,8 @@ func updateRenderTreeInfo(renderView: RenderView, renderTree:UIKitRenderTree){
                 c.viewByTag = findViewByTag
             }
             break
+        default:
+            break
     }
 }
 
@@ -44,6 +46,8 @@ func applyLayout(renderTree: UIKitRenderTree){
             break
         case let (.leaf(component, view)):            
             component.autoLayout(view: view)
+            break
+        default:
             break
         
     }

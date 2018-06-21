@@ -83,7 +83,7 @@ open class GenericMultipleSelectorRow<T, Cell: CellType>: Row<Cell>, PresenterRo
         rowVC.row = self
     }
     
-    override public func update(from row:BaseRowType){
+    override open func update(from row:BaseRowType){
         super.update(from: row)
         guard let updatedRow = row as? GenericMultipleSelectorRow<T,Cell> else {return}
         self.presentationMode = updatedRow.presentationMode

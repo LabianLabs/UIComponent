@@ -85,7 +85,7 @@ open class _TableInlineRow<T> : Row<TableInlineCell<T>>, NoValueDisplayTextConfo
         return self
     }
     
-    override public func update(from row:BaseRowType){
+    override open func update(from row:BaseRowType){
         super.update(from: row)
         if let updatedRow = row as? _TableInlineRow<T>{
             self.value = updatedRow.value

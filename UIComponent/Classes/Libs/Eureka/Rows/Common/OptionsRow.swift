@@ -35,7 +35,7 @@ open class OptionsRow<Cell: CellType> : Row<Cell>, NoValueDisplayTextConformance
         super.init(tag: tag)
     }
     
-    override public func update(from row:BaseRowType){
+    override open func update(from row:BaseRowType){
         super.update(from: row)
         guard let updatedRow = row as? OptionsRow<Cell> else {return}
         self.selectorTitle = updatedRow.selectorTitle

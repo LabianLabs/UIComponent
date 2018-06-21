@@ -86,7 +86,7 @@ open class SelectorRow<Cell: CellType>: OptionsRow<Cell>, PresenterRowType where
         rowVC.row = self
     }
     
-    override public func update(from row:BaseRowType){
+    override open func update(from row:BaseRowType){
         super.update(from: row)
         guard let updatedRow = row as? SelectorRow<Cell> else {return}
         self.presentationMode = updatedRow.presentationMode

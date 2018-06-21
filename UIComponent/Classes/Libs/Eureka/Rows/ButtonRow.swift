@@ -92,7 +92,7 @@ open class _ButtonRowOf<T: Equatable> : Row<ButtonCellOf<T>> {
         (segue.destination as? RowControllerType)?.onDismissCallback = presentationMode?.onDismissCallback
     }
     
-    override public func update(from row:BaseRowType){
+    override open func update(from row:BaseRowType){
         super.update(from: row)
         guard let updatedRow = row as? _ButtonRowOf<T> else {return}
         self.presentationMode = updatedRow.presentationMode

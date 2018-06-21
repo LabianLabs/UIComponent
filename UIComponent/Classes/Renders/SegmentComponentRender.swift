@@ -20,7 +20,8 @@ extension SegmentComponent: UIKitRenderable{
     public func updateUIKit(_ view: UIView, change: Changes, newComponent: UIKitRenderable, renderTree: UIKitRenderTree) -> UIKitRenderTree {
         guard let segment = view as? UISegmentedControl else {fatalError()}
         guard let component = newComponent as? SegmentComponent else {fatalError()}
-        segment.selectedSegmentIndex = component.selectedIndex
+        segment.removeTarget(self, action: #selector(onSemgentValueChange), for: UIControlEvents.valueChanged)
+        segment.addTarget(newComponent, action: #selector(onSemgentValueChange), for: UIControlEvents.valueChanged)
         return .leaf(newComponent, view)
     }
     

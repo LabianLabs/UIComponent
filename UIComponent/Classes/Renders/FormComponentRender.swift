@@ -42,7 +42,8 @@ extension FormComponent: UIKitRenderable{
         updateFormComponent(with: formComponent)
         formController.updateInfiniteScrollState()
         formController.forceInlineTableLayout()
-        return .leaf(self, formController.view)
+        formController.component = formComponent
+        return .leaf(newComponent, formController.view)
     }
     
     public func autoLayout(view: UIView) {

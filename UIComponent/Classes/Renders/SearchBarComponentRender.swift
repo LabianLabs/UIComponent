@@ -27,8 +27,8 @@ extension SearchBarComponent:UIKitRenderable{
     
     public func updateUIKit(_ view: UIView, change: Changes, newComponent: UIKitRenderable, renderTree: UIKitRenderTree) -> UIKitRenderTree {
         guard let searchBar = view as? UISearchBar else {fatalError()}
-        guard let searchComponent = newComponent as? SearchBarComponent else {fatalError()}
-        searchBar.text = searchComponent.text
+        guard let searchComponent = newComponent as? SearchBarComponent else {fatalError()}        
+        searchBar.delegate = searchComponent
         return .leaf(searchComponent, view)
     }
     

@@ -135,7 +135,7 @@ open class _DateFieldRow: Row<DateCell>, DatePickerRowProtocol, NoValueDisplayTe
         }
     }
     
-    override public func update(from row:BaseRowType){
+    override open func update(from row:BaseRowType){
         super.update(from: row)
         guard let updatedRow = row as? _DateFieldRow else {return}
         self.minimumDate = updatedRow.minimumDate

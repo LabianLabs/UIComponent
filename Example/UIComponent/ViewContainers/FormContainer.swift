@@ -10,7 +10,7 @@ import Foundation
 import UIComponent
 
 struct FormViewState{
-    var userName:String
+    var userName:String = "11"
     var avatarUrl:String    
 }
 
@@ -26,7 +26,36 @@ class FormContainer:BaseComponentRenderable<FormViewState>{
     
     open override func render(_ state: FormViewState) -> ComponentContainer {
         return EmptyViewComponent(){
+            $0.layout = {c, v in
+                constrain(v){ view in
+                    view.left == view.superview!.left
+                    view.right == view.superview!.right
+                    view.top == view.superview!.top + 64
+                    view.bottom == view.superview!.bottom
+                }
+            }
             $0.children
+                <<< IFComponent(tag:"AA"){
+                    $0.when = {
+                        return self.state.userName == "test"
+                    }
+                    $0.thenComponent = LabelComponent() {$0.text = "These errors don't appear right away. The app was running fine doing stuff with RemoteShell and LocalShell and suddenly, the first stack trace happened once, and all subsequent calls to shell.run started giving the second stack trace, every time."}
+                    $0.elseComponent = ViewComponent<CustomViewComponent>(){
+                        $0.nibFile = "CustomViewComponent"
+                        $0.render = { view in
+                            view.userName = "111"
+                        }
+                        $0.layout = { c, view in
+                            constrain(view){ v in
+                                v.left == v.superview!.left
+                                v.top == v.superview!.top
+                                v.width == v.superview!.width
+                                v.height == 200
+                            }
+                        }
+                    }
+
+                }
                 <<< FormComponent(viewController!){
                     $0.render = { form in
                         form.inlineRowHideOptions = InlineRowHideOptions.Never
@@ -53,7 +82,11 @@ class FormContainer:BaseComponentRenderable<FormViewState>{
                             }
                     }
                     $0.layout = { c, view in
-                        view.loFillInParent()
+                        if let v = c.viewByTag("AA") as? UIView{
+                            view.loBellow(v)
+                        }else{
+                            view.loFillInParent()
+                        }
                     }
                     }.onRefresh(callback: {
                         self.update {

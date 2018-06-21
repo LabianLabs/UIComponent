@@ -162,7 +162,7 @@ public final class SliderRow: Row<SliderCell>, RowType {
         super.init(tag: tag)
     }
     
-    override public func update(from row:BaseRowType){
+    override open func update(from row:BaseRowType){
         super.update(from: row)
         guard let updatedRow = row as? SliderRow else {return}
         self.minimumValue = updatedRow.minimumValue

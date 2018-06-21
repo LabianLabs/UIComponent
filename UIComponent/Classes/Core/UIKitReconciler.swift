@@ -13,13 +13,16 @@ import UIKit
 public enum UIKitRenderTree {
     indirect case node(UIKitRenderable, UIView, [UIKitRenderTree])
     case leaf(UIKitRenderable, UIView)
-
+    case none(UIKitRenderable) // no node on this tree, will handle this later
+    
     var view: UIView {
         switch self {
         case let .node(_, view, _):
             return view
         case let .leaf(_, view):
             return view
+        default:
+            return UIView()
         }
     }
 
@@ -28,6 +31,8 @@ public enum UIKitRenderTree {
         case let .node(renderable, _, _):
             return renderable
         case let .leaf(renderable, _):
+            return renderable
+        case let .none(renderable):
             return renderable
         }
     }

@@ -283,7 +283,7 @@ open class AreaRow<Cell: CellType>: FormatteableRow<Cell>, TextAreaConformance w
         super.init(tag: tag)
     }
     
-    override public func update(from row:BaseRowType){
+    override open func update(from row:BaseRowType){
         super.update(from: row)
         guard let updatedRow = row as? AreaRow<Cell> else {return}
         self.placeholder = updatedRow.placeholder

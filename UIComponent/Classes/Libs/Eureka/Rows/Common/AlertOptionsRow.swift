@@ -38,7 +38,7 @@ open class AlertOptionsRow<Cell: CellType> : OptionsRow<Cell>, AlertOptionsProvi
         super.init(tag: tag)
     }
     
-    override public func update(from row:BaseRowType){
+    override open func update(from row:BaseRowType){
         super.update(from: row)
         guard let updatedRow = row as? AlertOptionsRow<Cell> else {return}
         self.cancelTitle = updatedRow.cancelTitle        

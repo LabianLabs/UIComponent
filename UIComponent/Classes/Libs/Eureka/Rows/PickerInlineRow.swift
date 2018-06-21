@@ -63,7 +63,7 @@ open class _PickerInlineRow<T> : Row<PickerInlineCell<T>>, NoValueDisplayTextCon
         super.init(tag: tag)
     }
     
-    override public func update(from row:BaseRowType){
+    override open func update(from row:BaseRowType){
         super.update(from: row)
         guard let updatedRow = row as? _PickerInlineRow<T> else {return}
         self.options = updatedRow.options

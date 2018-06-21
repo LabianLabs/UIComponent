@@ -57,7 +57,7 @@ open class _AlertRow<Cell: CellType>: AlertOptionsRow<Cell>, PresenterRowType wh
         }
     }
     
-    override public func update(from row:BaseRowType){
+    override open func update(from row:BaseRowType){
         super.update(from: row)
         guard let updatedRow = row as? _AlertRow<Cell> else {return}
         self.onPresentCallback = updatedRow.onPresentCallback

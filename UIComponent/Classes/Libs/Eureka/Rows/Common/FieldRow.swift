@@ -78,7 +78,7 @@ open class FormatteableRow<Cell: CellType>: Row<Cell>, FormatterConformance wher
         }
     }
     
-    override public func update(from row:BaseRowType){
+    override open func update(from row:BaseRowType){
         super.update(from: row)
         guard let updatedRow = row as? FormatteableRow<Cell> else {return}
         self.useFormatterDuringInput = updatedRow.useFormatterDuringInput
@@ -115,7 +115,7 @@ open class FieldRow<Cell: CellType>: FormatteableRow<Cell>, FieldRowConformance,
         super.init(tag: tag)
     }
     
-    override public func update(from row:BaseRowType){
+    override open func update(from row:BaseRowType){
         super.update(from: row)
         guard let updatedRow = row as? FieldRow<Cell> else {return}
         self.titlePercentage = updatedRow.titlePercentage

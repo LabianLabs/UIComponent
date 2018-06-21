@@ -207,7 +207,7 @@ open class Section {
     /**
      Update data of current row from another section
      **/
-    public func update(from section:Section){
+    open func update(from section:Section){
         self.tag = section.tag
         self.header = section.header
         self.footer = section.footer
@@ -500,7 +500,7 @@ open class MultivaluedSection: Section {
         return kvoWrapper._allRows.filter({ $0.baseValue != nil }).map({ $0.baseValue })
     }
     
-    public override func update(from section:Section){
+    override open func update(from section:Section){
         super.update(from: section)
         guard let updated = section as? MultivaluedSection else {return}
         self.multivaluedOptions = updated.multivaluedOptions

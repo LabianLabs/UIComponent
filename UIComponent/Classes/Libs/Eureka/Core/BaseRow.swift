@@ -145,7 +145,7 @@ open class BaseRow: BaseRowType {
     /**
      Update data of current row from another row
      **/
-    public func update(from row:BaseRowType){
+    open func update(from row:BaseRowType){
         if let r = row as? BaseRow{
             self.baseValue = r.baseValue
             self.tag = r.tag

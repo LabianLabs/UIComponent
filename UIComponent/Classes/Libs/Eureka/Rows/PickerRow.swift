@@ -102,7 +102,7 @@ open class _PickerRow<T> : Row<PickerCell<T>> where T: Equatable {
         super.init(tag: tag)
     }
     
-    override public func update(from row:BaseRowType){
+    override open func update(from row:BaseRowType){
         super.update(from: row)
         guard let updatedRow = row as? _PickerRow<T> else {return}
         self.options = updatedRow.options

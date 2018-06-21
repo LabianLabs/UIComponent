@@ -29,11 +29,11 @@ public extension Component{
 }
 
 public protocol ComponentType{
-    init(_ tag:String?, _ initializer:(Self)->Void)
+    init(tag:String?, _ initializer:(Self)->Void)
 }
 
 extension ComponentType where Self:BaseComponent{
-    public init(_ tag:String? = nil, _ initializer:(Self)->Void = {_ in}){
+    public init(tag:String? = nil, _ initializer:(Self)->Void = {_ in}){
         self.init(tag)
         initializer(self)
     }

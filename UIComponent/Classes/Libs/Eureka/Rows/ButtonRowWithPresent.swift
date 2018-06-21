@@ -76,7 +76,7 @@ open class _ButtonRowWithPresent<VCType: TypedRowControllerType>: Row<ButtonCell
         onPresentCallback?(cell.formViewController()!, rowVC)
     }
 
-    override public func update(from row:BaseRowType){
+    override open func update(from row:BaseRowType){
         super.update(from: row)
         guard let updatedRow = row as? _ButtonRowWithPresent<VCType> else {return}
         self.presentationMode = updatedRow.presentationMode

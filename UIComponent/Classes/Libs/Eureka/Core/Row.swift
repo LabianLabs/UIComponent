@@ -119,7 +119,7 @@ open class RowOf<T>: BaseRow where T: Equatable{
         rules.removeAll()
     }
     
-    override public func update(from row:BaseRowType){
+    override open func update(from row:BaseRowType){
         super.update(from: row)
         guard let updatedRow = row as? RowOf<T> else {return}
         self.value = updatedRow.value
