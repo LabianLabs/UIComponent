@@ -194,16 +194,33 @@ extension FormComponent{
     }
     
     func migrateUpdationRows(from updatedForm:Form, to originalForm:Form, updatedIndexes:[String:Bool]){
+        if updatedIndexes.count == 0 { return }
+        let orgRows = originalForm.allRows.reduce([String:BaseRow]()) { (dict, row) -> [String:BaseRow] in
+            var item = dict
+            item["\(row.indexPath!.section)-\(row.indexPath!.row)"] = row
+            return item
+        }
+        let newRows = updatedForm.allRows.reduce([String:BaseRow]()) { (dict, row) -> [String:BaseRow] in
+            var item = dict
+            item["\(row.indexPath!.section)-\(row.indexPath!.row)"] = row
+            return item
+        }
         for key in updatedIndexes.keys{
-            let indexes = key.split(separator: "-").map({return Int($0)})
-            let row = originalForm.allRows[indexes[0]! + indexes[1]!]
-            row.update(from: updatedForm.allRows[indexes[0]! + indexes[1]!])
+            let row = orgRows[key]!
+            row.update(from: newRows[key]!)
             row.reload()
         }
     }
     
     func migrateInsertionRows(from updatedForm:Form, to originalForm:Form, insertedRows:[String:[String]]){
+        if insertedRows.count == 0 { return }
+        
         var immutOriginalForm = originalForm
+        let newRows = updatedForm.allRows.reduce([String:BaseRow]()) { (dict, row) -> [String:BaseRow] in
+            var item = dict
+            item["\(row.indexPath!.section)-\(row.indexPath!.row)"] = row
+            return item
+        }
         for sectionIdx in insertedRows.keys{
             let isection = Int(sectionIdx)!
             if isection >= originalForm.allSections.count{
@@ -213,7 +230,7 @@ extension FormComponent{
                 var section = originalForm.allSections[isection]
                 for rowIdx in insertedRows[sectionIdx]!{
                     let irow = Int(rowIdx)!
-                    section.insert(updatedForm.allRows[isection + irow], at: irow)
+                    section.insert(newRows["\(isection)-\(irow)"]!, at: irow)
                 }
             }
         }
