@@ -65,7 +65,7 @@ extension IFComponent: UIKitRenderable{
                 }
             }
         } else{
-            if let elseView = self.vars.elseTree?.view{
+            let displayElseView:((UIView)->Void) = { elseView in
                 view.addSubview(elseView)
                 self.vars.elseTree?.renderable.autoLayout(view: elseView)
                 if elseView.constraints.count == 0{
@@ -74,11 +74,25 @@ extension IFComponent: UIKitRenderable{
                 constrain(view, elseView){ v1, v2 in
                     v1.bottom == v2.bottom
                 }
-            }else{
+            }
+            let hideContainer = {
                 // hide container
-                constrain(view){ v in
+                _ = constrain(view){ v in
                     v.height == 0
                 }
+            }
+            if let elseView = self.vars.elseTree?.view{
+                if let elseWhen = self.elseWhen {
+                    if elseWhen() == true{
+                        displayElseView(elseView)
+                    }else{
+                        hideContainer()
+                    }
+                } else {
+                    displayElseView(elseView)
+                }
+            } else{
+               hideContainer()
             }
         }
     }

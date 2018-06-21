@@ -36,10 +36,9 @@ class FormContainer:BaseComponentRenderable<FormViewState>{
             }
             $0.children
                 <<< IFComponent(tag:"AA"){
-                    $0.when = {
-                        return self.state.userName == "test"
-                    }
+                    $0.when = { return self.state.userName == "test"}
                     $0.thenComponent = LabelComponent() {$0.text = "These errors don't appear right away. The app was running fine doing stuff with RemoteShell and LocalShell and suddenly, the first stack trace happened once, and all subsequent calls to shell.run started giving the second stack trace, every time."}
+                    $0.elseWhen = { return self.state.userName == "222"}
                     $0.elseComponent = ViewComponent<CustomViewComponent>(){
                         $0.nibFile = "CustomViewComponent"
                         $0.render = { view in
