@@ -7,9 +7,9 @@
 
 import Foundation
 
-func updateRenderTreeInfo(renderView: RenderView, renderTree:UIKitRenderTree){
-    let findViewByTag = { (tag:String) -> Any? in
-        return renderView.viewsByTag[tag]
+func updateRenderTreeInfo(renderView: RenderView, renderTree:UIKitRenderTree){    
+    let findViewByTag = { [weak renderView] (tag:String) -> Any? in
+        return renderView?.viewsByTag[tag]
     }
     switch renderTree {
         case let (.node(component, view, trees)):

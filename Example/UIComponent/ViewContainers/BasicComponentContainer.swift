@@ -17,55 +17,58 @@ struct BasicViewState{
 
 class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
     weak var viewController: BasicComponentViewController?
-    
+
     public init(controller: BasicComponentViewController, state: BasicViewState){
-      
         self.viewController = controller
         super.init(state: state)
     }
     
     open override func render(_ state: BasicViewState) -> ComponentContainer {
         return EmptyViewComponent(){
+            $0.layout = {c, v in
+                constrain(v){ view in
+                    view.left == view.superview!.left
+                    view.top == view.superview!.top + 64
+                    view.width == view.superview!.width
+                    view.bottom == view.superview!.bottom
+                }
+            }
             $0.children
                 <<< SearchBarComponent(){
-                        $0.placeholder = "Search"
-                        $0.tag = "SEARCHBAR"
-                    }
-                <<< SegmentComponent(["1", "2", "3"]){                    
-                    $0.tag = "SEGMENT"
-                    $0.layout = { c, view in
-                        view.loBellow(c.viewByTag("SEARCHBAR") as! UIView)
-                    }
+                    $0.placeholder = "Search"
+                    $0.tag = "SEARCHBAR"
                 }
-                <<< ViewComponent<CustomViewComponent>(){
-                    $0.nibFile = "CustomViewComponent"
-                    $0.render = { view in
-                        view.userName = "111"
-                    }
-                    $0.layout = { c, view in
-                        view.loHeightInParent(0.3).loBellow(c.viewByTag("SEGMENT") as! UIView)
-                    }                    
-                }
-                <<< FormComponent(viewController!){
-                    $0.render = { form in
-                        form +++ Section()
-                            <<< LabelRow () {
-                                $0.title = "LabelRow"
-                                $0.value = "tap the row"
-                                }.onCellSelection { cell, row in
-                                    row.title = (row.title ?? "") + " 🇺🇾 "
-                                    row.reload() // or row.updateCell()
+                <<< NavigationBarComponent(){
+                        $0.host = viewController
+                        $0.setupTitle = {
+                            return "Custom Title"
                         }
+                        $0.rightButtonTitle = "Done"
+                    }.OnClickLeftButton {
+                        print("OnClickLeftButton")
+                    }.OnClickRightButton {
+                        print("OnClickRightButton")
                     }
-                    $0.layout = { c, view in
-                        constrain(view){ view in
-                            view.left == view.superview!.left
-                            view.top == view.superview!.top + 200
-                            view.width == view.superview!.width
-                            view.height == view.superview!.height
-                        }
-                    }
-                }
+//                <<< SegmentComponent(["1", "2", "3"]){
+//                    $0.tag = "SEGMENT"
+//                    $0.layout = { c, view in
+//                        constrain(c.viewByTag("SEARCHBAR") as! UIView, view) { v1, v2 in
+//                            v2.top == v1.bottom
+//                            v2.left == v2.superview!.left
+//                            v2.right == v2.superview!.right
+//                            v2.height == 44
+//                        }
+//                    }
+//                }
+//                <<< ViewComponent<CustomViewComponent>(){
+//                    $0.nibFile = "CustomViewComponent"
+//                    $0.render = { view in
+//                        view.userName = "111"
+//                    }
+//                    $0.layout = { c, view in
+//                        view.loHeightInParent(0.3).loBellow(c.viewByTag("SEGMENT") as! UIView)
+//                    }
+//                }
                 <<< FloatComponent<CustomViewComponent>(){
                     $0.nibFile = "CustomViewComponent"
                 }

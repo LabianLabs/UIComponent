@@ -9,7 +9,7 @@ import Foundation
 
 public final class FormComponent: BaseComponent, ComponentType{
     public var render:((Form)->Void)?    
-    public var host:Any?
+    public weak var host:AnyObject?
     public var hasMoreItems:Bool = true
     public var callbackOnInfiniteScroll:(()->Void)?
     public var callbackOnRefresh:(()->Void)?    

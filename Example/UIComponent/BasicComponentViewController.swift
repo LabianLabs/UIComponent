@@ -9,15 +9,19 @@ import Foundation
 import UIComponent
 import UIKit
 
+
 class BasicComponentViewController:UIViewController{
-    var container: BasicComponentContainer!
+    var container: BasicComponentContainer?
     var count = 12
     var section = 0
+    weak var timer:Timer?
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Basic Compomnent"
         let state = BasicViewState(userName: "test", avatarUrl: "test", step: 1)
-        self.container = BasicComponentContainer(controller: self, state: state)
-        RenderView.render(container: self.container, in: self)
+        let container = BasicComponentContainer(controller: self, state: state)
+        RenderView.render(container: container, in: self)
+        self.container = container
     }
 }

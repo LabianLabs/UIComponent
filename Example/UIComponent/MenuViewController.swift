@@ -10,13 +10,13 @@ import UIKit
 import UIComponent
 
 class MenuViewController: UIViewController {
-    var menuContainer:MenuContainer!    
+    weak var menuContainer:MenuContainer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.menuContainer = MenuContainer(controller: self, state: 0)
-        self.menuContainer.onMenuSelected = { menu in
+        let menuContainer = MenuContainer(controller: self, state: 0)
+        menuContainer.onMenuSelected = { menu in
             switch menu {
                 case .basicComponents:
                     let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "BasicComponentViewController")
@@ -28,11 +28,17 @@ class MenuViewController: UIViewController {
                     break
                 default:
                     let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "FormTableViewController")
-                    self.navigationController?.pushViewController(vc, animated: true)                    
+                    self.navigationController?.pushViewController(vc, animated: true)
                     break
             }
         }
         RenderView.render(container: menuContainer, in: self)
+        self.menuContainer = menuContainer
+    }
+    
+    @IBAction func test(){
+        let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "BasicComponentViewController")
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

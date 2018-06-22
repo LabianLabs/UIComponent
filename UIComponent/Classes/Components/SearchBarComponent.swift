@@ -8,14 +8,15 @@
 import Foundation
 public final class SearchBarComponent: BaseComponent, ComponentType {
     public enum ReturnKey {
-        case goKey, doneKey, continueKey, googleKey
+        case goKey, doneKey, continueKey, googleKey, searchKey
     }
     
     public var text:String?
     public var placeholder:String?
-    public var returnKey = ReturnKey.googleKey
+    public var returnKey = ReturnKey.searchKey
     public var barTintColor:Color?
     public var setupSearchBar:((Any?)->Void)?
+    public var enablesReturnKeyAutomatically:Bool = true
     var callbackOnEndEditing: ((_ text:String?) -> Void)?
     var callbackOnTextChanged: ((_ text:String?) -> Void)?
     var callbackOnCancel: (() -> Void)?

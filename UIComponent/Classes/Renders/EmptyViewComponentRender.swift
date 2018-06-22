@@ -77,13 +77,18 @@ extension EmptyViewComponent: UIKitRenderable{
     private func renderChildren(in parent: UIView)-> [UIKitRenderTree]{
         var childViews: [UIView]
         let childComponents = self.children.compactMap { $0 as? UIKitRenderable }
-        let children = childComponents.map { component in
-            component.renderUIKit()
+        var trees = [UIKitRenderTree]()
+        for child in childComponents{
+            let tree = child.renderUIKit()
+            trees.append(tree)
         }
-        childViews = children.map { $0.view }
+//        let children = childComponents.map { component in
+//            component.renderUIKit()
+//        }
+        childViews = trees.map { $0.view }
         for view in childViews{
             parent.addSubview(view)
         }
-        return children
+        return trees
     }
 }

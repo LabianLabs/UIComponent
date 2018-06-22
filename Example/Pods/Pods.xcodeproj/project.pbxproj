@@ -77,6 +77,8 @@
 		0F4788B520DA6409001D8D99 /* IFComponentRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4788B420DA6409001D8D99 /* IFComponentRender.swift */; };
 		0F912EB120DCEC24006C395D /* FloatComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F912EAF20DCEB74006C395D /* FloatComponent.swift */; };
 		0F912EB320DCEC3A006C395D /* FloatComponentRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F912EB220DCEC3A006C395D /* FloatComponentRender.swift */; };
+		0F9AEFE220DD0D95004377E5 /* NavigationBarComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9AEFE020DD0D90004377E5 /* NavigationBarComponent.swift */; };
+		0F9AEFE520DD0E6A004377E5 /* NavigationBarComponentRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9AEFE320DD0E68004377E5 /* NavigationBarComponentRender.swift */; };
 		0F9F3FC96CBA55D973C65C18333ABCB4 /* Pods-UIComponent_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B734DFC350DC74ED716E0A8DD74BCF45 /* Pods-UIComponent_Example-dummy.m */; };
 		10CA2F194F469191374C95B663F22876 /* Constrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19915815D3B7588C70592247ADC75DE /* Constrain.swift */; };
 		18EA4E0D8B74F2B2BBF8F39B49F49BF9 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7843C520ED7D11392D872D57034A1BC /* XCTest.framework */; };
@@ -272,6 +274,8 @@
 		0F912EAF20DCEB74006C395D /* FloatComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatComponent.swift; sourceTree = "<group>"; };
 		0F912EB220DCEC3A006C395D /* FloatComponentRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatComponentRender.swift; sourceTree = "<group>"; };
 		0F9716E7359EE1ED721E8D0EDCA3033A /* LayoutSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LayoutSupport.swift; sourceTree = "<group>"; };
+		0F9AEFE020DD0D90004377E5 /* NavigationBarComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarComponent.swift; sourceTree = "<group>"; };
+		0F9AEFE320DD0E68004377E5 /* NavigationBarComponentRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarComponentRender.swift; sourceTree = "<group>"; };
 		1374B79237CAC07693E99442FBED1F15 /* FBSnapshotTestController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestController.h; path = FBSnapshotTestCase/FBSnapshotTestController.h; sourceTree = "<group>"; };
 		145D95AA758A857F827A7E77BFD14754 /* UIViewControllerRenderer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIViewControllerRenderer.swift; sourceTree = "<group>"; };
 		14FF9A8539BBB38D9C9793D98FF8C954 /* UIKitLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIKitLayout.swift; sourceTree = "<group>"; };
@@ -759,6 +763,7 @@
 				C0606A216BEFC5D4766FB45F4623F9AF /* ViewComponent.swift */,
 				0F4788B220DA6386001D8D99 /* IFComponent.swift */,
 				0F912EAF20DCEB74006C395D /* FloatComponent.swift */,
+				0F9AEFE020DD0D90004377E5 /* NavigationBarComponent.swift */,
 			);
 			name = Components;
 			path = UIComponent/Classes/Components;
@@ -879,6 +884,7 @@
 				DD4F5E81291EEE0B83A64C446DC5322B /* ViewComponentRender.swift */,
 				0F4788B420DA6409001D8D99 /* IFComponentRender.swift */,
 				0F912EB220DCEC3A006C395D /* FloatComponentRender.swift */,
+				0F9AEFE320DD0E68004377E5 /* NavigationBarComponentRender.swift */,
 			);
 			name = Renders;
 			path = UIComponent/Classes/Renders;
@@ -1115,6 +1121,7 @@
 				0F07E7B720DA11E2001A32E1 /* FieldsRow.swift in Sources */,
 				D4BAF15D5BD4086A5A1EFDCA0B195525 /* LayoutGuideProxy.swift in Sources */,
 				3F755AF46942B2F5D29CC69CFD8FBFCF /* LayoutItem.swift in Sources */,
+				0F9AEFE520DD0E6A004377E5 /* NavigationBarComponentRender.swift in Sources */,
 				0F07E7A720DA11E2001A32E1 /* PickerInlineRow.swift in Sources */,
 				0F4788B120DA598F001D8D99 /* InlineRowType.swift in Sources */,
 				D83F5E4A523E1DAADAE2E480CB22A686 /* LayoutProxy+TypeErasure.swift in Sources */,
@@ -1123,6 +1130,7 @@
 				0F07E79F20DA11E2001A32E1 /* RuleURL.swift in Sources */,
 				0F07E7A020DA11E2001A32E1 /* RuleEmail.swift in Sources */,
 				0F07E79E20DA11E2001A32E1 /* RuleRequired.swift in Sources */,
+				0F9AEFE220DD0D95004377E5 /* NavigationBarComponent.swift in Sources */,
 				FBB4BA8F7A473E0393A1470783CF3667 /* LayoutProxy.swift in Sources */,
 				0F07E78B20DA11E2001A32E1 /* Helpers.swift in Sources */,
 				A1718C4BD0AAC0383AE655B00D9D7E24 /* LayoutSupport.swift in Sources */,

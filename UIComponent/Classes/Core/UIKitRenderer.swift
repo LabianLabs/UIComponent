@@ -15,9 +15,11 @@ public final class RenderView: Renderer {
 
     public var view = UIView()
     public var viewsByTag:[String:UIView] = [:]
-    public var container: ComponentRenderable
+    
+    public var container: ComponentRenderable?
 
     public var lastRootComponent: ComponentContainer?
+    
     public var lastRenderTree: UIKitRenderTree?
     
     private init(container: ComponentRenderable) {
@@ -25,7 +27,7 @@ public final class RenderView: Renderer {
         self.container = container
         container.renderer = self
     }
-
+    
     public static func render(container: ComponentRenderable, in controller: UIViewController){
         let render = RenderView(container: container)
         controller.renderView = render
@@ -73,7 +75,7 @@ public final class RenderView: Renderer {
                     $0.removeFromSuperview()
                 }
                 self.lastRenderTree = renderTree
-                self.view.addSubview(renderTree.view)                
+                self.view.addSubview(renderTree.view)
                 updateRenderTreeInfo(renderView: self, renderTree: renderTree)
                 applyLayout(renderTree: renderTree)
             }

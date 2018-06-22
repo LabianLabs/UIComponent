@@ -6,9 +6,11 @@
 //
 
 import Foundation
+struct  FloatComponentVars{
+    public var tag:Int?
+}
 
-extension FloatComponent: UIKitRenderable {
-    
+extension FloatComponent: UIKitRenderable {    
     public func renderUIKit() -> UIKitRenderTree {
         var view:UIView?
         if let nibFile = self.nibFile {
@@ -48,8 +50,16 @@ extension FloatComponent: UIKitRenderable {
         }
     }
     
+    internal func destroy(){
+        if let window :UIWindow = UIApplication.shared.keyWindow{
+            window.viewWithTag(self.vars.tag!)?.removeFromSuperview()
+        }
+    }
+    
     private func moveViewToWindow(_ view:UIView){
         view.removeFromSuperview()
+        self.vars.tag = Int(arc4random_uniform(999999999) + 1)
+        view.tag = self.vars.tag!
         if let window :UIWindow = UIApplication.shared.keyWindow{
             window.addSubview(view)
         }

@@ -40,7 +40,6 @@ extension SearchBarComponent:UIKitRenderable{
                 view.top == view.superview!.top
                 view.left == view.superview!.left
                 view.right == view.superview!.right
-                view.width == view.superview!.width
             }
         }
     }
@@ -49,6 +48,19 @@ extension SearchBarComponent:UIKitRenderable{
 extension SearchBarComponent:UISearchBarDelegate{
     public func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         self.callbackOnEndEditing?(searchBar.text)
+    }
+    
+    public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        for view1 in searchBar.subviews {
+            for view2 in view1.subviews {
+                if view2 is UITextField {
+                    if let searchBarTextField = view2 as? UITextField{
+                        searchBarTextField.enablesReturnKeyAutomatically = self.enablesReturnKeyAutomatically
+                        break
+                    }
+                }
+            }
+        }
     }
     
     public func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -75,6 +87,8 @@ extension SearchBarComponent.ReturnKey{
                 return UIReturnKeyType.continue
             case .googleKey:
                 return UIReturnKeyType.google
+            case .searchKey:
+                return UIReturnKeyType.search
         }
     }
 }

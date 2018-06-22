@@ -37,8 +37,6 @@ open class BaseComponentRenderable<State>: ComponentRenderable {
 
     public init(state: State) {
         self.state = state
-        let component = self.render(state)
-        self.renderer?.renderComponent(component, animated: self._animateChanges)
     }
     
     public func update(_ update: () -> Void) {
