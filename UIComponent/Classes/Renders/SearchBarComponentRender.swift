@@ -69,6 +69,9 @@ extension SearchBarComponent:UISearchBarDelegate{
     
     public func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.callbackOnSearchClick?()
+        if self.enablesReturnKeyAutomatically {
+            searchBar.resignFirstResponder()
+        }
     }
     
     public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
