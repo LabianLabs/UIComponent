@@ -9,7 +9,7 @@
 import UIKit
 import UIComponent
 
-class ViewController: UIViewController {
+class MenuViewController: UIViewController {
     var menuContainer:MenuContainer!    
     
     override func viewDidLoad() {
@@ -19,7 +19,9 @@ class ViewController: UIViewController {
         self.menuContainer.onMenuSelected = { menu in
             switch menu {
                 case .basicComponents:
-                    break
+                    let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "BasicComponentViewController")
+                    self.navigationController?.pushViewController(vc, animated: true)
+                break
                 case .dynamicForm:
                     let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "DynamicFormViewController")
                     self.navigationController?.pushViewController(vc, animated: true)

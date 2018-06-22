@@ -38,12 +38,6 @@ extension LabelComponent: UIKitRenderable {
             layout(self, view)
         }else{
             view.loFillInParent()
-//            constrain(view){ label in
-//                label.left == label.superview!.left
-//                label.right == label.superview!.right
-//                label.top == label.superview!.top
-//                label.height == 44
-//            }
         }
     }
 }

@@ -14,10 +14,10 @@ enum Menu {
 }
 
 class MenuContainer: BaseComponentRenderable<Int>{
-    weak var viewController: ViewController?
+    weak var viewController: MenuViewController?
     var onMenuSelected:((Menu)->Void)?
     
-    public init(controller: ViewController, state: Int){
+    public init(controller: MenuViewController, state: Int){
         self.viewController = controller
         super.init(state: state)
     }

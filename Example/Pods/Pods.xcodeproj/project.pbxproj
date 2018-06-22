@@ -75,6 +75,8 @@
 		0F4788B120DA598F001D8D99 /* InlineRowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4788AF20DA598F001D8D99 /* InlineRowType.swift */; };
 		0F4788B320DA6386001D8D99 /* IFComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4788B220DA6386001D8D99 /* IFComponent.swift */; };
 		0F4788B520DA6409001D8D99 /* IFComponentRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4788B420DA6409001D8D99 /* IFComponentRender.swift */; };
+		0F912EB120DCEC24006C395D /* FloatComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F912EAF20DCEB74006C395D /* FloatComponent.swift */; };
+		0F912EB320DCEC3A006C395D /* FloatComponentRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F912EB220DCEC3A006C395D /* FloatComponentRender.swift */; };
 		0F9F3FC96CBA55D973C65C18333ABCB4 /* Pods-UIComponent_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B734DFC350DC74ED716E0A8DD74BCF45 /* Pods-UIComponent_Example-dummy.m */; };
 		10CA2F194F469191374C95B663F22876 /* Constrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19915815D3B7588C70592247ADC75DE /* Constrain.swift */; };
 		18EA4E0D8B74F2B2BBF8F39B49F49BF9 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7843C520ED7D11392D872D57034A1BC /* XCTest.framework */; };
@@ -267,6 +269,8 @@
 		0F4788B220DA6386001D8D99 /* IFComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFComponent.swift; sourceTree = "<group>"; };
 		0F4788B420DA6409001D8D99 /* IFComponentRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFComponentRender.swift; sourceTree = "<group>"; };
 		0F64C8C54ACCB3D3973171EBB225D8DC /* Context.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
+		0F912EAF20DCEB74006C395D /* FloatComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatComponent.swift; sourceTree = "<group>"; };
+		0F912EB220DCEC3A006C395D /* FloatComponentRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatComponentRender.swift; sourceTree = "<group>"; };
 		0F9716E7359EE1ED721E8D0EDCA3033A /* LayoutSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LayoutSupport.swift; sourceTree = "<group>"; };
 		1374B79237CAC07693E99442FBED1F15 /* FBSnapshotTestController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestController.h; path = FBSnapshotTestCase/FBSnapshotTestController.h; sourceTree = "<group>"; };
 		145D95AA758A857F827A7E77BFD14754 /* UIViewControllerRenderer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIViewControllerRenderer.swift; sourceTree = "<group>"; };
@@ -754,6 +758,7 @@
 				95AE05EC1FDD3808967C20BF070369A6 /* StackComponent.swift */,
 				C0606A216BEFC5D4766FB45F4623F9AF /* ViewComponent.swift */,
 				0F4788B220DA6386001D8D99 /* IFComponent.swift */,
+				0F912EAF20DCEB74006C395D /* FloatComponent.swift */,
 			);
 			name = Components;
 			path = UIComponent/Classes/Components;
@@ -873,6 +878,7 @@
 				91434A649819ABA0B8469381398EA142 /* StackComponentRender.swift */,
 				DD4F5E81291EEE0B83A64C446DC5322B /* ViewComponentRender.swift */,
 				0F4788B420DA6409001D8D99 /* IFComponentRender.swift */,
+				0F912EB220DCEC3A006C395D /* FloatComponentRender.swift */,
 			);
 			name = Renders;
 			path = UIComponent/Classes/Renders;
@@ -1096,6 +1102,7 @@
 				0F07E7BA20DA11E2001A32E1 /* ActionSheetRow.swift in Sources */,
 				CB8F2328831F119A6B42D4E037FE6A9F /* Extensions.swift in Sources */,
 				192355825CCBDDCFA5A3B5716B748954 /* FormComponent.swift in Sources */,
+				0F912EB120DCEC24006C395D /* FloatComponent.swift in Sources */,
 				0F07E79020DA11E2001A32E1 /* RowControllerType.swift in Sources */,
 				C48CA39E5E5C091A29192DAB6F85EE79 /* FormComponentRender.swift in Sources */,
 				0F07E79C20DA11E2001A32E1 /* RuleRange.swift in Sources */,
@@ -1143,6 +1150,7 @@
 				01F57D5F0B9722590043FF577788559B /* TableCellProvider.swift in Sources */,
 				0F07E7BC20DA11E2001A32E1 /* PopoverSelectorRow.swift in Sources */,
 				0F07E7AB20DA11E2001A32E1 /* ListCheckRow.swift in Sources */,
+				0F912EB320DCEC3A006C395D /* FloatComponentRender.swift in Sources */,
 				45734378F47F104B831D93A583FEB5E4 /* TableInlineRow.swift in Sources */,
 				0F07E78F20DA11E2001A32E1 /* SwipeActions.swift in Sources */,
 				0F07E7B420DA11E2001A32E1 /* OptionsRow.swift in Sources */,

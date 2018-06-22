@@ -12,6 +12,7 @@
 		0F57D8FF20D36AFC007F04C4 /* DynamicFormContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F57D8FE20D36AFC007F04C4 /* DynamicFormContainer.swift */; };
 		0F57D90120D36BCA007F04C4 /* MenuContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F57D90020D36BCA007F04C4 /* MenuContainer.swift */; };
 		0F57D90420D37331007F04C4 /* DynamicFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F57D90320D37331007F04C4 /* DynamicFormViewController.swift */; };
+		0F912EB520DCEDB6006C395D /* BasicComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F912EB420DCEDB6006C395D /* BasicComponentViewController.swift */; };
 		0FC5B33520CD96720058676D /* CustomViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC5B33420CD96720058676D /* CustomViewComponent.swift */; };
 		0FC5B57020CEB26F0058676D /* BasicComponentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC5B56F20CEB26F0058676D /* BasicComponentContainer.swift */; };
 		0FC5B58320CEC6310058676D /* FormContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC5B58220CEC6310058676D /* FormContainer.swift */; };
@@ -21,7 +22,7 @@
 		0FD9E09E20D5327400C16631 /* CustomViewComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FD9E09D20D5327300C16631 /* CustomViewComponent.xib */; };
 		4CB1B8B4ECF2F1660F28A373 /* Pods_UIComponent_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A735E1C10D9DB1F53A22B482 /* Pods_UIComponent_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
+		607FACD81AFB9204008FA782 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* MenuViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
@@ -45,6 +46,7 @@
 		0F57D8FE20D36AFC007F04C4 /* DynamicFormContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicFormContainer.swift; sourceTree = "<group>"; };
 		0F57D90020D36BCA007F04C4 /* MenuContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuContainer.swift; sourceTree = "<group>"; };
 		0F57D90320D37331007F04C4 /* DynamicFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicFormViewController.swift; sourceTree = "<group>"; };
+		0F912EB420DCEDB6006C395D /* BasicComponentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicComponentViewController.swift; sourceTree = "<group>"; };
 		0FC5B33420CD96720058676D /* CustomViewComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewComponent.swift; sourceTree = "<group>"; };
 		0FC5B56F20CEB26F0058676D /* BasicComponentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicComponentContainer.swift; sourceTree = "<group>"; };
 		0FC5B58220CEC6310058676D /* FormContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormContainer.swift; sourceTree = "<group>"; };
@@ -58,7 +60,7 @@
 		607FACD01AFB9204008FA782 /* UIComponent_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIComponent_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		607FACD71AFB9204008FA782 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -154,7 +156,8 @@
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				0FD749DE20D8B21E0093C7F9 /* FormTableViewController.swift */,
 				0F57D90320D37331007F04C4 /* DynamicFormViewController.swift */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				0F912EB420DCEDB6006C395D /* BasicComponentViewController.swift */,
+				607FACD71AFB9204008FA782 /* MenuViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -408,11 +411,12 @@
 				0FD749DF20D8B21E0093C7F9 /* FormTableViewController.swift in Sources */,
 				0F57D8FF20D36AFC007F04C4 /* DynamicFormContainer.swift in Sources */,
 				0F57D90420D37331007F04C4 /* DynamicFormViewController.swift in Sources */,
-				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				607FACD81AFB9204008FA782 /* MenuViewController.swift in Sources */,
 				0FD749DD20D8B1AA0093C7F9 /* CustomCell.swift in Sources */,
 				0F0BA80120D8ED68003122F9 /* CustomSubCell.swift in Sources */,
 				0FC5B58320CEC6310058676D /* FormContainer.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				0F912EB520DCEDB6006C395D /* BasicComponentViewController.swift in Sources */,
 				0F57D90120D36BCA007F04C4 /* MenuContainer.swift in Sources */,
 				0FC5B33520CD96720058676D /* CustomViewComponent.swift in Sources */,
 			);

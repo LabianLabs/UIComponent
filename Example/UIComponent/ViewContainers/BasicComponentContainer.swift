@@ -9,22 +9,22 @@
 import Foundation
 import UIComponent
 
-struct ViewState{
+struct BasicViewState{
     var userName:String
     var avatarUrl:String
     var step:Int = 3
 }
 
-class BasicComponentContainer:BaseComponentRenderable<ViewState>{
-    weak var viewController: ViewController?
+class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
+    weak var viewController: BasicComponentViewController?
     
-    public init(controller: ViewController, state: ViewState){
+    public init(controller: BasicComponentViewController, state: BasicViewState){
       
         self.viewController = controller
         super.init(state: state)
     }
     
-    open override func render(_ state: ViewState) -> ComponentContainer {
+    open override func render(_ state: BasicViewState) -> ComponentContainer {
         return EmptyViewComponent(){
             $0.children
                 <<< SearchBarComponent(){
@@ -65,6 +65,9 @@ class BasicComponentContainer:BaseComponentRenderable<ViewState>{
                             view.height == view.superview!.height
                         }
                     }
+                }
+                <<< FloatComponent<CustomViewComponent>(){
+                    $0.nibFile = "CustomViewComponent"
                 }
             }
     }
