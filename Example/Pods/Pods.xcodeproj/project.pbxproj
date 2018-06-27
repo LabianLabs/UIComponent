@@ -119,6 +119,8 @@
 		72FCAECFEA375379E238C134E292F81C /* Coefficients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450F8D443F29DCF24EFA0B8BA09E4EAD /* Coefficients.swift */; };
 		756564ABAF2892FE7140C92A1CDDCF65 /* UIImage+Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFBDCC891B770A2AC9EF0FB164B751 /* UIImage+Snapshot.m */; };
 		7742F7EB0D24F59E3246958252C4CA20 /* IntrinsicContentSizeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78446E2F6275463013BBEA35765D3DE5 /* IntrinsicContentSizeTableView.swift */; };
+		7914591920E37D5A006D34F4 /* VideoComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914591720E37D4D006D34F4 /* VideoComponent.swift */; };
+		7914591B20E37F81006D34F4 /* VideoComponentRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914591A20E37F81006D34F4 /* VideoComponentRender.swift */; };
 		7ACF9FFF2935702CB45C080CFDB1AC70 /* UIViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B441B480CAE6F3363853A25176FDAE /* UIViewLayout.swift */; };
 		7C2D7B9344E31C5B5E1D32D67CE23490 /* Pods-UIComponent_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EC7C7EC644BF7792B6D8F74E29AB7C6 /* Pods-UIComponent_Tests-dummy.m */; };
 		7CC127E4BBB80E5E566420F3BC1512C4 /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD94AC193CE76BAA39CE32E2DB330CF /* Edge.swift */; };
@@ -319,6 +321,8 @@
 		723CAB577464863E6CB8ECB4AB215C41 /* ContainerTreeDiffer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ContainerTreeDiffer.swift; sourceTree = "<group>"; };
 		75304530B7FECCE3620EDCC85AD0555E /* Pods-UIComponent_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-UIComponent_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		78446E2F6275463013BBEA35765D3DE5 /* IntrinsicContentSizeTableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IntrinsicContentSizeTableView.swift; sourceTree = "<group>"; };
+		7914591720E37D4D006D34F4 /* VideoComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoComponent.swift; sourceTree = "<group>"; };
+		7914591A20E37F81006D34F4 /* VideoComponentRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoComponentRender.swift; sourceTree = "<group>"; };
 		7B37D7C695D5C6C47A7C093595CD4F06 /* FBSnapshotTestCase.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSnapshotTestCase.xcconfig; sourceTree = "<group>"; };
 		7DE6836A4DA2A6BC4DBAD1E6EA4AC58A /* ComponentRenderable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ComponentRenderable.swift; sourceTree = "<group>"; };
 		7E3DB4D092B985E76E227F7F313C6981 /* FBSnapshotTestCasePlatform.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCasePlatform.h; path = FBSnapshotTestCase/FBSnapshotTestCasePlatform.h; sourceTree = "<group>"; };
@@ -764,6 +768,7 @@
 				0F4788B220DA6386001D8D99 /* IFComponent.swift */,
 				0F912EAF20DCEB74006C395D /* FloatComponent.swift */,
 				0F9AEFE020DD0D90004377E5 /* NavigationBarComponent.swift */,
+				7914591720E37D4D006D34F4 /* VideoComponent.swift */,
 			);
 			name = Components;
 			path = UIComponent/Classes/Components;
@@ -885,6 +890,7 @@
 				0F4788B420DA6409001D8D99 /* IFComponentRender.swift */,
 				0F912EB220DCEC3A006C395D /* FloatComponentRender.swift */,
 				0F9AEFE320DD0E68004377E5 /* NavigationBarComponentRender.swift */,
+				7914591A20E37F81006D34F4 /* VideoComponentRender.swift */,
 			);
 			name = Renders;
 			path = UIComponent/Classes/Renders;
@@ -1142,6 +1148,7 @@
 				D1154F4270BDDE8F4BF0CA39EC02DF2C /* Property.swift in Sources */,
 				D7C3E8CB1C4EFC61C3B55972995759AE /* SearchBarComponent.swift in Sources */,
 				0F07E79A20DA11E2001A32E1 /* NavigationAccessoryView.swift in Sources */,
+				7914591B20E37F81006D34F4 /* VideoComponentRender.swift in Sources */,
 				AE17BF572D1FAF277FE9E54565C8FE8A /* SearchBarComponentRender.swift in Sources */,
 				8029CCD52C65BCC1260691288C4DB8E2 /* SegmentComponent.swift in Sources */,
 				0F07E79120DA11E2001A32E1 /* RowType.swift in Sources */,
@@ -1175,6 +1182,7 @@
 				0F07E7B820DA11E2001A32E1 /* DateInlineRow.swift in Sources */,
 				7ACF9FFF2935702CB45C080CFDB1AC70 /* UIViewLayout.swift in Sources */,
 				5EA2858819F97B83CC278E6BBBA50AF4 /* View.swift in Sources */,
+				7914591920E37D5A006D34F4 /* VideoComponent.swift in Sources */,
 				5E31722268412EF25FF1AA2D8AF56A9C /* ViewComponent.swift in Sources */,
 				3FAD6F98CBFFCE480CC20B8C5422958D /* ViewComponentRender.swift in Sources */,
 				D8ED6EF86722DD1CEA6274F91040612C /* ViewProxy.swift in Sources */,

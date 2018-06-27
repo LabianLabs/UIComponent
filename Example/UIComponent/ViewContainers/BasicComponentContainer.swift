@@ -34,9 +34,15 @@ class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
                 }
             }
             $0.children
-                <<< SearchBarComponent(){
-                    $0.placeholder = "Search"
-                    $0.tag = "SEARCHBAR"
+                <<< VideoComponent() {
+                    $0.layout = { c,view in
+                        constrain(view, block: { (view) in
+                            view.top == view.superview!.top
+                            view.left == view.superview!.left
+                            view.right == view.superview!.right
+                            view.height == 300
+                        })
+                    }
                 }
                 <<< NavigationBarComponent(){
                         $0.host = viewController
