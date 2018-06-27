@@ -49,6 +49,23 @@ class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
                     }.OnClickRightButton {
                         print("OnClickRightButton")
                     }
+                <<< CardComponent() {
+                    $0.children
+                        <<< ViewComponent<CustomViewComponent>(){ view in
+                            view.nibFile = "CustomViewComponent"
+                        }
+                        <<< ViewComponent<CustomViewComponent>() { view in
+                            view.nibFile = "CustomViewComponent1"
+                        }
+                        <<< ViewComponent<CustomViewComponent>() { view in
+                            view.nibFile = "CustomViewComponent2"
+                    }
+                    $0.layout = { c,view in
+                        view.loFillInParent()
+                    }
+                    }.onIndexChanged(selectionIndex: 2, callback: { (_) in
+                        print("click")
+                    })
 //                <<< SegmentComponent(["1", "2", "3"]){
 //                    $0.tag = "SEGMENT"
 //                    $0.layout = { c, view in

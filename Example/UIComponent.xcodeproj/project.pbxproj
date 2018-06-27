@@ -19,7 +19,6 @@
 		0FD749DB20D8B18F0093C7F9 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FD749DA20D8B18F0093C7F9 /* CustomCell.xib */; };
 		0FD749DD20D8B1AA0093C7F9 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD749DC20D8B1AA0093C7F9 /* CustomCell.swift */; };
 		0FD749DF20D8B21E0093C7F9 /* FormTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD749DE20D8B21E0093C7F9 /* FormTableViewController.swift */; };
-		0FD9E09E20D5327400C16631 /* CustomViewComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FD9E09D20D5327300C16631 /* CustomViewComponent.xib */; };
 		4CB1B8B4ECF2F1660F28A373 /* Pods_UIComponent_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A735E1C10D9DB1F53A22B482 /* Pods_UIComponent_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* MenuViewController.swift */; };
@@ -27,6 +26,9 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		7914591320E37129006D34F4 /* CustomViewComponent1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7914591020E37129006D34F4 /* CustomViewComponent1.xib */; };
+		7914591420E37129006D34F4 /* CustomViewComponent2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7914591120E37129006D34F4 /* CustomViewComponent2.xib */; };
+		7914591620E37167006D34F4 /* CustomViewComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7914591520E37167006D34F4 /* CustomViewComponent.xib */; };
 		8A8DA79603DF4F87473C79A8 /* Pods_UIComponent_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1912B5F568489D9ACC76ED8E /* Pods_UIComponent_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,7 +55,6 @@
 		0FD749DA20D8B18F0093C7F9 /* CustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 		0FD749DC20D8B1AA0093C7F9 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		0FD749DE20D8B21E0093C7F9 /* FormTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTableViewController.swift; sourceTree = "<group>"; };
-		0FD9E09D20D5327300C16631 /* CustomViewComponent.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomViewComponent.xib; sourceTree = "<group>"; };
 		1912B5F568489D9ACC76ED8E /* Pods_UIComponent_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UIComponent_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F82A3A4025E442C1399BE3E /* Pods-UIComponent_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UIComponent_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UIComponent_Example/Pods-UIComponent_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		5C819879F131774175BB4E40 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -68,6 +69,9 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		61474E0009437AA15FD11270 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		7914591020E37129006D34F4 /* CustomViewComponent1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomViewComponent1.xib; sourceTree = "<group>"; };
+		7914591120E37129006D34F4 /* CustomViewComponent2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomViewComponent2.xib; sourceTree = "<group>"; };
+		7914591520E37167006D34F4 /* CustomViewComponent.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomViewComponent.xib; sourceTree = "<group>"; };
 		A735E1C10D9DB1F53A22B482 /* Pods_UIComponent_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UIComponent_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8E5061E5F77CF6C77BBF554 /* Pods-UIComponent_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UIComponent_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UIComponent_Tests/Pods-UIComponent_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		D3707E1B27516EA63F601511 /* Pods-UIComponent_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UIComponent_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-UIComponent_Example/Pods-UIComponent_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -99,7 +103,9 @@
 			isa = PBXGroup;
 			children = (
 				0FC5B33420CD96720058676D /* CustomViewComponent.swift */,
-				0FD9E09D20D5327300C16631 /* CustomViewComponent.xib */,
+				7914591020E37129006D34F4 /* CustomViewComponent1.xib */,
+				7914591120E37129006D34F4 /* CustomViewComponent2.xib */,
+				7914591520E37167006D34F4 /* CustomViewComponent.xib */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -310,8 +316,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0FD749DB20D8B18F0093C7F9 /* CustomCell.xib in Resources */,
+				7914591620E37167006D34F4 /* CustomViewComponent.xib in Resources */,
+				7914591420E37129006D34F4 /* CustomViewComponent2.xib in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
-				0FD9E09E20D5327400C16631 /* CustomViewComponent.xib in Resources */,
+				7914591320E37129006D34F4 /* CustomViewComponent1.xib in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 				0F0BA80320D8ED7A003122F9 /* CustomSubCell.xib in Resources */,
