@@ -70,24 +70,12 @@ class BasicComponentViewController:UIViewController,AVPlayerViewControllerDelega
     }
     
     override func viewDidLoad() {
-//        self.view.backgroundColor = UIColor.white
-//        self.playButton = setPlayButton()
-//        self.playerView = setPlayerView()
-//        self.playerTimeLabel = setTextLabel(cmtime: kCMTimeZero)
-//        print(self.duration)
-//        self.seekSlider = setSeekSlider()
-//        playerView.player?.addPeriodicTimeObserver(
-//            forInterval: CMTime(seconds: 1, preferredTimescale: 100),
-//            queue: DispatchQueue.main,
-//            using: { [weak self] (cmtime) in
-//                print(cmtime)
-//                self?.playerTimeLabel.text = cmtime.description
-//        })
-//        self.view.addSubview(playerView)
-//        self.view.addSubview(seekSlider)
-//        self.view.addSubview(playerTimeLabel)
-//        self.view.addSubview(playButton)
-        let state = BasicViewState(userName: "test", avatarUrl: "test", step: 1)
+        let state = BasicViewState(userName: "test",
+                                   avatarUrl: "test",
+                                   step: 1, background: "background1",
+                                   url: "https://mnmedias.api.telequebec.tv/m3u8/29880.m3u8",
+                                   isAutoPlay: true,
+                                   isPlay: true)
         let container = BasicComponentContainer(controller: self, state: state)
         RenderView.render(container: container, in: self)
         self.container = container

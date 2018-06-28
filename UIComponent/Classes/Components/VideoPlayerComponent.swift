@@ -9,6 +9,10 @@ import AVKit
 import Foundation
 import AVFoundation
 
+protocol PlayerViewDelegate {
+    func onFallure()
+}
+
 public class PlayerView: UIView {
     var player: AVPlayer? {
         get {
@@ -51,18 +55,33 @@ extension CMTime: CustomStringConvertible {
 
 
 
-public final class VideoComponent : BaseComponent,ComponentType {
+public final class VideoPlayerComponent : BaseComponent,ComponentType {
     public var isPlay: Bool = true
-    public var videoURL: URL? = URL(string: "https://mnmedias.api.telequebec.tv/m3u8/29880.m3u8")
-    public var callbackOnStop:((Any?)->Void)?
-    public var callbackOnPlay:((Any?)->Void)?
-    public func onPlay(_ callback: ((Any?)->Void)?)->VideoComponent{
+    public var isAutoPlay: Bool = true
+    public var render:((VideoPlayerComponent)->Void)?
+    public var url: String?
+    public var callbackOnPlay:((AVPlayer?)->Void)?
+    public var callbackOnPause:((AVPlayer?)->Void)?
+    public var callbackOnStateChanged:((AVPlayer?)->Void)?
+    public var callbackOnFailure:((AVPlayer?,Error?)->Void)?
+    
+    public func onPlay(_ callback: ((AVPlayer?)->Void)?) -> VideoPlayerComponent{
         self.callbackOnPlay = callback
         return self
     }
     
-    public func onStop(_ callback: ((Any?)->Void)?)->VideoComponent{
-        self.callbackOnStop = callback
+    public func onPause(_ callback: ((AVPlayer?)->Void)?) -> VideoPlayerComponent{
+        self.callbackOnPause = callback
+        return self
+    }
+    
+    public func onStateChanged(_ callback: ((AVPlayer?)->Void)?) -> VideoPlayerComponent{
+        self.callbackOnStateChanged = callback
+        return self
+    }
+    
+    public func onFailure(_ callback: ((AVPlayer?,Error?)->Void)?) -> VideoPlayerComponent{
+        self.callbackOnFailure = callback
         return self
     }
 }

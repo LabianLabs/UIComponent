@@ -13,6 +13,10 @@ struct BasicViewState{
     var userName:String
     var avatarUrl:String
     var step:Int = 3
+    var background: String
+    var url: String
+    var isAutoPlay: Bool
+    var isPlay: Bool
 }
 
 class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
@@ -34,7 +38,8 @@ class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
                 }
             }
             $0.children
-                <<< VideoComponent() {
+                <<< VideoPlayerComponent() {
+                    
                     $0.layout = { c,view in
                         constrain(view, block: { (view) in
                             view.top == view.superview!.top
@@ -43,7 +48,33 @@ class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
                             view.height == 300
                         })
                     }
-                }
+                    $0.isPlay = state.isPlay
+                    $0.isAutoPlay = state.isAutoPlay
+                    $0.url = state.url
+                    }.onFailure{ (player, error) in
+                        print(error as Any)
+                    }
+                <<< FollowComponent(){
+                    $0.backgroundImage = UIImage(named: state.background)
+                    $0.layout = { c,view in
+                        constrain(view, block: { (view) in
+                            view.top == view.superview!.top
+                            view.left == view.superview!.left
+                            view.right == view.superview!.left + 100
+                            view.height == 100
+                        })
+                    }
+                    }.onFollow({ (_) in
+                        print("follow")
+                        self.update {
+                            self.state = BasicViewState(userName: "", avatarUrl: "", step: 5, background: "download", url: "https://mnmedias.api.telequebec.tv/m3u8/29880.m3u8", isAutoPlay: true, isPlay: true)
+                        }
+                    }).onUnFollow({ (_) in
+                        print("unFollow")
+                        self.update {
+                            self.state = BasicViewState(userName: "", avatarUrl: "", step: 5, background: "download1", url: "https://mnmedias.api.telequebec.tv/m3u8/29340.m3u8", isAutoPlay: true, isPlay: false)
+                        }
+                    })
                 <<< NavigationBarComponent(){
                         $0.host = viewController
                         $0.setupTitle = {
@@ -75,9 +106,9 @@ class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
 //                        view.loHeightInParent(0.3).loBellow(c.viewByTag("SEGMENT") as! UIView)
 //                    }
 //                }
-                <<< FloatComponent<CustomViewComponent>(){
-                    $0.nibFile = "CustomViewComponent"
-                }
+//                <<< FloatComponent<CustomViewComponent>(){
+//                    $0.nibFile = "CustomViewComponent"
+//                }
             }
     }
 }
