@@ -9,10 +9,6 @@ import AVKit
 import Foundation
 import AVFoundation
 
-protocol PlayerViewDelegate {
-    func onFallure()
-}
-
 public class PlayerView: UIView {
     var player: AVPlayer? {
         get {
@@ -69,7 +65,7 @@ public final class VideoPlayerComponent : BaseComponent,ComponentType {
         self.callbackOnPlay = callback
         return self
     }
-    
+
     public func onPause(_ callback: ((AVPlayer?)->Void)?) -> VideoPlayerComponent{
         self.callbackOnPause = callback
         return self

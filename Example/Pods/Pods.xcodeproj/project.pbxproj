@@ -121,6 +121,7 @@
 		7742F7EB0D24F59E3246958252C4CA20 /* IntrinsicContentSizeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78446E2F6275463013BBEA35765D3DE5 /* IntrinsicContentSizeTableView.swift */; };
 		7914591920E37D5A006D34F4 /* VideoPlayerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914591720E37D4D006D34F4 /* VideoPlayerComponent.swift */; };
 		7914591B20E37F81006D34F4 /* VideoComponentRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914591A20E37F81006D34F4 /* VideoComponentRender.swift */; };
+		792B915D20E532EF0075DA80 /* DefaultPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792B915B20E532EB0075DA80 /* DefaultPlayerView.swift */; };
 		798E1F8320E494DF0069BA23 /* FollowComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798E1F8120E4946F0069BA23 /* FollowComponent.swift */; };
 		798E1F8420E494E90069BA23 /* FollowComponentRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798E1F7F20E4945C0069BA23 /* FollowComponentRender.swift */; };
 		7ACF9FFF2935702CB45C080CFDB1AC70 /* UIViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B441B480CAE6F3363853A25176FDAE /* UIViewLayout.swift */; };
@@ -325,6 +326,7 @@
 		78446E2F6275463013BBEA35765D3DE5 /* IntrinsicContentSizeTableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IntrinsicContentSizeTableView.swift; sourceTree = "<group>"; };
 		7914591720E37D4D006D34F4 /* VideoPlayerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerComponent.swift; sourceTree = "<group>"; };
 		7914591A20E37F81006D34F4 /* VideoComponentRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoComponentRender.swift; sourceTree = "<group>"; };
+		792B915B20E532EB0075DA80 /* DefaultPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPlayerView.swift; sourceTree = "<group>"; };
 		798E1F7F20E4945C0069BA23 /* FollowComponentRender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowComponentRender.swift; sourceTree = "<group>"; };
 		798E1F8120E4946F0069BA23 /* FollowComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowComponent.swift; sourceTree = "<group>"; };
 		7B37D7C695D5C6C47A7C093595CD4F06 /* FBSnapshotTestCase.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSnapshotTestCase.xcconfig; sourceTree = "<group>"; };
@@ -774,6 +776,7 @@
 				0F9AEFE020DD0D90004377E5 /* NavigationBarComponent.swift */,
 				798E1F8120E4946F0069BA23 /* FollowComponent.swift */,
 				7914591720E37D4D006D34F4 /* VideoPlayerComponent.swift */,
+				792B915B20E532EB0075DA80 /* DefaultPlayerView.swift */,
 			);
 			name = Components;
 			path = UIComponent/Classes/Components;
@@ -1181,6 +1184,7 @@
 				B982CB834FDA10A24B90471F748AC3BA /* UIColorHex.swift in Sources */,
 				B9B0E9731AFFF96E7B5AC0CF95292AB8 /* UIComponent-dummy.m in Sources */,
 				0F07E7B920DA11E2001A32E1 /* DatePickerRow.swift in Sources */,
+				792B915D20E532EF0075DA80 /* DefaultPlayerView.swift in Sources */,
 				0F07E79420DA11E2001A32E1 /* SelectableSection.swift in Sources */,
 				1DDC29D624665DE9C79E85BD47FA61A8 /* UIKitLayout.swift in Sources */,
 				B9C43C281708C83888FF7D63AA606C10 /* UIKitReconciler.swift in Sources */,

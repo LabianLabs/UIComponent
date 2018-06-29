@@ -10,41 +10,45 @@ import AVKit
 import Foundation
 import AVFoundation
 
-public class DefaultPlayerView: UIView {
+internal protocol DefaultPlayerDelegate: class {
+    func onPlay(_ player: AVPlayer?)
+    func onPause(_ player: AVPlayer?)
+    func onStateChanged(_ player: AVPlayer?)
+    func onFailure(_ player: AVPlayer?, error: Error?)
+}
+
+// DefaultPlayerView
+class DefaultPlayerView: UIView {
     var playerView = PlayerView(),playButton = UIButton(),
     timeLabel = UILabel(), seekSlider = UISlider()
     var duration: CMTime {
         return self.playerView.player!.currentItem!.asset.duration
     }
-    
+    internal var delegate: DefaultPlayerDelegate?
     public var isPlay: Bool = false
     public var isAutoPlay: Bool = false
     public var callbackOnPlay: ((AVPlayer?)->Void)?
     public var callbackOnPause: ((AVPlayer?)->Void)?
     
-    public func onPlay(_ callback: ((AVPlayer?)->Void)?) -> DefaultPlayerView{
+    private func onPlay(_ callback: ((AVPlayer?)->Void)?) -> DefaultPlayerView{
         self.callbackOnPlay = callback
         return self
     }
     
-    public func onPause(_ callback: ((AVPlayer?)->Void)?) -> DefaultPlayerView{
+    private func onPause(_ callback: ((AVPlayer?)->Void)?) -> DefaultPlayerView{
         self.callbackOnPause = callback
         return self
     }
     
     @objc func clickPlayButton(_ sender: UIButton) {
-        isPlay = !isPlay
-        isPlay ? self.callbackOnPlay?(nil) : self.callbackOnPause?(nil)
+        isPlay ? self.callbackOnPause?(nil) : self.callbackOnPlay?(nil)
     }
     
     @objc func changeSeekSlider(_ sender: UISlider) {
         let seekTime = CMTime(seconds: Double(sender.value) * self.duration.asDouble, preferredTimescale: 100)
-        self.seekToTime(seekTime)
-    }
-    
-    private func seekToTime(_ seekTime: CMTime) {
         self.playerView.player?.seek(to: seekTime)
         self.timeLabel.text = seekTime.description
+        self.delegate?.onStateChanged(self.playerView.player)
     }
     
     public func setupView() {
@@ -56,28 +60,40 @@ public class DefaultPlayerView: UIView {
         playButton.backgroundColor = UIColor.gray
         playerView.backgroundColor = UIColor.gray
         timeLabel.text = kCMTimeZero.description
+        
         playButton.addTarget(self, action: #selector(clickPlayButton), for: .touchUpInside)
         seekSlider.addTarget( self, action: #selector(changeSeekSlider), for: .valueChanged)
+//        playerView.player?.addObserver(self, forKeyPath: #keyPath(AVPlayer.status),
+//                                       options: [.new, .initial], context: nil)
+        playerView.player?.addObserver(self, forKeyPath: #keyPath(AVPlayer.currentItem.status),
+                                       options:[.new, .initial], context: nil)
+        
         playerView.player?.addPeriodicTimeObserver(
             forInterval: CMTime(seconds: 1, preferredTimescale: 100),
             queue: DispatchQueue.main,
             using: { (cmtime) in
                 self.timeLabel.text = cmtime.description
+                self.seekSlider.value = cmtime.asFloat / self.duration.asFloat
         })
-        _ = self.onPlay { (_) in
-            print("Play")
-            self.playButton.setTitle("STOP" , for: .normal)
-            self.playerView.player?.play()
-            }.onPause({ (_) in
-                print("Pause")
-                self.playButton.setTitle("PLAY" , for: .normal)
-                self.playerView.player?.pause()
-            })
+        
         if isAutoPlay {
             playerView.player?.play()
-            isPlay = isAutoPlay
         }
-        playButton.setTitle(isPlay ? "STOP" : "PLAY" , for: .normal)
+        
+        _ = self.onPlay { (_) in
+            self.isPlay = true
+            self.playButton.setTitle("STOP" , for: .normal)
+            self.playerView.player?.play()
+            self.delegate?.onPlay(self.playerView.player)
+            self.delegate?.onStateChanged(self.playerView.player)
+            }
+        _ = onPause({ (_) in
+                self.isPlay = false
+                self.playButton.setTitle("PLAY" , for: .normal)
+                self.playerView.player?.pause()
+                self.delegate?.onPause(self.playerView.player)
+                self.delegate?.onStateChanged(self.playerView.player)
+            })
     }
     
     public func setupConstraints() {
@@ -87,39 +103,69 @@ public class DefaultPlayerView: UIView {
         constrain(playerView,playButton,timeLabel,seekSlider) {
             playerView,playButton,timeLabel,seekSlider in
             
-            playerView.top == playerView.superview!.top
-            playerView.left == playerView.superview!.left
-            playerView.right == playerView.superview!.right
-            playerView.height == playerView.superview!.height - 50
-            
-            timeLabel.height == 20
-            timeLabel.width == 100
-            timeLabel.left == playerView.left
-            timeLabel.top == playerView.bottom
-            
-            playButton.height == 20
+            timeLabel.width == 50
+            timeLabel.height == 30
             playButton.width == 100
-            playButton.right == playerView.right
-            playButton.top == playerView.bottom
+            timeLabel.top == playerView.bottom
+            playerView.height == playerView.superview!.height - 30
             
-            seekSlider.top == timeLabel.bottom
-            seekSlider.left == playerView.left + 50
-            seekSlider.right == playerView.right - 50
-            seekSlider.height == 30
+            align(top: [playerView,playerView.superview!])
+            align(top: [timeLabel,seekSlider,playButton])
+            align(bottom: [timeLabel,seekSlider,playButton])
+            align(left: [playerView,playerView.superview!,timeLabel])
+            align(right: [playerView,playerView.superview!,playButton])
+            distribute(by: 10, leftToRight: [timeLabel,seekSlider,playButton])
+        }
+    }
+    
+    override open func observeValue(forKeyPath keyPath: String?,
+                                    of object: Any?,
+                                    change: [NSKeyValueChangeKey : Any]?,
+                                    context: UnsafeMutableRawPointer?) {
+        guard context == nil else {
+            super.observeValue(forKeyPath: keyPath,
+                               of: object,
+                               change: change,
+                               context: context)
+            return
+        }
+        
+        if keyPath == #keyPath(AVPlayerItem.status) {
+            let status: AVPlayerItemStatus
+            
+            // Get the status change from the change dictionary
+            if let statusNumber = change?[.newKey] as? NSNumber {
+                status = AVPlayerItemStatus(rawValue: statusNumber.intValue)!
+            } else {
+                status = .unknown
+            }
+            
+            switch status {
+            case .readyToPlay:
+                print("readyToPlay")
+                break
+            case .failed:
+                delegate?.onFailure(self.playerView.player, error: self.playerView.player?.error)
+                break
+            case .unknown:
+                print("unknown")
+                break
+            }
         }
     }
 }
 
+// extension for VideoPlayerComponent
 extension VideoPlayerComponent: UIKitRenderable {
     public func renderUIKit() -> UIKitRenderTree {
         let defaultView = DefaultPlayerView()
+        defaultView.delegate = self
         if let _ = self.url,let url = URL(string: self.url!) {
-            let item = AVPlayerItem(url: url)
-            defaultView.playerView.player = AVPlayer(playerItem: item)
+            defaultView.playerView.player = AVPlayer(playerItem: getAVPlayerItem(url: url))
             defaultView.isAutoPlay = self.isAutoPlay
-            defaultView.isPlay = self.isAutoPlay
         }
         defaultView.setupView()
+        self.isPlay ? defaultView.callbackOnPlay?(nil) : defaultView.callbackOnPause?(nil)
         self.applyBaseAttributes(to: defaultView)
         return .leaf(self, defaultView)
     }
@@ -129,11 +175,9 @@ extension VideoPlayerComponent: UIKitRenderable {
         
         guard let defaultView = view as? DefaultPlayerView else { fatalError() }
         guard let newComponent = newComponent as? VideoPlayerComponent else { fatalError() }
-        if self.url != newComponent.url, let _ = newComponent.url, let url = URL(string: newComponent.url!) {
-            let item = AVPlayerItem(url: url)
-            defaultView.playerView.player?.replaceCurrentItem(with: item)
-//            defaultView.callbackOnPlay?(nil)
-            return .leaf(newComponent, defaultView)
+        if self.url != newComponent.url, let _ = newComponent.url,  let url = NSURL(string: newComponent.url!) {
+            defaultView.playerView.player?.replaceCurrentItem(with: getAVPlayerItem(url: url as URL))
+            defaultView.isAutoPlay = self.isAutoPlay
         }
         newComponent.isPlay ? defaultView.callbackOnPlay?(nil) : defaultView.callbackOnPause?(nil)
         return .leaf(newComponent, defaultView)
@@ -147,19 +191,33 @@ extension VideoPlayerComponent: UIKitRenderable {
                 view.top == view.superview!.top
                 view.left == view.superview!.left
                 view.right == view.superview!.right
-                view.height == 200
+                view.height == 300
             }
         }
     }
     
-    private func onFall(_ sender: AVPlayer,error: Error) {
-        self.callbackOnFailure?(sender,error)
+    private func getAVPlayerItem(url:URL) -> AVPlayerItem {
+        let asset = AVAsset(url: url)
+        let assetKeys = [ "playable", "hasProtectedContent" ]
+        let item = AVPlayerItem(asset: asset, automaticallyLoadedAssetKeys: assetKeys)
+        return item
     }
 }
-extension VideoPlayerComponent: AVPlayerViewControllerDelegate,AVPlayerItemOutputPushDelegate{
-    public func playerViewController(_ playerViewController: AVPlayerViewController,
-                                     failedToStartPictureInPictureWithError error: Error) {
-        self.callbackOnFailure?(playerViewController.player,error)
+
+extension VideoPlayerComponent: DefaultPlayerDelegate {
+    internal func onPause(_ player: AVPlayer?) {
+        self.callbackOnPause?(player)
     }
     
+    internal func onPlay(_ player: AVPlayer?) {
+        self.callbackOnPlay?(player)
+    }
+    
+    internal func onStateChanged(_ player: AVPlayer?) {
+        self.callbackOnStateChanged?(player)
+    }
+    
+    internal func onFailure(_ player: AVPlayer?, error: Error?) {
+        self.callbackOnFailure?(player,error)
+    }
 }

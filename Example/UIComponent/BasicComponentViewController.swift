@@ -75,7 +75,7 @@ class BasicComponentViewController:UIViewController,AVPlayerViewControllerDelega
                                    step: 1, background: "background1",
                                    url: "https://mnmedias.api.telequebec.tv/m3u8/29880.m3u8",
                                    isAutoPlay: true,
-                                   isPlay: true)
+                                   isPlay: false)
         let container = BasicComponentContainer(controller: self, state: state)
         RenderView.render(container: container, in: self)
         self.container = container

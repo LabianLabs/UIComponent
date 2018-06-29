@@ -51,9 +51,15 @@ class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
                     $0.isPlay = state.isPlay
                     $0.isAutoPlay = state.isAutoPlay
                     $0.url = state.url
-                    }.onFailure{ (player, error) in
-                        print(error as Any)
-                    }
+                    }.onFailure{ (_, error) in
+                        print("ERROR")
+                    }.onPause({ (_) in
+                        print("PAUSE")
+                    }).onPlay({ (_) in
+                        print("PLAY")
+                    }).onStateChanged({ (player) in
+                        print("CHANGE")
+                    })
                 <<< FollowComponent(){
                     $0.backgroundImage = UIImage(named: state.background)
                     $0.layout = { c,view in
@@ -67,12 +73,16 @@ class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
                     }.onFollow({ (_) in
                         print("follow")
                         self.update {
-                            self.state = BasicViewState(userName: "", avatarUrl: "", step: 5, background: "download", url: "https://mnmedias.api.telequebec.tv/m3u8/29880.m3u8", isAutoPlay: true, isPlay: true)
+                            self.state = BasicViewState(userName: "", avatarUrl: "", step: 5, background: "download",
+                                                        url: "blob:https://www.youtube.com/f275a1ae-0f2c-4f62-a3b3-28f1ce029cf7",
+                                                        isAutoPlay: false, isPlay: true)
                         }
                     }).onUnFollow({ (_) in
                         print("unFollow")
                         self.update {
-                            self.state = BasicViewState(userName: "", avatarUrl: "", step: 5, background: "download1", url: "https://mnmedias.api.telequebec.tv/m3u8/29340.m3u8", isAutoPlay: true, isPlay: false)
+                            self.state = BasicViewState(userName: "", avatarUrl: "", step: 5, background: "download1",
+                                                        url: "https://mnmedias.api.telequebec.tv/m3u8/29340.m3u8",
+                                                        isAutoPlay: true, isPlay: false)
                         }
                     })
                 <<< NavigationBarComponent(){
