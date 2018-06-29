@@ -9,48 +9,6 @@ import AVKit
 import Foundation
 import AVFoundation
 
-public class PlayerView: UIView {
-    var player: AVPlayer? {
-        get {
-            return playerLayer.player
-        }
-        set {
-            playerLayer.player = newValue
-        }
-    }
-    var playerLayer: AVPlayerLayer {
-        return layer as! AVPlayerLayer
-    }
-    override public static var layerClass: AnyClass {
-        return AVPlayerLayer.self
-    }
-}
-
-
-extension CMTime {
-    var asDouble: Double {
-        get {
-            return Double(self.value) / Double(self.timescale)
-        }
-    }
-    var asFloat: Float {
-        get {
-            return Float(self.value) / Float(self.timescale)
-        }
-    }
-}
-
-extension CMTime: CustomStringConvertible {
-    public var description: String {
-        get {
-            let seconds = Int(round(self.asDouble))
-            return String(format: "%02d:%02d", seconds / 60, seconds % 60)
-        }
-    }
-}
-
-
-
 public final class VideoPlayerComponent : BaseComponent,ComponentType {
     public var isPlay: Bool = true
     public var isAutoPlay: Bool = true

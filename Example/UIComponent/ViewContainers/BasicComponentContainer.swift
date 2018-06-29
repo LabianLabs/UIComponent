@@ -74,8 +74,8 @@ class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
                         print("follow")
                         self.update {
                             self.state = BasicViewState(userName: "", avatarUrl: "", step: 5, background: "download",
-                                                        url: "blob:https://www.youtube.com/f275a1ae-0f2c-4f62-a3b3-28f1ce029cf7",
-                                                        isAutoPlay: false, isPlay: true)
+                                                        url: "https://mnmedias.api.telequebec.tv/m3u8/29346.m3u8",
+                                                        isAutoPlay: true, isPlay: true)
                         }
                     }).onUnFollow({ (_) in
                         print("unFollow")

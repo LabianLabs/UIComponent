@@ -5,7 +5,6 @@
 //  Copyright © LabianLabs 2015
 //
 
-import UIKit
 import AVKit
 import Foundation
 import AVFoundation
@@ -15,6 +14,23 @@ internal protocol DefaultPlayerDelegate: class {
     func onPause(_ player: AVPlayer?)
     func onStateChanged(_ player: AVPlayer?)
     func onFailure(_ player: AVPlayer?, error: Error?)
+}
+
+public class PlayerView: UIView {
+    var player: AVPlayer? {
+        get {
+            return playerLayer.player
+        }
+        set {
+            playerLayer.player = newValue
+        }
+    }
+    var playerLayer: AVPlayerLayer {
+        return layer as! AVPlayerLayer
+    }
+    override public static var layerClass: AnyClass {
+        return AVPlayerLayer.self
+    }
 }
 
 // DefaultPlayerView
@@ -63,8 +79,6 @@ class DefaultPlayerView: UIView {
         
         playButton.addTarget(self, action: #selector(clickPlayButton), for: .touchUpInside)
         seekSlider.addTarget( self, action: #selector(changeSeekSlider), for: .valueChanged)
-//        playerView.player?.addObserver(self, forKeyPath: #keyPath(AVPlayer.status),
-//                                       options: [.new, .initial], context: nil)
         playerView.player?.addObserver(self, forKeyPath: #keyPath(AVPlayer.currentItem.status),
                                        options:[.new, .initial], context: nil)
         
