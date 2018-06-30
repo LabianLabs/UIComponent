@@ -12,6 +12,7 @@ import AVFoundation
 internal protocol DefaultPlayerDelegate: class {
     func onPlay(_ player: AVPlayer?)
     func onPause(_ player: AVPlayer?)
+    func onSeekChanged(_ player: AVPlayer?)
     func onStateChanged(_ player: AVPlayer?)
     func onFailure(_ player: AVPlayer?, error: Error?)
 }
@@ -36,7 +37,7 @@ public class PlayerView: UIView {
 // DefaultPlayerView
 class DefaultPlayerView: UIView {
     var playerView = PlayerView(),playButton = UIButton(),
-    timeLabel = UILabel(), seekSlider = UISlider()
+    timeLabel = UILabel(),durationLabel = UILabel(), seekSlider = UISlider()
     var duration: CMTime {
         return self.playerView.player!.currentItem!.asset.duration
     }
@@ -45,6 +46,7 @@ class DefaultPlayerView: UIView {
     public var isAutoPlay: Bool = false
     public var callbackOnPlay: ((AVPlayer?)->Void)?
     public var callbackOnPause: ((AVPlayer?)->Void)?
+    public var callbackOnSeekChanged: ((UISlider,Float)->Void)?
     
     private func onPlay(_ callback: ((AVPlayer?)->Void)?) -> DefaultPlayerView{
         self.callbackOnPlay = callback
@@ -56,25 +58,29 @@ class DefaultPlayerView: UIView {
         return self
     }
     
+    private func onSeekChanged(_ callback: ((UISlider,Float)->Void)?) -> DefaultPlayerView {
+        self.callbackOnSeekChanged = callback
+        return self
+    }
+    
     @objc func clickPlayButton(_ sender: UIButton) {
         isPlay ? self.callbackOnPause?(nil) : self.callbackOnPlay?(nil)
     }
     
-    @objc func changeSeekSlider(_ sender: UISlider) {
-        let seekTime = CMTime(seconds: Double(sender.value) * self.duration.asDouble, preferredTimescale: 100)
-        self.playerView.player?.seek(to: seekTime)
-        self.timeLabel.text = seekTime.description
-        self.delegate?.onStateChanged(self.playerView.player)
+    @objc func changeSeekSlider(_ sender: UISlider,value: Float) {
+        self.callbackOnSeekChanged?(sender, value)
     }
     
+    @available(iOS 10.0, *)
     public func setupView() {
         commonSetup()
         setupConstraints()
     }
     
+    @available(iOS 10.0, *)
     public func commonSetup() {
-        playButton.backgroundColor = UIColor.gray
         playerView.backgroundColor = UIColor.gray
+        playButton.imageView?.contentMode = .center
         timeLabel.text = kCMTimeZero.description
         
         playButton.addTarget(self, action: #selector(clickPlayButton), for: .touchUpInside)
@@ -90,45 +96,62 @@ class DefaultPlayerView: UIView {
                 self.seekSlider.value = cmtime.asFloat / self.duration.asFloat
         })
         
+        durationLabel.text = self.duration.description
+        
         if isAutoPlay {
             playerView.player?.play()
         }
         
         _ = self.onPlay { (_) in
             self.isPlay = true
-            self.playButton.setTitle("STOP" , for: .normal)
+            self.playButton.isHidden = false
+            self.playButton.setImage(UIImage(named: "pause"), for: .normal)
+            Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
+                self.playButton.setImage(UIImage(), for: .normal)
+            }
             self.playerView.player?.play()
             self.delegate?.onPlay(self.playerView.player)
             self.delegate?.onStateChanged(self.playerView.player)
             }
+        
         _ = onPause({ (_) in
-                self.isPlay = false
-                self.playButton.setTitle("PLAY" , for: .normal)
-                self.playerView.player?.pause()
-                self.delegate?.onPause(self.playerView.player)
-                self.delegate?.onStateChanged(self.playerView.player)
-            })
+            self.isPlay = false
+            self.playButton.isHidden = false
+            self.playButton.setImage(UIImage(named: "play"), for: .normal)
+            self.playerView.player?.pause()
+            self.delegate?.onPause(self.playerView.player)
+            self.delegate?.onStateChanged(self.playerView.player)
+        })
+        
+        _ = onSeekChanged({ (sender,value) in
+            let seekTime = CMTime(seconds: Double(value == 0 ? sender.value : value) * self.duration.asDouble, preferredTimescale: 100)
+            self.playerView.player?.seek(to: seekTime)
+            self.timeLabel.text = seekTime.description
+            self.isPlay ? self.callbackOnPlay?(nil) : self.callbackOnPause?(nil)
+            self.delegate?.onStateChanged(self.playerView.player)
+        })
     }
     
     public func setupConstraints() {
-        for item in [playerView,playButton,timeLabel,seekSlider] {
+        for item in [playerView,playButton,timeLabel,seekSlider,durationLabel] {
             self.addSubview(item)
         }
-        constrain(playerView,playButton,timeLabel,seekSlider) {
-            playerView,playButton,timeLabel,seekSlider in
+        constrain(playerView,playButton,timeLabel,seekSlider,durationLabel) {
+            playerView,playButton,timeLabel,seekSlider,durationLabel in
             
             timeLabel.width == 50
             timeLabel.height == 30
-            playButton.width == 100
+            durationLabel.width == 50
             timeLabel.top == playerView.bottom
             playerView.height == playerView.superview!.height - 30
+            playButton.edges == playerView.edges
             
             align(top: [playerView,playerView.superview!])
-            align(top: [timeLabel,seekSlider,playButton])
-            align(bottom: [timeLabel,seekSlider,playButton])
+            align(top: [timeLabel,seekSlider,durationLabel])
+            align(bottom: [timeLabel,seekSlider,durationLabel])
             align(left: [playerView,playerView.superview!,timeLabel])
-            align(right: [playerView,playerView.superview!,playButton])
-            distribute(by: 10, leftToRight: [timeLabel,seekSlider,playButton])
+            align(right: [playerView,playerView.superview!,durationLabel])
+            distribute(by: 10, leftToRight: [timeLabel,seekSlider,durationLabel])
         }
     }
     
@@ -178,8 +201,14 @@ extension VideoPlayerComponent: UIKitRenderable {
             defaultView.playerView.player = AVPlayer(playerItem: getAVPlayerItem(url: url))
             defaultView.isAutoPlay = self.isAutoPlay
         }
-        defaultView.setupView()
+        if #available(iOS 10.0, *) {
+            defaultView.setupView()
+        }
         self.isPlay ? defaultView.callbackOnPlay?(nil) : defaultView.callbackOnPause?(nil)
+        if self.seekValue != 0 {
+//            defaultView.changeSeekSlider(defaultView.seekSlider, value: self.seekValue)
+            defaultView.callbackOnSeekChanged?(defaultView.seekSlider,self.seekValue)
+        }
         self.applyBaseAttributes(to: defaultView)
         return .leaf(self, defaultView)
     }
@@ -191,9 +220,14 @@ extension VideoPlayerComponent: UIKitRenderable {
         guard let newComponent = newComponent as? VideoPlayerComponent else { fatalError() }
         if self.url != newComponent.url, let _ = newComponent.url,  let url = NSURL(string: newComponent.url!) {
             defaultView.playerView.player?.replaceCurrentItem(with: getAVPlayerItem(url: url as URL))
+            defaultView.durationLabel.text = defaultView.playerView.player?.currentItem?.asset.duration.description
             defaultView.isAutoPlay = self.isAutoPlay
         }
         newComponent.isPlay ? defaultView.callbackOnPlay?(nil) : defaultView.callbackOnPause?(nil)
+        if newComponent.seekValue != 0 {
+//            defaultView.changeSeekSlider(defaultView.seekSlider, value: newComponent.seekValue)
+            defaultView.callbackOnSeekChanged?(defaultView.seekSlider,self.seekValue)
+        }
         return .leaf(newComponent, defaultView)
     }
     
@@ -219,6 +253,10 @@ extension VideoPlayerComponent: UIKitRenderable {
 }
 
 extension VideoPlayerComponent: DefaultPlayerDelegate {
+    func onSeekChanged(_ player: AVPlayer?) {
+        
+    }
+    
     internal func onPause(_ player: AVPlayer?) {
         self.callbackOnPause?(player)
     }

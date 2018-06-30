@@ -32,6 +32,21 @@ extension ButtonComponent: UIKitRenderable {
         }
     }
     
+    public func updateUIKit(
+        _ view: UIView,
+        change: Changes,
+        newComponent: UIKitRenderable,
+        renderTree: UIKitRenderTree) -> UIKitRenderTree
+    {
+        guard let button = view as? UIButton else { fatalError() }
+        guard let newComponent = newComponent as? ButtonComponent else { fatalError() }
+        button.removeTarget(self, action: #selector(onButtonDidTouch), for: .touchUpInside)
+        button.addTarget(newComponent, action: #selector(onButtonDidTouch), for: .touchUpInside)
+        button.setTitle(newComponent.title, for: .normal)
+        
+        return .leaf(newComponent, button)
+    }
+    
     @objc public func onButtonDidTouch(sender:UIButton){
         self.callbackOnClick?(sender)
     }

@@ -19,12 +19,11 @@ class BasicComponentViewController:UIViewController,AVPlayerViewControllerDelega
     weak var timer:Timer?
     
     override func viewDidLoad() {
-        let state = BasicViewState(userName: "test",
-                                   avatarUrl: "test",
-                                   step: 1, background: "background1",
-                                   url: "https://mnmedias.api.telequebec.tv/m3u8/29880.m3u8",
+        let state = BasicViewState(
+                                   url: "https://mnmedias.api.telequebec.tv/m3u8/29346.m3u8",
                                    isAutoPlay: true,
-                                   isPlay: true)
+                                   isPlay: true,
+                                   seek: 0)
         let container = BasicComponentContainer(controller: self, state: state)
         RenderView.render(container: container, in: self)
         self.container = container

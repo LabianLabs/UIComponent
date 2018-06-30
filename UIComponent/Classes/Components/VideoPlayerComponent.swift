@@ -12,6 +12,7 @@ import AVFoundation
 public final class VideoPlayerComponent : BaseComponent,ComponentType {
     public var isPlay: Bool = true
     public var isAutoPlay: Bool = true
+    public var seekValue: Float = 0
     public var render:((VideoPlayerComponent)->Void)?
     public var url: String?
     public var callbackOnPlay:((AVPlayer?)->Void)?

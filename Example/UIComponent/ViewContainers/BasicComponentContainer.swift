@@ -10,13 +10,10 @@ import Foundation
 import UIComponent
 
 struct BasicViewState{
-    var userName:String
-    var avatarUrl:String
-    var step:Int = 3
-    var background: String
     var url: String
     var isAutoPlay: Bool
     var isPlay: Bool
+    var seek: Double
 }
 
 class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
@@ -51,6 +48,7 @@ class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
                     $0.isPlay = state.isPlay
                     $0.isAutoPlay = state.isAutoPlay
                     $0.url = state.url
+                    $0.seekValue = Float(state.seek)
                     }.onFailure{ (_, error) in
                         print("ERROR")
                     }.onPause({ (_) in
@@ -60,31 +58,100 @@ class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
                     }).onStateChanged({ (player) in
                         print("CHANGE")
                     })
-                <<< FollowComponent(){
-                    $0.backgroundImage = UIImage(named: state.background)
-                    $0.layout = { c,view in
+                <<< ButtonComponent() {
+                    $0.title = "Change video"
+                    $0.layout = {c,view in
                         constrain(view, block: { (view) in
-                            view.top == view.superview!.top
+                            view.top == view.superview!.top + 300
                             view.left == view.superview!.left
-                            view.right == view.superview!.left + 100
-                            view.height == 100
+                            view.right == view.superview!.right
+                            view.height == 50
                         })
                     }
-                    }.onFollow({ (_) in
-                        print("follow")
+                    }.onClick({ (_) in
                         self.update {
-                            self.state = BasicViewState(userName: "", avatarUrl: "", step: 5, background: "download",
-                                                        url: "https://mnmedias.api.telequebec.tv/m3u8/29346.m3u8",
-                                                        isAutoPlay: true, isPlay: true)
-                        }
-                    }).onUnFollow({ (_) in
-                        print("unFollow")
-                        self.update {
-                            self.state = BasicViewState(userName: "", avatarUrl: "", step: 5, background: "download1",
-                                                        url: "https://mnmedias.api.telequebec.tv/m3u8/29340.m3u8",
-                                                        isAutoPlay: true, isPlay: false)
+                            let url = state.url != "https://mnmedias.api.telequebec.tv/m3u8/29346.m3u8"
+                                ? "https://mnmedias.api.telequebec.tv/m3u8/29346.m3u8"
+                                : "https://mnmedias.api.telequebec.tv/m3u8/29340.m3u8"
+                            self.state = BasicViewState(url: url ,
+                                                        isAutoPlay: state.isAutoPlay,
+                                                        isPlay: state.isPlay,
+                                                        seek: 0)
                         }
                     })
+                <<< ButtonComponent() {
+                    $0.title = "Re-render(state not change)"
+                    $0.layout = {c,view in
+                        constrain(view, block: { (view) in
+                            view.top == view.superview!.top + 350
+                            view.left == view.superview!.left
+                            view.right == view.superview!.right
+                            view.height == 50
+                        })
+                    }
+                    }.onClick({ (_) in
+                        self.update {
+                            self.state = BasicViewState(url: state.url,
+                                                        isAutoPlay: state.isAutoPlay,
+                                                        isPlay: state.isPlay,
+                                                        seek: 0)
+                        }
+                    })
+                <<< ButtonComponent() {
+                    $0.title = "PLAY"
+                    $0.layout = {c,view in
+                        constrain(view, block: { (view) in
+                            view.top == view.superview!.top + 400
+                            view.left == view.superview!.left
+                            view.right == view.superview!.right
+                            view.height == 50
+                        })
+                    }
+                    }.onClick({ (_) in
+                        self.update {
+                            self.state = BasicViewState(url: state.url,
+                                                        isAutoPlay: state.isAutoPlay,
+                                                        isPlay: true,
+                                                        seek: 0 )
+                        }
+                    })
+                <<< ButtonComponent(tag: "pause") {
+                    $0.title = "PAUSE"
+                    $0.layout = {c,view in
+                        constrain(view, block: { (view) in
+                            view.top == view.superview!.top + 450
+                            view.left == view.superview!.left
+                            view.right == view.superview!.right
+                            view.height == 50
+                        })
+                    }
+                    }.onClick({ (_) in
+                        self.update {
+                            self.state = BasicViewState(url: state.url,
+                                                        isAutoPlay: state.isAutoPlay,
+                                                        isPlay: false,
+                                                        seek: 0)
+                        }
+                    })
+                <<< ButtonComponent() {
+                    $0.title = "SEEK change value"
+                    $0.layout = {c,view in
+                        constrain(view, block: { (view) in
+                            view.top == view.superview!.top + 500
+                            view.left == view.superview!.left
+                            view.right == view.superview!.right
+                            view.height == 50
+                        })
+                    }
+                    }.onClick({ (_) in
+                        self.update {
+                            self.state = BasicViewState(url: state.url,
+                                                        isAutoPlay: state.isAutoPlay,
+                                                        isPlay: state.isPlay,
+                                                        seek: 0.25 )
+                        }
+                    })
+
                 <<< NavigationBarComponent(){
                         $0.host = viewController
                         $0.setupTitle = {
@@ -96,29 +163,6 @@ class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
                     }.OnClickRightButton {
                         print("OnClickRightButton")
                     }
-//                <<< SegmentComponent(["1", "2", "3"]){
-//                    $0.tag = "SEGMENT"
-//                    $0.layout = { c, view in
-//                        constrain(c.viewByTag("SEARCHBAR") as! UIView, view) { v1, v2 in
-//                            v2.top == v1.bottom
-//                            v2.left == v2.superview!.left
-//                            v2.right == v2.superview!.right
-//                            v2.height == 44
-//                        }
-//                    }
-//                }
-//                <<< ViewComponent<CustomViewComponent>(){
-//                    $0.nibFile = "CustomViewComponent"
-//                    $0.render = { view in
-//                        view.userName = "111"
-//                    }
-//                    $0.layout = { c, view in
-//                        view.loHeightInParent(0.3).loBellow(c.viewByTag("SEGMENT") as! UIView)
-//                    }
-//                }
-//                <<< FloatComponent<CustomViewComponent>(){
-//                    $0.nibFile = "CustomViewComponent"
-//                }
             }
     }
 }
