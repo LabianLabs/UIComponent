@@ -22,7 +22,7 @@ public final class RenderView: Renderer {
     
     public var lastRenderTree: UIKitRenderTree?
     
-    private init(container: ComponentRenderable) {
+    public init(container: ComponentRenderable) {
         var container = container
         self.container = container
         container.renderer = self

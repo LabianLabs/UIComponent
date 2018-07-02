@@ -52,6 +52,9 @@
                 <constraint firstItem="Eog-M1-M6y" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="vNj-TW-1cf"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="userName" destination="h1u-Jv-hMD" id="9dH-bc-8NW"/>
+            </connections>
             <point key="canvasLocation" x="-90.5" y="-162"/>
         </view>
     </objects>

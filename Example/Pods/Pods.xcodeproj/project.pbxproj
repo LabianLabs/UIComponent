@@ -71,6 +71,7 @@
 		0F07E7C220DA11E2001A32E1 /* SelectorAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F07E78220DA11E2001A32E1 /* SelectorAlertController.swift */; };
 		0F07E7C320DA11E2001A32E1 /* ButtonRowWithPresent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F07E78320DA11E2001A32E1 /* ButtonRowWithPresent.swift */; };
 		0F07E7C420DA11E2001A32E1 /* PickerInputRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F07E78420DA11E2001A32E1 /* PickerInputRow.swift */; };
+		0F326EF820EA367E002D8E7A /* ContainerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F326EF720EA367E002D8E7A /* ContainerRow.swift */; };
 		0F4788B020DA598F001D8D99 /* BaseRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4788AE20DA598F001D8D99 /* BaseRow.swift */; };
 		0F4788B120DA598F001D8D99 /* InlineRowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4788AF20DA598F001D8D99 /* InlineRowType.swift */; };
 		0F4788B320DA6386001D8D99 /* IFComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4788B220DA6386001D8D99 /* IFComponent.swift */; };
@@ -266,6 +267,7 @@
 		0F07E78220DA11E2001A32E1 /* SelectorAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectorAlertController.swift; sourceTree = "<group>"; };
 		0F07E78320DA11E2001A32E1 /* ButtonRowWithPresent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonRowWithPresent.swift; sourceTree = "<group>"; };
 		0F07E78420DA11E2001A32E1 /* PickerInputRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerInputRow.swift; sourceTree = "<group>"; };
+		0F326EF720EA367E002D8E7A /* ContainerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerRow.swift; sourceTree = "<group>"; };
 		0F4788AE20DA598F001D8D99 /* BaseRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRow.swift; sourceTree = "<group>"; };
 		0F4788AF20DA598F001D8D99 /* InlineRowType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InlineRowType.swift; sourceTree = "<group>"; };
 		0F4788B220DA6386001D8D99 /* IFComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFComponent.swift; sourceTree = "<group>"; };
@@ -553,6 +555,14 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		0F326EF620EA364F002D8E7A /* ContainerRow */ = {
+			isa = PBXGroup;
+			children = (
+				0F326EF720EA367E002D8E7A /* ContainerRow.swift */,
+			);
+			path = ContainerRow;
+			sourceTree = "<group>";
+		};
 		12EAE5DA33D17860ED0FC9289A2C9215 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -738,12 +748,12 @@
 			children = (
 				B8EAF48C87A93F43B593A9F077709EEE /* UIComponent.h */,
 				C4B3B16034129D1DE52FA6770CD1C147 /* Components */,
+				FC555D7984E19B3137686004E82ABCBE /* Renders */,
 				9D145E3BBB8C939CC6CC9D865CC70CE9 /* Core */,
 				12EAE5DA33D17860ED0FC9289A2C9215 /* Extensions */,
 				FBEF2C482657C294F83F8B0F145E1E51 /* Forms */,
 				96586D3709E8DEEC76B71AA156E352B8 /* Libs */,
 				80A95D2DEE78F43A540C4D0A78B3DAEF /* Pod */,
-				FC555D7984E19B3137686004E82ABCBE /* Renders */,
 				81A026696F45AE3EDF8595259FA82577 /* Support Files */,
 			);
 			name = UIComponent;
@@ -865,6 +875,7 @@
 		FBEF2C482657C294F83F8B0F145E1E51 /* Forms */ = {
 			isa = PBXGroup;
 			children = (
+				0F326EF620EA364F002D8E7A /* ContainerRow */,
 				E4077396A8D9D5B0DBD59FA0B28C72BA /* TableInlineRow */,
 			);
 			name = Forms;
@@ -1160,6 +1171,7 @@
 				0F07E7AB20DA11E2001A32E1 /* ListCheckRow.swift in Sources */,
 				0F912EB320DCEC3A006C395D /* FloatComponentRender.swift in Sources */,
 				45734378F47F104B831D93A583FEB5E4 /* TableInlineRow.swift in Sources */,
+				0F326EF820EA367E002D8E7A /* ContainerRow.swift in Sources */,
 				0F07E78F20DA11E2001A32E1 /* SwipeActions.swift in Sources */,
 				0F07E7B420DA11E2001A32E1 /* OptionsRow.swift in Sources */,
 				80640C603D12F53E09358A243FB36F4A /* TableRow.swift in Sources */,

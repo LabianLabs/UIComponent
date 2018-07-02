@@ -8,8 +8,18 @@
 
 import Foundation
 import UIComponent
+import UIKit
 
-class CustomViewComponent:UIView{
-    var userName :String?   
+class CustomViewComponent:UIViewComponent{
+    @IBOutlet weak var userName :UILabel?
+    
+    override func setup() {
+        self.userName?.text = "AAAA"//self.value as? String
+    }
+    
+    override func update() {
+        self.userName?.text = self.value as? String
+    }
+    
 }
 
