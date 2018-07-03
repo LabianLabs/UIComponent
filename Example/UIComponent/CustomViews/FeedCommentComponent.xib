@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="FeedCommentComponent" customModule="UIComponent_Example" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="384" height="80"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PRB-ao-k5M">
+                    <rect key="frame" x="20" y="5" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="7IC-E2-Teu"/>
+                        <constraint firstAttribute="width" secondItem="PRB-ao-k5M" secondAttribute="height" id="jpI-cd-ieD"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6nv-9P-ghY">
+                    <rect key="frame" x="80" y="5" width="294" height="70"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="LabelLabelLabelLabelLabelLabelLabelLabelLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="asf-Sz-aoE">
+                            <rect key="frame" x="8" y="8" width="278" height="54"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17.5"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.90196078431372551" green="0.90588235294117647" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="asf-Sz-aoE" firstAttribute="leading" secondItem="6nv-9P-ghY" secondAttribute="leading" constant="8" id="Ppb-OL-F40"/>
+                        <constraint firstAttribute="bottom" secondItem="asf-Sz-aoE" secondAttribute="bottom" constant="8" id="VfE-W7-xl3"/>
+                        <constraint firstItem="asf-Sz-aoE" firstAttribute="top" secondItem="6nv-9P-ghY" secondAttribute="top" constant="8" id="iUt-9j-6ZY"/>
+                        <constraint firstAttribute="trailing" secondItem="asf-Sz-aoE" secondAttribute="trailing" constant="8" id="pUU-BK-ZVx"/>
+                    </constraints>
+                </view>
+                <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" scrollEnabled="NO" text="Lorem ipsum dolor sit er elit Lorem ipsum dolor sit er elit Lorem ipsum dolor sit er elit " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="H5o-Sm-fOJ">
+                    <rect key="frame" x="80" y="5" width="294" height="70"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="6nv-9P-ghY" firstAttribute="leading" secondItem="PRB-ao-k5M" secondAttribute="trailing" constant="10" id="25p-Px-Wf2"/>
+                <constraint firstItem="PRB-ao-k5M" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="2O0-QD-WVC"/>
+                <constraint firstItem="PRB-ao-k5M" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="5" id="4GS-BE-Gmd"/>
+                <constraint firstItem="H5o-Sm-fOJ" firstAttribute="centerY" secondItem="PRB-ao-k5M" secondAttribute="centerY" priority="750" id="5nQ-Nd-LVC"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="6nv-9P-ghY" secondAttribute="trailing" constant="10" id="Cfr-Cp-Gbm"/>
+                <constraint firstItem="H5o-Sm-fOJ" firstAttribute="top" secondItem="PRB-ao-k5M" secondAttribute="top" id="IiH-1w-Uk7"/>
+                <constraint firstItem="6nv-9P-ghY" firstAttribute="centerY" secondItem="PRB-ao-k5M" secondAttribute="centerY" priority="750" id="RDh-FA-Enu"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="6nv-9P-ghY" secondAttribute="bottom" constant="5" id="Zm7-r7-BXQ"/>
+                <constraint firstItem="6nv-9P-ghY" firstAttribute="top" secondItem="PRB-ao-k5M" secondAttribute="top" id="beF-7d-DCu"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="H5o-Sm-fOJ" secondAttribute="trailing" constant="10" id="eog-Oq-A4c"/>
+                <constraint firstItem="H5o-Sm-fOJ" firstAttribute="leading" secondItem="PRB-ao-k5M" secondAttribute="trailing" constant="10" id="oYf-2d-dnR"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="H5o-Sm-fOJ" secondAttribute="bottom" constant="5" id="vwc-OU-a4A"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="avatarImageView" destination="PRB-ao-k5M" id="Po4-Jm-Tjc"/>
+                <outlet property="inputTextView" destination="H5o-Sm-fOJ" id="hfh-m4-9uy"/>
+                <outlet property="messageLabel" destination="asf-Sz-aoE" id="GN2-E6-pva"/>
+                <outlet property="messageView" destination="6nv-9P-ghY" id="C68-fO-cel"/>
+            </connections>
+            <point key="canvasLocation" x="38" y="-240"/>
+        </view>
+        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="TPU-pM-70l">
+            <rect key="frame" x="0.0" y="0.0" width="97" height="30"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <nil key="textColor"/>
+            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+            <textInputTraits key="textInputTraits"/>
+            <point key="canvasLocation" x="20" y="-129"/>
+        </textField>
+    </objects>
+</document>
