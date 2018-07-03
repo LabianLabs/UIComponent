@@ -43,11 +43,10 @@ class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
                                 (v as! FeedInfoUserComponent).delegate = self
                             }
                             $0.value = state.data
-                            
                         }
                             <<< ButtonComponent() {
                                 $0.tag = "l1"
-                                $0.title = "Not Actee"
+                                $0.title = "Post Video"
                                 $0.layout = { c, v in
                                     let infoView = (c.viewByTag("info") as! UIView)
                                     constrain(v,infoView) { v,v2 in
@@ -56,7 +55,6 @@ class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
                                         v.top == v2.bottom
                                     }
                                 }
-                                
                                 }.onClick({ (_) in
                                     self.update {
                                         self.state = BasicViewState(data: Data(actor: "Sherwin",
@@ -76,7 +74,6 @@ class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
                                         v.top == v2.bottom
                                         v.bottom == v.superview!.bottom
                                     }
-                                    
                                 }
                                 }.onClick({ (_) in
                                     self.update {
@@ -87,8 +84,6 @@ class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
                                                                                date: Date() + (-6).hours))
                                     }
                                 })
-
-                        
                     }
                 }
             }
