@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="ZFV-9H-4qP" customClass="FeedInfoUserComponent" customModule="UIComponent_Example" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="376" height="110"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5dM-Am-vfm">
+                    <rect key="frame" x="0.0" y="20" width="376" height="90"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HWW-vg-aV6">
+                            <rect key="frame" x="20" y="20" width="50" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="HWW-vg-aV6" secondAttribute="height" multiplier="1:1" id="ph4-po-dkd"/>
+                                <constraint firstAttribute="width" constant="50" id="q92-jl-zUs"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" text="LabelLabelLabelLabel LabelLabelLabelLabelLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBZ-av-raZ">
+                            <rect key="frame" x="78" y="13.5" width="258" height="41"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="svr-TU-coM">
+                            <rect key="frame" x="78" y="56.5" width="39.5" height="23.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" alpha="0.55000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qmo-OC-v4q">
+                            <rect key="frame" x="346" y="15" width="30" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="vje-eo-dU9"/>
+                                <constraint firstAttribute="height" constant="60" id="w4T-gF-wGY"/>
+                            </constraints>
+                            <state key="normal" image="ic_message_menu"/>
+                            <connections>
+                                <action selector="optionDidTouch:" destination="ZFV-9H-4qP" eventType="touchUpInside" id="5oe-zM-z4O"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="HWW-vg-aV6" firstAttribute="leading" secondItem="5dM-Am-vfm" secondAttribute="leading" constant="20" id="6qh-QL-U46"/>
+                        <constraint firstItem="Qmo-OC-v4q" firstAttribute="centerY" secondItem="HWW-vg-aV6" secondAttribute="centerY" id="IS4-To-Uwy"/>
+                        <constraint firstItem="Qmo-OC-v4q" firstAttribute="leading" secondItem="IBZ-av-raZ" secondAttribute="trailing" constant="10" id="NX4-KT-a0v"/>
+                        <constraint firstAttribute="bottom" secondItem="svr-TU-coM" secondAttribute="bottom" constant="10" id="QQM-YR-ZSy"/>
+                        <constraint firstAttribute="trailing" secondItem="Qmo-OC-v4q" secondAttribute="trailing" id="RZA-pn-EFK"/>
+                        <constraint firstItem="HWW-vg-aV6" firstAttribute="centerY" secondItem="5dM-Am-vfm" secondAttribute="centerY" id="g9E-bF-yCZ"/>
+                        <constraint firstItem="svr-TU-coM" firstAttribute="leading" secondItem="HWW-vg-aV6" secondAttribute="trailing" constant="8" id="jv4-8q-lLr"/>
+                        <constraint firstItem="svr-TU-coM" firstAttribute="top" secondItem="IBZ-av-raZ" secondAttribute="bottom" constant="2" id="qCN-k9-JZd"/>
+                        <constraint firstItem="IBZ-av-raZ" firstAttribute="leading" secondItem="HWW-vg-aV6" secondAttribute="trailing" constant="8" id="sLf-mt-Eap"/>
+                        <constraint firstItem="HWW-vg-aV6" firstAttribute="width" secondItem="HWW-vg-aV6" secondAttribute="height" multiplier="1:1" id="szy-Zu-4sx"/>
+                        <constraint firstItem="IBZ-av-raZ" firstAttribute="centerY" secondItem="HWW-vg-aV6" secondAttribute="centerY" multiplier="0.75" id="u0W-0K-5AT"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="5dM-Am-vfm" firstAttribute="top" secondItem="Uq8-XB-upK" secondAttribute="top" constant="20" id="HfV-hn-vjy"/>
+                <constraint firstItem="Uq8-XB-upK" firstAttribute="trailing" secondItem="5dM-Am-vfm" secondAttribute="trailing" id="f6O-VJ-3GD"/>
+                <constraint firstItem="5dM-Am-vfm" firstAttribute="bottom" secondItem="Uq8-XB-upK" secondAttribute="bottom" id="jQw-XX-5Au"/>
+                <constraint firstItem="5dM-Am-vfm" firstAttribute="leading" secondItem="Uq8-XB-upK" secondAttribute="leading" id="xuI-HE-EWv"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="Uq8-XB-upK"/>
+            <connections>
+                <outlet property="avatarImageView" destination="HWW-vg-aV6" id="nkX-tt-4XL"/>
+                <outlet property="infoLabel" destination="IBZ-av-raZ" id="f7q-iQ-MwW"/>
+                <outlet property="optionButton" destination="Qmo-OC-v4q" id="eBu-cN-54K"/>
+                <outlet property="timeLabel" destination="svr-TU-coM" id="aEl-LF-z3G"/>
+            </connections>
+            <point key="canvasLocation" x="34" y="-72"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_message_menu" width="21" height="21"/>
+    </resources>
+</document>

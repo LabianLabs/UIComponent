@@ -10,9 +10,7 @@ import Foundation
 import UIComponent
 
 struct BasicViewState{
-    var userName:String
-    var avatarUrl:String
-    var step:Int = 3
+    var data: Data
 }
 
 class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
@@ -25,53 +23,83 @@ class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
     
     open override func render(_ state: BasicViewState) -> ComponentContainer {
         return EmptyViewComponent(){
-            $0.layout = {c, v in
-                constrain(v){ view in
-                    view.left == view.superview!.left
-                    view.top == view.superview!.top + 64
-                    view.width == view.superview!.width
-                    view.bottom == view.superview!.bottom
-                }
-            }
             $0.children
-                <<< SearchBarComponent(){
-                    $0.placeholder = "Search"
-                    $0.tag = "SEARCHBAR"
+            <<< FormComponent(viewController!) {
+                $0.layout = {c,v in
+                    v.loFillInParent()
                 }
-                <<< NavigationBarComponent(){
-                        $0.host = viewController
-                        $0.setupTitle = {
-                            return "Custom Title"
+                $0.render = {form in
+                    form +++ ContainerRow() {
+                        $0.children
+                        <<< ViewComponent<FeedInfoUserComponent>() {
+                            $0.tag = "info"
+                            $0.nibFile = "FeedInfoUserComponent"
+                            $0.layout = {c,v in
+                                constrain(v, block: { (view) in
+                                    view.top == view.superview!.top 
+                                    view.left == view.superview!.left
+                                    view.right == view.superview!.right
+                                })
+                                (v as! FeedInfoUserComponent).delegate = self
+                            }
+                            $0.value = state.data
+                            
                         }
-                        $0.rightButtonTitle = "Done"
-                    }.OnClickLeftButton {
-                        print("OnClickLeftButton")
-                    }.OnClickRightButton {
-                        print("OnClickRightButton")
+                            <<< ButtonComponent() {
+                                $0.tag = "l1"
+                                $0.title = "Not Actee"
+                                $0.layout = { c, v in
+                                    let infoView = (c.viewByTag("info") as! UIView)
+                                    constrain(v,infoView) { v,v2 in
+                                        v.left == v.superview!.left
+                                        v.right == v.superview!.right
+                                        v.top == v2.bottom
+                                    }
+                                }
+                                
+                                }.onClick({ (_) in
+                                    self.update {
+                                        self.state = BasicViewState(data: Data(actor: "Sherwin",
+                                                                               actee: "",
+                                                                               rank: 0,
+                                                                               url: "download",
+                                                                               date: Date() + (-3).minutes))
+                                    }
+                                })
+                            <<< ButtonComponent(){
+                                $0.title  = "Change rank"
+                                $0.layout = { c, v in
+                                    let l1 = (c.viewByTag("l1") as! UIView)
+                                    constrain(v, l1){ v, v2 in
+                                        v.left == v.superview!.left
+                                        v.right == v.superview!.right
+                                        v.top == v2.bottom
+                                        v.bottom == v.superview!.bottom
+                                    }
+                                    
+                                }
+                                }.onClick({ (_) in
+                                    self.update {
+                                        self.state = BasicViewState(data: Data(actor: "Sherwin",
+                                                                               actee: "Adline",
+                                                                               rank: 6,
+                                                                               url: "download",
+                                                                               date: Date() + (-6).hours))
+                                    }
+                                })
+
+                        
                     }
-//                <<< SegmentComponent(["1", "2", "3"]){
-//                    $0.tag = "SEGMENT"
-//                    $0.layout = { c, view in
-//                        constrain(c.viewByTag("SEARCHBAR") as! UIView, view) { v1, v2 in
-//                            v2.top == v1.bottom
-//                            v2.left == v2.superview!.left
-//                            v2.right == v2.superview!.right
-//                            v2.height == 44
-//                        }
-//                    }
-//                }
-//                <<< ViewComponent<CustomViewComponent>(){
-//                    $0.nibFile = "CustomViewComponent"
-//                    $0.render = { view in
-//                        view.userName = "111"
-//                    }
-//                    $0.layout = { c, view in
-//                        view.loHeightInParent(0.3).loBellow(c.viewByTag("SEGMENT") as! UIView)
-//                    }
-//                }
-                <<< FloatComponent<CustomViewComponent>(){
-                    $0.nibFile = "CustomViewComponent"
                 }
             }
+            
+        }
     }
+}
+extension BasicComponentContainer: FeedInfoUserDelegate {
+    func onOptionDidTouch() {
+        print("TRS")
+    }
+    
+    
 }

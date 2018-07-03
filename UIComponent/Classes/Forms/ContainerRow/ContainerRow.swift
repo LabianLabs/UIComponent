@@ -40,8 +40,7 @@ public class ContainerCell:Cell<Int>, CellType{
         self.container.children = (self.row as! ContainerRow).children
         self.renderView = RenderView(container: self.containerRender!)
         self.contentView.addSubview(self.renderView!.view)
-        self.renderView!.view.loFillInParent()        
-    }
+        self.renderView!.view.loFillInParent()    }
     
     public override func update() {
         self.container.children = (self.row as! ContainerRow).children
