@@ -18,10 +18,28 @@ struct Data {
     }
 }
 
+protocol FeedCommentComponentDeledate  {
+    func commentDidTouch()
+}
+
 public class FeedCommentComponent: UIViewComponent {
+    
+    @IBAction func commentDidTouch(_ sender: UIButton) {
+        self.delegate?.commentDidTouch()
+    }
+    
     override public func setup() {
         super.setup()
-        inputTextView.layer.cornerRadius = 
+        inputButton.layer.cornerRadius = 7
+        inputButton.clipsToBounds = true
+        inputButton.layer.borderWidth = 1
+        inputButton.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        inputButton.setTitle("Your comment ...", for: .normal)
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
+        avatarImageView.clipsToBounds = true
+        messageView.layer.cornerRadius = 7
+        messageView.clipsToBounds = true
+        messageLabel.lineBreakMode = NSLineBreakMode(rawValue: 0)!
     }
     override public func update() {
         super.update()
@@ -31,14 +49,15 @@ public class FeedCommentComponent: UIViewComponent {
         avatarImageView.image = UIImage(named: value.url)
         if value.message != "" {
             messageLabel.text = value.message
-            inputTextView.isHidden = true
+            inputButton.isHidden = true
         } else {
             messageView.isHidden = true
         }
     }
     
+    var delegate: FeedCommentComponentDeledate?
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var messageView: UIView!
     @IBOutlet weak var messageLabel: UILabel!
-    @IBOutlet weak var inputTextView: UITextView!
+    @IBOutlet weak var inputButton: UIButton!
 }

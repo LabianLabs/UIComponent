@@ -19,7 +19,12 @@ class BasicComponentViewController:UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Basic Compomnent"
-        let state = BasicViewState(userName: "test", avatarUrl: "test", step: 1)
+        let state = BasicViewState(data: [Data(url: "download",
+                                              message: "Sweet voice, I wish i can speak like you!"),
+                                          Data(url: "download" ,
+                                               message: "Yeah!"),
+                                          Data(url: "download",
+                                               message: "")])
         let container = BasicComponentContainer(controller: self, state: state)
         RenderView.render(container: container, in: self)
         self.container = container

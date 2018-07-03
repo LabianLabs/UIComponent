@@ -10,9 +10,7 @@ import Foundation
 import UIComponent
 
 struct BasicViewState{
-    var userName:String
-    var avatarUrl:String
-    var step:Int = 3
+    var data : [Data]
 }
 
 class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
@@ -34,44 +32,64 @@ class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
                 }
             }
             $0.children
-                <<< SearchBarComponent(){
-                    $0.placeholder = "Search"
-                    $0.tag = "SEARCHBAR"
-                }
-                <<< NavigationBarComponent(){
-                        $0.host = viewController
-                        $0.setupTitle = {
-                            return "Custom Title"
-                        }
-                        $0.rightButtonTitle = "Done"
-                    }.OnClickLeftButton {
-                        print("OnClickLeftButton")
-                    }.OnClickRightButton {
-                        print("OnClickRightButton")
+                <<< FormComponent(viewController!) {
+                    $0.layout = {c,v in
+                        v.loFillInParent()
                     }
-//                <<< SegmentComponent(["1", "2", "3"]){
-//                    $0.tag = "SEGMENT"
-//                    $0.layout = { c, view in
-//                        constrain(c.viewByTag("SEARCHBAR") as! UIView, view) { v1, v2 in
-//                            v2.top == v1.bottom
-//                            v2.left == v2.superview!.left
-//                            v2.right == v2.superview!.right
-//                            v2.height == 44
-//                        }
-//                    }
-//                }
-//                <<< ViewComponent<CustomViewComponent>(){
-//                    $0.nibFile = "CustomViewComponent"
-//                    $0.render = { view in
-//                        view.userName = "111"
-//                    }
-//                    $0.layout = { c, view in
-//                        view.loHeightInParent(0.3).loBellow(c.viewByTag("SEGMENT") as! UIView)
-//                    }
-//                }
-                <<< FloatComponent<CustomViewComponent>(){
-                    $0.nibFile = "CustomViewComponent"
-                }
+                    $0.render = { form in
+                        form +++ ContainerRow() {
+                            $0.children
+                                <<< ViewComponent<FeedCommentComponent>() {
+                                    $0.nibFile = "FeedCommentComponent"
+                                    $0.tag = "v1"
+                                    $0.layout = {c,v in
+                                        constrain(v , block: { (view) in
+                                            view.top == view.superview!.top
+                                            view.left == view.superview!.left
+                                            view.right == view.superview!.right
+                                        })
+                                        (v as! FeedCommentComponent).delegate = self
+                                    }
+                                    $0.value = state.data[0]
+                                }
+                                <<< ViewComponent<FeedCommentComponent>() {
+                                    $0.nibFile = "FeedCommentComponent"
+                                    $0.tag = "v2"
+                                    $0.layout = {c,v in
+                                        let topView = c.viewByTag("v1") as! UIView
+                                        constrain(v,topView , block: { (view,topView) in
+                                            view.top == topView.bottom
+                                            view.left == view.superview!.left
+                                            view.right == view.superview!.right
+                                        })
+                                        (v as! FeedCommentComponent).delegate = self
+                                    }
+                                    $0.value = state.data[1]
+                                }
+                                <<< ViewComponent<FeedCommentComponent>() {
+                                    $0.nibFile = "FeedCommentComponent"
+                                    $0.layout = {c,v in
+                                        let topView = c.viewByTag("v2") as! UIView
+                                        constrain(v,topView , block: { (view,topView) in
+                                            view.top == topView.bottom
+                                            view.left == view.superview!.left
+                                            view.right == view.superview!.right
+                                            view.bottom == view.superview!.bottom
+                                        })
+                                        (v as! FeedCommentComponent).delegate = self
+                                    }
+                                    $0.value = state.data[2]
+                                    
+                            }
+                        }
+                    }
             }
+            }
+    }
+}
+
+extension BasicComponentContainer: FeedCommentComponentDeledate {
+    func commentDidTouch() {
+        print("Comment did touch")
     }
 }
