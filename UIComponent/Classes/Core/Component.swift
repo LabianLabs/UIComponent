@@ -90,6 +90,10 @@ public class Children:Sequence{
         return items.count
     }
     
+    public init(){
+        
+    }
+    
     public func append(_ item:Component){
         items.append(item)
     }
