@@ -13,6 +13,14 @@ public func <<< (left: Children, right:Component) -> Children {
     return left
 }
 
+@discardableResult
+public func <<< (left: Children, right:Children) -> Children {
+    right.forEach { (c) in
+        left.append(c)
+    }
+    return left
+}
+
 //public func == (lhs: Component, rhs: Component) -> Bool {
 //    return true
 //}
