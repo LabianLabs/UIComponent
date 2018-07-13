@@ -11,4 +11,15 @@ import Foundation
 public final class LabelComponent: BaseComponent, ComponentType {
     public var text: String?
     public var textColor: Color = Color.black
+    public var fontSize:CGFloat = 0
+    public var fontName:String?
+    public var fontStyle:FontStyle = FontStyle.normal
+    public var textAlignment:TextAlignment = TextAlignment.left
+    public enum TextAlignment{
+        case center, left, right
+    }
+    
+    public enum FontStyle{
+        case bold, normal
+    }
 }

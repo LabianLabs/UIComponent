@@ -27,7 +27,7 @@ extension ViewComponent: UIKitRenderable{
             fatalError()
         }
         self.applyBaseAttributes(to: view!)
-        //self.render?(view as! T)
+        self.config?(view as! T)
         view?.value = self.value
         view?.setup()
         if self.children.count > 0{

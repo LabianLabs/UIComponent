@@ -19,18 +19,20 @@ extension StackComponent: UIKitRenderable {
         }
 
         childViews = children.map { $0.view }
-
+        let container = UIView()
         let stackView = UIStackView(arrangedSubviews: childViews)
         stackView.axis = convertAxis(self.axis)
         stackView.backgroundColor = .white
         stackView.alignment = convertAlignment(self.alignment)
         stackView.distribution = convertDistribution(self.distribution)
-        self.applyBaseAttributes(to: stackView)
-        return .node(self, stackView, children)
+        container.addSubview(stackView)
+        self.applyBaseAttributes(to: container)
+        return .node(self, container, children)
     }
     
     public func autoLayout(view: UIView) {
         self.layout?(self, view)
+        view.subviews.first?.loFillInParent()
     }
 
     public func updateUIKit(
@@ -42,7 +44,7 @@ extension StackComponent: UIKitRenderable {
 
         guard let newComponent = newComponent as? StackComponent else { fatalError() }
 
-        guard let stackView = view as? UIStackView else { fatalError() }
+        guard let stackView = view.subviews.first as? UIStackView else { fatalError() }
         stackView.axis = convertAxis(newComponent.axis)
         stackView.backgroundColor = .white
 
@@ -96,7 +98,7 @@ extension StackComponent: UIKitRenderable {
             indexOffset -= 1
         }
 
-        return .node(newComponent, stackView, children)
+        return .node(newComponent, view, children)
     }
     
 }

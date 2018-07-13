@@ -49,28 +49,30 @@ class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
                     }.OnClickRightButton {
                         print("OnClickRightButton")
                     }
-//                <<< SegmentComponent(["1", "2", "3"]){
-//                    $0.tag = "SEGMENT"
-//                    $0.layout = { c, view in
-//                        constrain(c.viewByTag("SEARCHBAR") as! UIView, view) { v1, v2 in
-//                            v2.top == v1.bottom
-//                            v2.left == v2.superview!.left
-//                            v2.right == v2.superview!.right
-//                            v2.height == 44
-//                        }
-//                    }
-//                }
-//                <<< ViewComponent<CustomViewComponent>(){
-//                    $0.nibFile = "CustomViewComponent"
-//                    $0.render = { view in
-//                        view.userName = "111"
-//                    }
-//                    $0.layout = { c, view in
-//                        view.loHeightInParent(0.3).loBellow(c.viewByTag("SEGMENT") as! UIView)
-//                    }
-//                }
-                <<< FloatComponent<CustomViewComponent>(){
-                    $0.nibFile = "CustomViewComponent"
+                <<< StackComponent(){
+                    $0.axis = StackComponent.Axis.horizontal
+                    $0.borderWidth = 1
+                    $0.borderColor = Color.green
+                    $0.backgroundColor = Color.fuchsia
+                    $0.cornerRadius = 20
+                    $0.children <<< LabelComponent(){
+                                    $0.text = "Hello"
+                                    $0.fontSize = 40
+                                    $0.fontStyle = LabelComponent.FontStyle.bold
+                                    $0.textAlignment = LabelComponent.TextAlignment.right
+                                }
+                                <<< LabelComponent(){
+                                    $0.text = "Hello"
+                                    $0.fontSize = 40
+                                    
+                    }
+                    $0.layout = { c, v in
+                        constrain(v){ v in
+                            v.width == 300
+                            v.height == 300
+                            v.center == v.superview!.center
+                        }
+                    }
                 }
             }
     }
