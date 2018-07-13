@@ -20,12 +20,12 @@ public final class NavigationBarComponent: BaseComponent, ComponentType{
     internal var callbackOnClickLeftButton:(()->Void)?
     internal var callbackOnClickRightButton:(()->Void)?
     
-    public func OnClickLeftButton(_ callback:@escaping ()->Void)->NavigationBarComponent{
+    public func onClickLeftButton(_ callback:@escaping ()->Void)->NavigationBarComponent{
         self.callbackOnClickLeftButton = callback
         return self
     }
     
-    public func OnClickRightButton(_ callback:@escaping ()->Void)->NavigationBarComponent{
+    public func onClickRightButton(_ callback:@escaping ()->Void)->NavigationBarComponent{
         self.callbackOnClickRightButton = callback
         return self
     }

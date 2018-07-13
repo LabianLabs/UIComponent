@@ -10,10 +10,7 @@ import Foundation
 
 public final class ButtonComponent: BaseComponent, ComponentType{
     public var title: String?
-    public var callbackOnClick:((Any?)->Void)?
-    public func onClick(_ callback: ((Any?)->Void)?)->ButtonComponent{
-        self.callbackOnClick = callback
-        return self
-    }
+    internal var callbackOnClick:((Any?)->Void)?
+    internal var callbackOnConfig:((Any?)->Void)?    
 }
 

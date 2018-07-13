@@ -44,9 +44,9 @@ class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
                             return "Custom Title"
                         }
                         $0.rightButtonTitle = "Done"
-                    }.OnClickLeftButton {
+                    }.onClickLeftButton {
                         print("OnClickLeftButton")
-                    }.OnClickRightButton {
+                    }.onClickRightButton {
                         print("OnClickRightButton")
                     }
                 <<< StackComponent(){

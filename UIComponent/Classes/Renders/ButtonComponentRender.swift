@@ -7,7 +7,17 @@
 //
 
 import UIKit
-
+extension ButtonComponent{
+    public func onConfig(_ callback:((UIButton)->Void)?)->ButtonComponent{
+        self.callbackOnClick = callback as? ((Any?) -> Void)
+        return self
+    }
+    
+    public func onClick(_ callback: ((UIButton)->Void)?)->ButtonComponent{
+        self.callbackOnClick = callback as? ((Any?) -> Void)
+        return self
+    }
+}
 extension ButtonComponent: UIKitRenderable {
     public func renderUIKit() -> UIKitRenderTree {
         let button = UIButton(type: .custom)
@@ -16,6 +26,7 @@ extension ButtonComponent: UIKitRenderable {
         button.backgroundColor = UIColor.white
         button.addTarget(self, action: #selector(onButtonDidTouch), for: UIControlEvents.touchUpInside)
         self.applyBaseAttributes(to: button)
+        self.callbackOnConfig?(button)
         return .leaf(self, button)
     }
     
