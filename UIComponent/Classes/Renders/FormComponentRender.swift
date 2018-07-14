@@ -20,7 +20,7 @@ extension FormComponent: UIKitRenderable{
     
     public convenience init(_ tag: String? = nil,_ host: UIViewController,_ initializer: (FormComponent)->Void = {_ in}) {
         self.init(tag)
-        self.host = controller
+        self.host = host
         initializer(self)
     }
     

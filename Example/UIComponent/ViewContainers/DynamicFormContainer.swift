@@ -51,7 +51,7 @@ class DynamicFormContainer: BaseComponentRenderable<DynamicFormState>{
                 }
             }
             $0.children
-                <<< FormComponent(viewController!){
+                <<< FormComponent(host:viewController!){
                         $0.render = { form
                             in self.formItems(form, self.state)
                     }

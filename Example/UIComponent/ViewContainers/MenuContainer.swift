@@ -23,7 +23,7 @@ class MenuContainer: BaseComponentRenderable<Int>{
     }
     override func render(_ state: Int) -> ComponentContainer {
         return EmptyViewComponent(){
-            $0.children <<< FormComponent(viewController!){
+            $0.children <<< FormComponent(host:viewController!){
                 $0.layout = {c, v in v.loFillInParent()}
                 $0.render = { form in
                     form +++ Section("Component Kit")

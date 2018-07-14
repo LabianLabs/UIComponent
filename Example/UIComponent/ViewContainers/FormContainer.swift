@@ -41,7 +41,7 @@ class FormContainer:BaseComponentRenderable<FormViewState>{
                     $0.elseWhen = { return self.state.userName == "222"}
                     $0.elseComponent = LabelComponent() {$0.text = "else is wrong"}
                 }
-                <<< FormComponent(viewController!){
+                <<< FormComponent(host:viewController!){
                     $0.render = { form in
                         form.inlineRowHideOptions = InlineRowHideOptions.Never
                         form +++ Section()
