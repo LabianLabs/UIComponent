@@ -33,7 +33,7 @@ class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
                     view.bottom == view.superview!.bottom
                 }
             }
-            $0.children
+            $0.children                
                 <<< StateComponent(){
                     $0.loadingComponent = LabelComponent(){$0.text = "loading"; $0.layout = {c, v in v.loFillInParent()}}
                     $0.dataComponent = LabelComponent(){$0.text = "data"; $0.layout = {c, v in v.loFillInParent()}}

@@ -23,5 +23,6 @@ class BasicComponentViewController:UIViewController{
         let container = BasicComponentContainer(controller: self, state: state)
         RenderView.render(container: container, in: self)
         self.container = container
+        
     }
 }

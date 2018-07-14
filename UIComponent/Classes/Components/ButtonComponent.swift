@@ -11,6 +11,7 @@ import Foundation
 public final class ButtonComponent: BaseComponent, ComponentType{
     public var title: String?
     internal var callbackOnClick:((Any?)->Void)?
-    internal var callbackOnConfig:((Any?)->Void)?    
+    internal var callbackOnConfig:((Any?)->Void)?
+    
 }
 
