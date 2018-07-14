@@ -14,13 +14,13 @@ extension FormComponent: UIKitRenderable{
         return host as? UIViewController
     }
     
-    public convenience init(_ host: UIViewController,_ initializer: (FormComponent)->Void = {_ in}) {
+    public convenience init(host: UIViewController,_ initializer: (FormComponent)->Void = {_ in}) {
         self.init(nil, host, initializer)
     }
     
     public convenience init(_ tag: String? = nil,_ host: UIViewController,_ initializer: (FormComponent)->Void = {_ in}) {
         self.init(tag)
-        self.host = host
+        self.host = controller
         initializer(self)
     }
     

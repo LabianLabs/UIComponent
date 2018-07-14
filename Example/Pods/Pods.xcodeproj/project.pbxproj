@@ -78,6 +78,8 @@
 		0F4788B520DA6409001D8D99 /* IFComponentRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4788B420DA6409001D8D99 /* IFComponentRender.swift */; };
 		0F912EB120DCEC24006C395D /* FloatComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F912EAF20DCEB74006C395D /* FloatComponent.swift */; };
 		0F912EB320DCEC3A006C395D /* FloatComponentRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F912EB220DCEC3A006C395D /* FloatComponentRender.swift */; };
+		0F9559D320F9BD9A005CA56B /* StateComponentRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9559D220F9BD9A005CA56B /* StateComponentRender.swift */; };
+		0F9559D520F9BDC7005CA56B /* StateComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9559D420F9BDC7005CA56B /* StateComponent.swift */; };
 		0F9AEFE220DD0D95004377E5 /* NavigationBarComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9AEFE020DD0D90004377E5 /* NavigationBarComponent.swift */; };
 		0F9AEFE520DD0E6A004377E5 /* NavigationBarComponentRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9AEFE320DD0E68004377E5 /* NavigationBarComponentRender.swift */; };
 		0F9F3FC96CBA55D973C65C18333ABCB4 /* Pods-UIComponent_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B734DFC350DC74ED716E0A8DD74BCF45 /* Pods-UIComponent_Example-dummy.m */; };
@@ -275,6 +277,8 @@
 		0F64C8C54ACCB3D3973171EBB225D8DC /* Context.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		0F912EAF20DCEB74006C395D /* FloatComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatComponent.swift; sourceTree = "<group>"; };
 		0F912EB220DCEC3A006C395D /* FloatComponentRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatComponentRender.swift; sourceTree = "<group>"; };
+		0F9559D220F9BD9A005CA56B /* StateComponentRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateComponentRender.swift; sourceTree = "<group>"; };
+		0F9559D420F9BDC7005CA56B /* StateComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateComponent.swift; sourceTree = "<group>"; };
 		0F9716E7359EE1ED721E8D0EDCA3033A /* LayoutSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LayoutSupport.swift; sourceTree = "<group>"; };
 		0F9AEFE020DD0D90004377E5 /* NavigationBarComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarComponent.swift; sourceTree = "<group>"; };
 		0F9AEFE320DD0E68004377E5 /* NavigationBarComponentRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarComponentRender.swift; sourceTree = "<group>"; };
@@ -771,6 +775,7 @@
 				9CE77E2BC93DFA7036161798DB6F043E /* SegmentComponent.swift */,
 				95AE05EC1FDD3808967C20BF070369A6 /* StackComponent.swift */,
 				C0606A216BEFC5D4766FB45F4623F9AF /* ViewComponent.swift */,
+				0F9559D420F9BDC7005CA56B /* StateComponent.swift */,
 				0F4788B220DA6386001D8D99 /* IFComponent.swift */,
 				0F912EAF20DCEB74006C395D /* FloatComponent.swift */,
 				0F9AEFE020DD0D90004377E5 /* NavigationBarComponent.swift */,
@@ -896,6 +901,7 @@
 				0F4788B420DA6409001D8D99 /* IFComponentRender.swift */,
 				0F912EB220DCEC3A006C395D /* FloatComponentRender.swift */,
 				0F9AEFE320DD0E68004377E5 /* NavigationBarComponentRender.swift */,
+				0F9559D220F9BD9A005CA56B /* StateComponentRender.swift */,
 			);
 			name = Renders;
 			path = UIComponent/Classes/Renders;
@@ -1112,6 +1118,7 @@
 				0F07E7BD20DA11E2001A32E1 /* ButtonRow.swift in Sources */,
 				0F07E79920DA11E2001A32E1 /* Row.swift in Sources */,
 				66D7C67EA62C26990597B0EF760B90C7 /* EmptyViewComponentRender.swift in Sources */,
+				0F9559D320F9BD9A005CA56B /* StateComponentRender.swift in Sources */,
 				0F07E78820DA11E2001A32E1 /* Cell.swift in Sources */,
 				0F07E7B020DA11E2001A32E1 /* FieldRow.swift in Sources */,
 				FCA68A1F48B37D62C9FA8F767AB0BE6B /* Expression.swift in Sources */,
@@ -1159,6 +1166,7 @@
 				0F07E79620DA11E2001A32E1 /* Form.swift in Sources */,
 				7E42CF8F57D9CD44D7C0AB01F70B82F4 /* SegmentComponentRender.swift in Sources */,
 				0F07E7B520DA11E2001A32E1 /* GenericMultipleSelectorRow.swift in Sources */,
+				0F9559D520F9BDC7005CA56B /* StateComponent.swift in Sources */,
 				4BB6585893BF1B0936403C9D3B030E09 /* Size.swift in Sources */,
 				72659BB595BD6584689824227142E5F7 /* StackComponent.swift in Sources */,
 				0F07E7C420DA11E2001A32E1 /* PickerInputRow.swift in Sources */,

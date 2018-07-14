@@ -8,10 +8,10 @@
 import Foundation
 public typealias BarButtonItem = Any?
 public typealias NavigationTitle = Any?
-public typealias HostViewController = Any?
+public typealias HostViewController = AnyObject
 
 public final class NavigationBarComponent: BaseComponent, ComponentType{
-    public weak var host:AnyObject?
+    public weak var host:HostViewController?
     public var leftButtonTitle:String?
     public var rightButtonTitle:String?    
     public var setupLeftButton:(()->BarButtonItem)?

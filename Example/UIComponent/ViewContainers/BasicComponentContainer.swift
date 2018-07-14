@@ -34,45 +34,12 @@ class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
                 }
             }
             $0.children
-                <<< SearchBarComponent(){
-                    $0.placeholder = "Search"
-                    $0.tag = "SEARCHBAR"
-                }
-                <<< NavigationBarComponent(){
-                        $0.host = viewController
-                        $0.setupTitle = {
-                            return "Custom Title"
-                        }
-                        $0.rightButtonTitle = "Done"
-                    }.onClickLeftButton {
-                        print("OnClickLeftButton")
-                    }.onClickRightButton {
-                        print("OnClickRightButton")
-                    }
-                <<< StackComponent(){
-                    $0.axis = StackComponent.Axis.horizontal
-                    $0.borderWidth = 1
-                    $0.borderColor = Color.green
-                    $0.backgroundColor = Color.fuchsia
-                    $0.cornerRadius = 20
-                    $0.children <<< LabelComponent(){
-                                    $0.text = "Hello"
-                                    $0.fontSize = 40
-                                    $0.fontStyle = LabelComponent.FontStyle.bold
-                                    $0.textAlignment = LabelComponent.TextAlignment.right
-                                }
-                                <<< LabelComponent(){
-                                    $0.text = "Hello"
-                                    $0.fontSize = 40
-                                    
-                    }
-                    $0.layout = { c, v in
-                        constrain(v){ v in
-                            v.width == 300
-                            v.height == 300
-                            v.center == v.superview!.center
-                        }
-                    }
+                <<< StateComponent(){
+                    $0.loadingComponent = LabelComponent(){$0.text = "loading"; $0.layout = {c, v in v.loFillInParent()}}
+                    $0.dataComponent = LabelComponent(){$0.text = "data"; $0.layout = {c, v in v.loFillInParent()}}
+                    $0.errorComponent = LabelComponent(){$0.text = "error"; $0.layout = {c, v in v.loFillInParent()}}
+                    $0.emptyComponent = LabelComponent(){$0.text = "empty"; $0.layout = {c, v in v.loFillInParent()}}
+                    $0.isError = {return false}
                 }
             }
     }

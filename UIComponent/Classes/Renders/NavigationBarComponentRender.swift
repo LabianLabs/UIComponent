@@ -6,7 +6,21 @@
 //
 
 import Foundation
-
+extension NavigationBarComponent{
+    var hostController: UIViewController?{
+        return host as? UIViewController
+    }
+    
+    public convenience init(host: UIViewController,_ initializer: (NavigationBarComponent)->Void = {_ in}) {
+        self.init(nil, host, initializer)
+    }
+    
+    public convenience init(_ tag: String? = nil,_ host: UIViewController,_ initializer: (NavigationBarComponent)->Void = {_ in}) {
+        self.init(tag)
+        self.host = host
+        initializer(self)
+    }
+}
 extension NavigationBarComponent: UIKitRenderable {
     
     public func renderUIKit() -> UIKitRenderTree {
@@ -47,12 +61,14 @@ extension NavigationBarComponent: UIKitRenderable {
         }
         if let leftButton = self.setupLeftButton?(), let item = leftButton as? UIBarButtonItem{
             item.action = #selector(onLeftButtonDidTouch(sender:))
+            item.target = self
             controller.navigationItem.leftBarButtonItem = item
         }else if let title = self.leftButtonTitle{
             controller.navigationItem.leftBarButtonItem = createBarButton(title: title, action: #selector(onLeftButtonDidTouch(sender:)))
         }
         if let rightButton = self.setupRightButton?(), let item = rightButton as? UIBarButtonItem{
             item.action = #selector(onRightButtonDidTouch(sender:))
+            item.target = self
             controller.navigationItem.rightBarButtonItem = item
         }else if let title = self.rightButtonTitle{
             controller.navigationItem.rightBarButtonItem = createBarButton(title: title, action: #selector(onRightButtonDidTouch(sender:)))

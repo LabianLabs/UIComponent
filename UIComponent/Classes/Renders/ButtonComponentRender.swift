@@ -9,12 +9,18 @@
 import UIKit
 extension ButtonComponent{
     public func onConfig(_ callback:((UIButton)->Void)?)->ButtonComponent{
-        self.callbackOnClick = callback as? ((Any?) -> Void)
+        let callbackOnConfig:((Any?) -> Void) = { item in
+            callback?(item as! UIButton)
+        }
+        self.callbackOnConfig = callbackOnConfig
         return self
     }
     
     public func onClick(_ callback: ((UIButton)->Void)?)->ButtonComponent{
-        self.callbackOnClick = callback as? ((Any?) -> Void)
+        let callbackOnClick:((Any?) -> Void) = { item in
+            callback?(item as! UIButton)
+        }
+        self.callbackOnClick = callbackOnClick
         return self
     }
 }
