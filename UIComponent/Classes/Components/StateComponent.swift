@@ -7,7 +7,7 @@
 
 import Foundation
 
-public final class StateComponent: BaseComponent, ComponentType {
+public final class StateComponent: BaseContainerComponent, ComponentType {
     public var loadingComponent:Component?
     public var errorComponent:Component?
     public var dataComponent:Component?
