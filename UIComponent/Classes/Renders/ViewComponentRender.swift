@@ -32,6 +32,7 @@ extension ViewComponent: UIKitRenderable{
         view?.setup()
         if self.children.count > 0{
             let children = self.renderChildren(in: view!)
+            self.childrenTrees = children
             return .node(self, view!, children)
         }
         return .leaf(self, view!)
@@ -119,6 +120,11 @@ extension ViewComponent: UIKitRenderable{
 
     public func autoLayout(view: UIView) {
         self.layout?(self, view)
+        if let trees = self.childrenTrees{
+            for child in trees{
+                child.renderable.autoLayout(view: child.view)
+            }
+        }
     }
 }
 

@@ -9,6 +9,7 @@
 import Foundation
 
 public final class StackComponent: BaseContainerComponent, ComponentType{    
+    internal var childrenTrees:[UIKitRenderTree]?
     public var alignment: Alignment = Alignment.fill
     public var distribution: Distribution = Distribution.fill
     public var axis: Axis = Axis.horizontal

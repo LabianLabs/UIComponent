@@ -17,7 +17,6 @@ extension StackComponent: UIKitRenderable {
         let children = childComponents.map { component in
             component.renderUIKit()
         }
-
         childViews = children.map { $0.view }
         let container = UIView()
         let stackView = UIStackView(arrangedSubviews: childViews)
@@ -27,12 +26,18 @@ extension StackComponent: UIKitRenderable {
         stackView.distribution = convertDistribution(self.distribution)
         container.addSubview(stackView)
         self.applyBaseAttributes(to: container)
+        self.childrenTrees = children
         return .node(self, container, children)
     }
     
     public func autoLayout(view: UIView) {
         self.layout?(self, view)
         view.subviews.first?.loFillInParent()
+        if let trees = self.childrenTrees{
+            for child in trees{
+                child.renderable.autoLayout(view: child.view)
+            }
+        }
     }
 
     public func updateUIKit(

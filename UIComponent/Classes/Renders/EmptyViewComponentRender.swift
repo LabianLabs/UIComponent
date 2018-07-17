@@ -12,6 +12,7 @@ extension EmptyViewComponent: UIKitRenderable{
         let view = UIView()
         self.applyBaseAttributes(to: view)
         let children = renderChildren(in: view)
+        self.childrenTrees = children
         return .node(self, view, children)
     }
     
@@ -71,6 +72,11 @@ extension EmptyViewComponent: UIKitRenderable{
             layout(self, view)
         }else{
             view.loFillInParent()
+        }
+        if let trees = self.childrenTrees{
+            for child in trees{
+                child.renderable.autoLayout(view: child.view)
+            }
         }
     }
     

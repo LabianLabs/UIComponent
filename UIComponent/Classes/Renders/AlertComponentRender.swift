@@ -29,7 +29,7 @@ extension AlertComponent: UIKitRenderable{
     public func renderUIKit() -> UIKitRenderTree {
         self.alert = alert(component:self)
         self.hostController?.present(self.alert as! UIViewController, animated: true, completion: nil)
-        return .leaf(self, (self.alert as! UIViewController).view)
+        return .leaf(self, UIView())
     }
     
     public func updateUIKit(_ view: UIView, change: Changes, newComponent: UIKitRenderable, renderTree: UIKitRenderTree) -> UIKitRenderTree {
