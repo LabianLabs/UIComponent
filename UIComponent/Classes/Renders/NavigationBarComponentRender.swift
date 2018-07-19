@@ -43,35 +43,35 @@ extension NavigationBarComponent: UIKitRenderable {
         return button
     }
     
-    @objc internal func onLeftButtonDidTouch(sender:UIButton){
+    @objc func onLeftButtonDidTouch(sender:UIButton){
         self.callbackOnClickLeftButton?()
     }
     
-    @objc internal func onRightButtonDidTouch(sender:UIButton){
+    @objc func onRightButtonDidTouch(sender:UIButton){
         self.callbackOnClickRightButton?()
     }
     
     private func setupNavigationBar(for component:NavigationBarComponent){
-        guard let controller = self.host as? UIViewController, let _ = controller.navigationController  else {fatalError()}
-        let setupTitle = self.setupTitle?()
+        guard let controller = component.host as? UIViewController, let _ = controller.navigationController  else {fatalError()}
+        let setupTitle = component.setupTitle?()
         if let title = setupTitle as? String{
             controller.navigationItem.title = title
         }else if let titleView = setupTitle as? UIView{
             controller.navigationItem.titleView = titleView
         }
-        if let leftButton = self.setupLeftButton?(), let item = leftButton as? UIBarButtonItem{
-            item.action = #selector(onLeftButtonDidTouch(sender:))
-            item.target = self
+        if let leftButton = component.setupLeftButton?(), let item = leftButton as? UIBarButtonItem{
+            item.action = #selector(NavigationBarComponent.onLeftButtonDidTouch)
+            item.target = component
             controller.navigationItem.leftBarButtonItem = item
-        }else if let title = self.leftButtonTitle{
-            controller.navigationItem.leftBarButtonItem = createBarButton(title: title, action: #selector(onLeftButtonDidTouch(sender:)))
+        }else if let title = component.leftButtonTitle{
+            controller.navigationItem.leftBarButtonItem = createBarButton(title: title, action: #selector(NavigationBarComponent.onLeftButtonDidTouch))
         }
-        if let rightButton = self.setupRightButton?(), let item = rightButton as? UIBarButtonItem{
-            item.action = #selector(onRightButtonDidTouch(sender:))
-            item.target = self
+        if let rightButton = component.setupRightButton?(), let item = rightButton as? UIBarButtonItem{
+            item.action = #selector(NavigationBarComponent.onRightButtonDidTouch)
+            item.target = component
             controller.navigationItem.rightBarButtonItem = item
-        }else if let title = self.rightButtonTitle{
-            controller.navigationItem.rightBarButtonItem = createBarButton(title: title, action: #selector(onRightButtonDidTouch(sender:)))
+        }else if let title = component.rightButtonTitle{
+            controller.navigationItem.rightBarButtonItem = createBarButton(title: title, action: #selector(NavigationBarComponent.onRightButtonDidTouch))
         }
     }
 }
