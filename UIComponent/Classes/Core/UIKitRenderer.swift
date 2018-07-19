@@ -90,6 +90,7 @@ public protocol UIKitRenderable {
     func autoLayout(view:UIView)
     // Note: Right now it is not possible to return a new view instance from this method. This
     // new instance would not be inserted into the view hierarchy!
+    @discardableResult
     func updateUIKit(_ view: UIView, change: Changes, newComponent: UIKitRenderable, renderTree: UIKitRenderTree) -> UIKitRenderTree
 }
 

@@ -31,7 +31,7 @@ extension EmptyViewComponent: UIKitRenderable{
         
         var viewsToInsert: [(index: Int, view: UIView, renderTree: UIKitRenderTree)] = []
         var viewsToRemove: [(index: Int, view: UIView)] = []
-        
+        var viewsToUpdate: [UIKitRenderTree] = children.map({return $0})
         if case let .root(changes) = change {
             
             for change in changes {
@@ -43,6 +43,7 @@ extension EmptyViewComponent: UIKitRenderable{
                 case let .remove(index):
                     let childView = children[index].view
                     viewsToRemove.append((index, childView))
+                     viewsToUpdate.remove(at: index)
                 default:
                     break
                 }
@@ -51,6 +52,9 @@ extension EmptyViewComponent: UIKitRenderable{
         }
         
         var indexOffset = 0
+        for child in viewsToUpdate{
+            child.renderable.updateUIKit(child.view, change: Changes.update, newComponent: child.renderable, renderTree: child)
+        }
         
         for insert in viewsToInsert {
             view.insertSubview(insert.view, at: insert.index)
