@@ -21,15 +21,33 @@ extension IFComponent: UIKitRenderable{
     
     public func renderUIKit() -> UIKitRenderTree {
         let containerView = UIView()
+        var children = [UIKitRenderTree]()
         if let thenCmp = self.thenComponent, let renderThenComp = thenCmp as? UIKitRenderable{
             self.vars.thenTree = renderThenComp.renderUIKit()
+            children.append(self.vars.thenTree!)
             containerView.addSubview(self.vars.thenTree!.view)
         }
         if let otherComp = self.elseComponent, let renderOtherComp = otherComp as? UIKitRenderable{
             self.vars.elseTree = renderOtherComp.renderUIKit()
+            children.append(self.vars.elseTree!)
             containerView.addSubview(self.vars.elseTree!.view)
         }
-        return .leaf(self, containerView)
+        return .node(self, containerView, children)
+    }
+    
+    public func updateUIKit(_ view: UIView, change: Changes, newComponent: UIKitRenderable, renderTree: UIKitRenderTree) -> UIKitRenderTree {
+        guard let ifComponent = newComponent as? IFComponent else {fatalError()}
+        var children = [UIKitRenderTree]()
+        if let when = ifComponent.when, when() == true {
+            if let trueComp = ifComponent.thenComponent, let renderTrueComp = trueComp as? UIKitRenderable, let renderedView = self.vars.thenTree?.view{
+                children.append(self.vars.thenTree!)
+                _ = renderTrueComp.updateUIKit(renderedView, change:change, newComponent:renderTrueComp, renderTree:renderTree)
+            }
+        } else if let otherComp = ifComponent.elseComponent, let renderOtherComp = otherComp as? UIKitRenderable, let renderedView = self.vars.elseTree?.view{
+            children.append(self.vars.elseTree!)
+            _ = renderOtherComp.updateUIKit(renderedView, change:change, newComponent:renderOtherComp, renderTree:renderTree)
+        }
+        return .node(ifComponent, view, children)
     }
     
     public func autoLayout(view: UIView) {
@@ -92,19 +110,9 @@ extension IFComponent: UIKitRenderable{
                     displayElseView(elseView)
                 }
             } else{
-               hideContainer()
+                hideContainer()
             }
         }
     }
-    public func updateUIKit(_ view: UIView, change: Changes, newComponent: UIKitRenderable, renderTree: UIKitRenderTree) -> UIKitRenderTree {
-        guard let ifComponent = newComponent as? IFComponent else {fatalError()}
-        if let when = ifComponent.when, when() == true {
-            if let trueComp = ifComponent.thenComponent, let renderTrueComp = trueComp as? UIKitRenderable, let renderedView = self.vars.thenTree?.view{
-                _ = renderTrueComp.updateUIKit(renderedView, change:change, newComponent:renderTrueComp, renderTree:renderTree)
-            }
-        } else if let otherComp = ifComponent.elseComponent, let renderOtherComp = otherComp as? UIKitRenderable, let renderedView = self.vars.elseTree?.view{
-            _ = renderOtherComp.updateUIKit(renderedView, change:change, newComponent:renderOtherComp, renderTree:renderTree)
-        }
-        return .leaf(self, view)
-    }
+    
 }
