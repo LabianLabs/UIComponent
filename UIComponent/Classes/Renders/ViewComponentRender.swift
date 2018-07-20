@@ -50,6 +50,8 @@ extension ViewComponent: UIKitRenderable{
         if self.children.count > 0{
             return self.updateContainerUIKit(view, change: change, newComponent: newComponent, renderTree: renderTree)
         } else{
+            newComponent.applyBaseAttributes(to: view)
+            newComponent.config?(view as! T)
             nibView.value = newComponent.value
             nibView.update()
         }
