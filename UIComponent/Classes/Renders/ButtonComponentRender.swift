@@ -37,8 +37,10 @@ extension ButtonComponent: UIKitRenderable {
     }
     
     public func updateUIKit(_ view: UIView, change: Changes, newComponent: UIKitRenderable, renderTree: UIKitRenderTree) -> UIKitRenderTree {
-        guard let newComponent = newComponent as? ButtonComponent else {fatalError()}
+        guard let newComponent = newComponent as? ButtonComponent, let button = view as? UIButton else {fatalError()}
         newComponent.applyBaseAttributes(to: view)
+        newComponent.callbackOnConfig?(button)
+        button.addTarget(newComponent, action: #selector(ButtonComponent.onButtonDidTouch), for: UIControlEvents.touchUpInside)
         return .leaf(newComponent, view)
     }
     
