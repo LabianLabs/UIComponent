@@ -22,28 +22,6 @@ class MenuContainer: BaseComponentRenderable<Int>{
         super.init(state: state)
     }
     override func render(_ state: Int) -> ComponentContainer {
-        return EmptyViewComponent(){
-            $0.children <<< FormComponent(host:viewController!){
-                $0.layout = {c, v in v.loFillInParent()}
-                $0.render = { form in
-                    form +++ Section("Component Kit")
-                        <<< LabelRow(){
-                            $0.title = "Basic components"
-                        }.onCellSelection({r, l in
-                            self.onMenuSelected?(.basicComponents)
-                        })
-                        <<< LabelRow(){
-                                $0.title = "Form component"
-                            }.onCellSelection({r, l in
-                                self.onMenuSelected?(.form)
-                            })
-                        <<< LabelRow(){
-                            $0.title = "Dynamic Form components"
-                            }.onCellSelection({r, l in
-                                self.onMenuSelected?(.dynamicForm)
-                            })
-                }
-            }
-        }
+        return EmptyViewComponent()
     }
 }

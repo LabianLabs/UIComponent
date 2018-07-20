@@ -6,21 +6,26 @@
 //
 
 import Foundation
+// MARK: Operators
+
+precedencegroup ComponentPrecedence {
+    associativity: left
+    higherThan: LogicalConjunctionPrecedence
+}
+
+
+infix operator +++ : ComponentPrecedence
 
 @discardableResult
-public func <<< (left: Children, right:Component) -> Children {
+public func +++ (left: Children, right:Component) -> Children {
     left.append(right)
     return left
 }
 
 @discardableResult
-public func <<< (left: Children, right:Children) -> Children {
+public func +++ (left: Children, right:Children) -> Children {
     right.forEach { (c) in
         left.append(c)
     }
     return left
 }
-
-//public func == (lhs: Component, rhs: Component) -> Bool {
-//    return true
-//}

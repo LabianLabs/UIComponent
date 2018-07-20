@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0F0BA80120D8ED68003122F9 /* CustomSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BA80020D8ED68003122F9 /* CustomSubCell.swift */; };
-		0F0BA80320D8ED7A003122F9 /* CustomSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F0BA80220D8ED7A003122F9 /* CustomSubCell.xib */; };
 		0F57D8FF20D36AFC007F04C4 /* DynamicFormContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F57D8FE20D36AFC007F04C4 /* DynamicFormContainer.swift */; };
 		0F57D90120D36BCA007F04C4 /* MenuContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F57D90020D36BCA007F04C4 /* MenuContainer.swift */; };
 		0F57D90420D37331007F04C4 /* DynamicFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F57D90320D37331007F04C4 /* DynamicFormViewController.swift */; };
@@ -16,8 +14,6 @@
 		0FC5B33520CD96720058676D /* CustomViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC5B33420CD96720058676D /* CustomViewComponent.swift */; };
 		0FC5B57020CEB26F0058676D /* BasicComponentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC5B56F20CEB26F0058676D /* BasicComponentContainer.swift */; };
 		0FC5B58320CEC6310058676D /* FormContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC5B58220CEC6310058676D /* FormContainer.swift */; };
-		0FD749DB20D8B18F0093C7F9 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FD749DA20D8B18F0093C7F9 /* CustomCell.xib */; };
-		0FD749DD20D8B1AA0093C7F9 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD749DC20D8B1AA0093C7F9 /* CustomCell.swift */; };
 		0FD749DF20D8B21E0093C7F9 /* FormTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD749DE20D8B21E0093C7F9 /* FormTableViewController.swift */; };
 		0FD9E09E20D5327400C16631 /* CustomViewComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FD9E09D20D5327300C16631 /* CustomViewComponent.xib */; };
 		4CB1B8B4ECF2F1660F28A373 /* Pods_UIComponent_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A735E1C10D9DB1F53A22B482 /* Pods_UIComponent_Example.framework */; };
@@ -41,8 +37,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0F0BA80020D8ED68003122F9 /* CustomSubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSubCell.swift; sourceTree = "<group>"; };
-		0F0BA80220D8ED7A003122F9 /* CustomSubCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomSubCell.xib; sourceTree = "<group>"; };
 		0F57D8FE20D36AFC007F04C4 /* DynamicFormContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicFormContainer.swift; sourceTree = "<group>"; };
 		0F57D90020D36BCA007F04C4 /* MenuContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuContainer.swift; sourceTree = "<group>"; };
 		0F57D90320D37331007F04C4 /* DynamicFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicFormViewController.swift; sourceTree = "<group>"; };
@@ -50,8 +44,6 @@
 		0FC5B33420CD96720058676D /* CustomViewComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewComponent.swift; sourceTree = "<group>"; };
 		0FC5B56F20CEB26F0058676D /* BasicComponentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicComponentContainer.swift; sourceTree = "<group>"; };
 		0FC5B58220CEC6310058676D /* FormContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormContainer.swift; sourceTree = "<group>"; };
-		0FD749DA20D8B18F0093C7F9 /* CustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
-		0FD749DC20D8B1AA0093C7F9 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		0FD749DE20D8B21E0093C7F9 /* FormTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTableViewController.swift; sourceTree = "<group>"; };
 		0FD9E09D20D5327300C16631 /* CustomViewComponent.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomViewComponent.xib; sourceTree = "<group>"; };
 		1912B5F568489D9ACC76ED8E /* Pods_UIComponent_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UIComponent_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,17 +107,6 @@
 			path = ViewContainers;
 			sourceTree = "<group>";
 		};
-		0FD749D920D8B1790093C7F9 /* CustomCells */ = {
-			isa = PBXGroup;
-			children = (
-				0F0BA80220D8ED7A003122F9 /* CustomSubCell.xib */,
-				0FD749DA20D8B18F0093C7F9 /* CustomCell.xib */,
-				0FD749DC20D8B1AA0093C7F9 /* CustomCell.swift */,
-				0F0BA80020D8ED68003122F9 /* CustomSubCell.swift */,
-			);
-			path = CustomCells;
-			sourceTree = "<group>";
-		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -150,7 +131,6 @@
 		607FACD21AFB9204008FA782 /* Example for UIComponent */ = {
 			isa = PBXGroup;
 			children = (
-				0FD749D920D8B1790093C7F9 /* CustomCells */,
 				0F57D8FD20D36866007F04C4 /* ViewContainers */,
 				0F57D8FC20D36856007F04C4 /* CustomViews */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
@@ -309,12 +289,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0FD749DB20D8B18F0093C7F9 /* CustomCell.xib in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				0FD9E09E20D5327400C16631 /* CustomViewComponent.xib in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
-				0F0BA80320D8ED7A003122F9 /* CustomSubCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,8 +390,6 @@
 				0F57D8FF20D36AFC007F04C4 /* DynamicFormContainer.swift in Sources */,
 				0F57D90420D37331007F04C4 /* DynamicFormViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* MenuViewController.swift in Sources */,
-				0FD749DD20D8B1AA0093C7F9 /* CustomCell.swift in Sources */,
-				0F0BA80120D8ED68003122F9 /* CustomSubCell.swift in Sources */,
 				0FC5B58320CEC6310058676D /* FormContainer.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				0F912EB520DCEDB6006C395D /* BasicComponentViewController.swift in Sources */,

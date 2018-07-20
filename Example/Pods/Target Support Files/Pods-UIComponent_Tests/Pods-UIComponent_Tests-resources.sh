@@ -108,7 +108,7 @@ then
     if [[ $line != "${PODS_ROOT}*" ]]; then
       XCASSET_FILES+=("$line")
     fi
-  done <<<"$OTHER_XCASSETS"
+  done +++"$OTHER_XCASSETS"
 
   if [ -z ${ASSETCATALOG_COMPILER_APPICON_NAME+x} ]; then
     printf "%s\0" "${XCASSET_FILES[@]}" | xargs -0 xcrun actool --output-format human-readable-text --notices --warnings --platform "${PLATFORM_NAME}" --minimum-deployment-target "${!DEPLOYMENT_TARGET_SETTING_NAME}" ${TARGET_DEVICE_ARGS} --compress-pngs --compile "${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
