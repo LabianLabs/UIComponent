@@ -58,56 +58,16 @@ extension StackComponent: UIKitRenderable {
         if newAlignment != stackView.alignment {
             stackView.alignment = newAlignment
         }
-
         stackView.distribution = convertDistribution(newComponent.distribution)
-
-        guard case let .node(_, _, childTree) = renderTree else { fatalError() }
-
-        var children = childTree
-
-        var viewsToInsert: [(index: Int, view: UIView, renderTree: UIKitRenderTree)] = []
-        var viewsToRemove: [(index: Int, view: UIView)] = []
-        var viewsToUpdate: [UIKitRenderTree] = children.map({return $0})
-        if case let .root(changes) = change {
-
-            for change in changes {
-
-                switch change {
-                case let .insert(index, _):
-                    let renderTreeEntry = (newComponent.children[index] as! UIKitRenderable).renderUIKit()
-                    viewsToInsert.append((index, renderTreeEntry.view, renderTreeEntry))
-                case let .remove(index):
-                    let childView = children[index].view
-                    viewsToRemove.append((index, childView))
-                    viewsToUpdate.remove(at: index)
-                default:
-                    break
-                }
-            }
-            
-        }
-
-        var indexOffset = 0
-
-        for child in viewsToUpdate{
-            child.renderable.updateUIKit(child.view, change: Changes.update, newComponent: child.renderable, renderTree: child)
-        }
         
-        for insert in viewsToInsert {
-            stackView.insertArrangedSubview(insert.view, at: insert.index)
-            children.insert(insert.renderTree, at: insert.index)
-
-            indexOffset += 1
-        }
-
-        for remove in viewsToRemove {
-            stackView.removeArrangedSubview(remove.view)
-            remove.view.removeFromSuperview()
-            children.remove(at: remove.index + indexOffset)
-
-            indexOffset -= 1
-        }
-
+        newComponent.applyBaseAttributes(to: view)
+        
+        let children = updateChildren(view: stackView, change: change, newComponent: newComponent, renderTree: renderTree, insertSubview: {view, index in
+            stackView.insertArrangedSubview(view, at: index)
+        }, removeSubview: { view, index in
+            stackView.removeArrangedSubview(view)
+            view.removeFromSuperview()
+        })
         return .node(newComponent, view, children)
     }
     

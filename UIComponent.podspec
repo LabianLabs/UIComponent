@@ -7,10 +7,10 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'UIComponent'
-  s.version          = '0.1.26'
+  s.version          = '0.1.27'
   s.summary          = 'Lightweight UI library for iOS app'
   s.description      = <<-DESC
-Lightweight UI library for iOS app
+This pod is Under development
                        DESC
   s.homepage         = 'https://github.com/LabianLabs/UIComponent.git'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }

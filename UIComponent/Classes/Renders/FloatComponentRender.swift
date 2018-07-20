@@ -33,6 +33,8 @@ extension FloatComponent: UIKitRenderable {
         newComponent: UIKitRenderable,
         renderTree: UIKitRenderTree) -> UIKitRenderTree
     {
+        guard let newComponent = newComponent as? FloatComponent<T> else {fatalError()}
+        newComponent.applyBaseAttributes(to: view)
         return .leaf(newComponent, view)
     }
     

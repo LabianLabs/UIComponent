@@ -36,6 +36,12 @@ extension ButtonComponent: UIKitRenderable {
         return .leaf(self, button)
     }
     
+    public func updateUIKit(_ view: UIView, change: Changes, newComponent: UIKitRenderable, renderTree: UIKitRenderTree) -> UIKitRenderTree {
+        guard let newComponent = newComponent as? ButtonComponent else {fatalError()}
+        newComponent.applyBaseAttributes(to: view)
+        return .leaf(newComponent, view)
+    }
+    
     public func autoLayout(view: UIView) {
         if let layout = self.layout{
             layout(self, view)

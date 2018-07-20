@@ -34,6 +34,7 @@ extension NavigationBarComponent: UIKitRenderable {
     
     public func updateUIKit(_ view: UIView, change: Changes, newComponent: UIKitRenderable, renderTree: UIKitRenderTree) -> UIKitRenderTree {
         guard let navComp = newComponent as? NavigationBarComponent else {fatalError()}
+        navComp.applyBaseAttributes(to: view)
         self.setupNavigationBar(for: navComp)
         return .leaf(newComponent, view)
     }

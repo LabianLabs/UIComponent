@@ -41,7 +41,11 @@ class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
 //                    $0.emptyComponent = LabelComponent(){$0.text = "empty"; $0.layout = {c, v in v.loFillInParent()}}
 //                    $0.isError = {return false}
 //                }
-                +++ LabelComponent(){$0.text = state.step == 3 ? "3":"Not 3"}
+                +++ LabelComponent(){
+                    $0.text = state.step == 3 ? "3":"Not 3"
+                    print($0)
+                    print($0.text)
+                }
             }
     }
 }

@@ -21,6 +21,7 @@
 		0F9AEFE220DD0D95004377E5 /* NavigationBarComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9AEFE020DD0D90004377E5 /* NavigationBarComponent.swift */; };
 		0F9AEFE520DD0E6A004377E5 /* NavigationBarComponentRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9AEFE320DD0E68004377E5 /* NavigationBarComponentRender.swift */; };
 		0F9F3FC96CBA55D973C65C18333ABCB4 /* Pods-UIComponent_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B734DFC350DC74ED716E0A8DD74BCF45 /* Pods-UIComponent_Example-dummy.m */; };
+		0FF913B021018910002AB695 /* BaseContainerComponentRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF913AF21018910002AB695 /* BaseContainerComponentRender.swift */; };
 		10CA2F194F469191374C95B663F22876 /* Constrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19915815D3B7588C70592247ADC75DE /* Constrain.swift */; };
 		18EA4E0D8B74F2B2BBF8F39B49F49BF9 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7843C520ED7D11392D872D57034A1BC /* XCTest.framework */; };
 		18F94A82C267A97F04AD033DE95C77CA /* Pods-UIComponent_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D933F96B20B49256533E0CAB2584655 /* Pods-UIComponent_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -152,6 +153,7 @@
 		0F9716E7359EE1ED721E8D0EDCA3033A /* LayoutSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LayoutSupport.swift; sourceTree = "<group>"; };
 		0F9AEFE020DD0D90004377E5 /* NavigationBarComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarComponent.swift; sourceTree = "<group>"; };
 		0F9AEFE320DD0E68004377E5 /* NavigationBarComponentRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarComponentRender.swift; sourceTree = "<group>"; };
+		0FF913AF21018910002AB695 /* BaseContainerComponentRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseContainerComponentRender.swift; sourceTree = "<group>"; };
 		1374B79237CAC07693E99442FBED1F15 /* FBSnapshotTestController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestController.h; path = FBSnapshotTestCase/FBSnapshotTestController.h; sourceTree = "<group>"; };
 		145D95AA758A857F827A7E77BFD14754 /* UIViewControllerRenderer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIViewControllerRenderer.swift; sourceTree = "<group>"; };
 		14FF9A8539BBB38D9C9793D98FF8C954 /* UIKitLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIKitLayout.swift; sourceTree = "<group>"; };
@@ -598,6 +600,7 @@
 		FC555D7984E19B3137686004E82ABCBE /* Renders */ = {
 			isa = PBXGroup;
 			children = (
+				0FF913AF21018910002AB695 /* BaseContainerComponentRender.swift */,
 				E42A8AB83C2BDDEDE81670E3E9BF98F7 /* ButtonComponentRender.swift */,
 				DB2F4AC8F62DBB1316F446C215453A5A /* EmptyViewComponentRender.swift */,
 				C3E74DF69D07F241C5603E89005311F9 /* LabelComponentRender.swift */,
@@ -829,6 +832,7 @@
 				3D608BCF621DF4868A2AFE4E5F6EC35D /* StackComponentRender.swift in Sources */,
 				CEA73FD6259F8704CAD6D9DB2474A6C8 /* Style.swift in Sources */,
 				0F912EB320DCEC3A006C395D /* FloatComponentRender.swift in Sources */,
+				0FF913B021018910002AB695 /* BaseContainerComponentRender.swift in Sources */,
 				B982CB834FDA10A24B90471F748AC3BA /* UIColorHex.swift in Sources */,
 				B9B0E9731AFFF96E7B5AC0CF95292AB8 /* UIComponent-dummy.m in Sources */,
 				1DDC29D624665DE9C79E85BD47FA61A8 /* UIKitLayout.swift in Sources */,

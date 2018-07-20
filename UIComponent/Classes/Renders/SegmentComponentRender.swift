@@ -22,6 +22,7 @@ extension SegmentComponent: UIKitRenderable{
         guard let component = newComponent as? SegmentComponent else {fatalError()}
         segment.removeTarget(self, action: #selector(onSemgentValueChange), for: UIControlEvents.valueChanged)
         segment.addTarget(newComponent, action: #selector(onSemgentValueChange), for: UIControlEvents.valueChanged)
+        component.applyBaseAttributes(to: view)
         return .leaf(newComponent, view)
     }
     

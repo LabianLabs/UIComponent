@@ -43,9 +43,8 @@ extension LabelComponent: UIKitRenderable {
     {
         guard let label = view as? UILabel else { fatalError() }
         guard let newComponent = newComponent as? LabelComponent else { fatalError() }
-
         label.text = newComponent.text
-
+        newComponent.applyBaseAttributes(to: view)
         return .leaf(newComponent, label)
     }
 
