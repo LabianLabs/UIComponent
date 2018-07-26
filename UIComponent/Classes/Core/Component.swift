@@ -86,7 +86,7 @@ public class Children:Sequence{
     
     private var items:[Component] = [Component]()
     
-    var count:Int{
+    public var count:Int{
         return items.count
     }
     

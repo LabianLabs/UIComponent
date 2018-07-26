@@ -15,7 +15,7 @@ public enum UIKitRenderTree {
     case leaf(UIKitRenderable, UIView)
     case none(UIKitRenderable) // no node on this tree, will handle this later
     
-    var view: UIView {
+    public var view: UIView {
         switch self {
         case let .node(_, view, _):
             return view
@@ -26,7 +26,7 @@ public enum UIKitRenderTree {
         }
     }
 
-    var renderable: UIKitRenderable {
+    public var renderable: UIKitRenderable {
         switch self {
         case let .node(renderable, _, _):
             return renderable
