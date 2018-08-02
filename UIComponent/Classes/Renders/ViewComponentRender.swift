@@ -8,7 +8,7 @@
 import UIKit
 
 open class UIViewComponent: UIView{
-    public var value:Any?
+    open var value:Any?
     open func setup(){}
     open func update(){}
 }

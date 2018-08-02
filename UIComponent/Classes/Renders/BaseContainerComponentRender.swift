@@ -68,7 +68,7 @@ extension BaseContainerComponent{
             indexOffset -= 1
         }
         
-        for i in 0 ..< viewsToUpdate.count-1{
+        for i in 0 ..< viewsToUpdate.count{
             viewsToUpdate[i].renderable.updateUIKit(viewsToUpdate[i].view, change: Changes.update, newComponent: componentsToUpdate[i] as! UIKitRenderable, renderTree: viewsToUpdate[i])
         }
         return children
