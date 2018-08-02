@@ -23,7 +23,7 @@ extension BaseContainerComponent{
         var viewsToInsert: [(index: Int, view: UIView, renderTree: UIKitRenderTree)] = []
         var viewsToRemove: [(index: Int, view: UIView)] = []
         var viewsToUpdate: [UIKitRenderTree] = children.map({return $0})
-        var componentsToUpdate:[Component] = self.children.map({return $0})
+        var componentsToUpdate:[Component] = newComponent.children.map({return $0})
         
         if case let .root(changes) = change {
             
