@@ -30,6 +30,7 @@ open class BaseComponentRenderable<State>: ComponentRenderable {
 
     public var state: State {
         didSet {
+            guard !_noRender else { return }
             let component = self.render(state)
             self.renderer?.renderComponent(component, animated: self._animateChanges)
         }
@@ -45,6 +46,10 @@ open class BaseComponentRenderable<State>: ComponentRenderable {
     
     public func update(animated:Bool = false,_ update: () -> Void) {
         self.update(animated: animated, rerender:true, update)
+    }
+    
+    public func update(rerender:Bool = false,_ update: () -> Void) {
+        self.update(animated: false, rerender:rerender, update)
     }
     
     public func update(animated:Bool = false, rerender:Bool = true, _ update: () -> Void) {

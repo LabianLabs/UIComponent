@@ -7,11 +7,16 @@
 //
 
 import Foundation
+import UIKit
 
 public final class ButtonComponent: BaseComponent, ComponentType{
     public var title: String?
-    internal var callbackOnClick:((Any?)->Void)?
-    internal var callbackOnConfig:((Any?)->Void)?
+    internal var callbackOnClick:((UIButton?)->Void)?
+    public var config:((UIButton)->Void)?
     
+    func onClick(_ callback:((UIButton?)->Void)?) -> ButtonComponent{
+        callbackOnClick = callback
+        return self
+    }
 }
 

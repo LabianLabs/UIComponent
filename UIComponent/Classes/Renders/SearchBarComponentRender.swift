@@ -18,8 +18,8 @@ extension SearchBarComponent:UIKitRenderable{
         if let barTintColor = self.barTintColor{
             searchBar.barTintColor = UIColor(rgba: barTintColor.hexString)
         }
-        if let makeup = self.setupSearchBar{
-            makeup(searchBar)
+        if let config = self.config{
+            config(searchBar)
         }
         searchBar.delegate = self
         return .leaf(self, searchBar)

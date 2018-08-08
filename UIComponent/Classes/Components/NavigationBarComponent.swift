@@ -6,17 +6,15 @@
 //
 
 import Foundation
-public typealias BarButtonItem = Any?
-public typealias NavigationTitle = Any?
-public typealias HostViewController = AnyObject
+import UIKit
 
 public final class NavigationBarComponent: BaseComponent, ComponentType{
-    public weak var host:HostViewController?
+    public weak var host:UIViewController?
     public var leftButtonTitle:String?
     public var rightButtonTitle:String?    
-    public var setupLeftButton:(()->BarButtonItem)?
-    public var setupRightButton:(()->BarButtonItem)?
-    public var setupTitle:(()->NavigationTitle)?
+    public var setupLeftButton:(()->UIBarButtonItem)?
+    public var setupRightButton:(()->UIBarButtonItem)?
+    public var setupTitle:(()->String)?
     internal var callbackOnClickLeftButton:(()->Void)?
     internal var callbackOnClickRightButton:(()->Void)?
     

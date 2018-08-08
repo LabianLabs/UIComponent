@@ -8,8 +8,8 @@
 import Foundation
 
 public final class AlertComponent: BaseComponent, ComponentType {
-    internal var alert:Any?
-    public weak var host:HostViewController?
+    internal var alert:UIAlertController?
+    public weak var fromController:UIViewController?
     public var okButtonTitle:String?
     public var cancelButtonTitle:String?
     public var title:String?

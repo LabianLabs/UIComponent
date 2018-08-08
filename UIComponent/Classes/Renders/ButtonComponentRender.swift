@@ -7,23 +7,7 @@
 //
 
 import UIKit
-extension ButtonComponent{
-    public func onConfig(_ callback:((UIButton)->Void)?)->ButtonComponent{
-        let callbackOnConfig:((Any?) -> Void) = { item in
-            callback?(item as! UIButton)
-        }
-        self.callbackOnConfig = callbackOnConfig
-        return self
-    }
-    
-    public func onClick(_ callback: ((UIButton)->Void)?)->ButtonComponent{
-        let callbackOnClick:((Any?) -> Void) = { item in
-            callback?(item as! UIButton)
-        }
-        self.callbackOnClick = callbackOnClick
-        return self
-    }
-}
+
 extension ButtonComponent: UIKitRenderable {
     public func renderUIKit() -> UIKitRenderTree {
         let button = UIButton(type: .custom)
@@ -32,14 +16,14 @@ extension ButtonComponent: UIKitRenderable {
         button.backgroundColor = UIColor.white
         button.addTarget(self, action: #selector(onButtonDidTouch), for: UIControlEvents.touchUpInside)
         self.applyBaseAttributes(to: button)
-        self.callbackOnConfig?(button)
+        self.config?(button)
         return .leaf(self, button)
     }
     
     public func updateUIKit(_ view: UIView, change: Changes, newComponent: UIKitRenderable, renderTree: UIKitRenderTree) -> UIKitRenderTree {
         guard let newComponent = newComponent as? ButtonComponent, let button = view as? UIButton else {fatalError()}
         newComponent.applyBaseAttributes(to: view)
-        newComponent.callbackOnConfig?(button)
+        newComponent.config?(button)
         button.addTarget(newComponent, action: #selector(ButtonComponent.onButtonDidTouch), for: UIControlEvents.touchUpInside)
         return .leaf(newComponent, view)
     }

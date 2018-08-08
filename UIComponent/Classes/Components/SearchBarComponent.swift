@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import UIKit
+
 public final class SearchBarComponent: BaseComponent, ComponentType {
     public enum ReturnKey {
         case goKey, doneKey, continueKey, googleKey, searchKey
@@ -15,12 +17,13 @@ public final class SearchBarComponent: BaseComponent, ComponentType {
     public var placeholder:String?
     public var returnKey = ReturnKey.searchKey
     public var barTintColor:Color?
-    public var setupSearchBar:((Any?)->Void)?
     public var enablesReturnKeyAutomatically:Bool = true
-    var callbackOnEndEditing: ((_ text:String?) -> Void)?
-    var callbackOnTextChanged: ((_ text:String?) -> Void)?
-    var callbackOnCancel: (() -> Void)?
-    var callbackOnSearchClick: (() -> Void)?
+    
+    public var config:((UISearchBar)->Void)?
+    internal var callbackOnEndEditing: ((_ text:String?) -> Void)?
+    internal var callbackOnTextChanged: ((_ text:String?) -> Void)?
+    internal var callbackOnCancel: (() -> Void)?
+    internal var callbackOnSearchClick: (() -> Void)?
     
     public func onEndEditing(_ callback:@escaping (_ text:String?)->Void)->SearchBarComponent{
         self.callbackOnEndEditing = callback
