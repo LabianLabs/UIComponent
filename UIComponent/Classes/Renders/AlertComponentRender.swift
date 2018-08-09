@@ -8,31 +8,17 @@
 import Foundation
 import UIKit
 
-
-extension AlertComponent{
-
-    public convenience init(host: UIViewController,_ initializer: (AlertComponent)->Void = {_ in}) {
-        self.init(nil, host, initializer)
-    }
-    
-    public convenience init(_ tag: String? = nil,_ host: UIViewController,_ initializer: (AlertComponent)->Void = {_ in}) {
-        self.init(tag)
-        self.fromController = host
-        initializer(self)
-    }
-}
-
 extension AlertComponent: UIKitRenderable{
     public func renderUIKit() -> UIKitRenderTree {
         self.alert = alert(component:self)
-        self.fromController?.present(self.alert!, animated: true, completion: nil)
+        self.controller?.present(self.alert!, animated: true, completion: nil)
         return .leaf(self, UIView())
     }
     
     public func updateUIKit(_ view: UIView, change: Changes, newComponent: UIKitRenderable, renderTree: UIKitRenderTree) -> UIKitRenderTree {
         guard let component = newComponent as? AlertComponent else { fatalError()}
         component.alert = alert(component:component)
-        component.fromController?.present(component.alert!, animated: true, completion: nil)
+        component.controller?.present(component.alert!, animated: true, completion: nil)
         return .leaf(component, view)
     }
     

@@ -9,14 +9,24 @@ import Foundation
 import UIKit
 
 public final class NavigationBarComponent: BaseComponent, ComponentType{
-    public weak var host:UIViewController?
+    public weak var controller:UIViewController?
     public var leftButtonTitle:String?
-    public var rightButtonTitle:String?    
+    public var rightButtonTitle:String?
     public var setupLeftButton:(()->UIBarButtonItem)?
     public var setupRightButton:(()->UIBarButtonItem)?
     public var setupTitle:(()->String)?
     internal var callbackOnClickLeftButton:(()->Void)?
     internal var callbackOnClickRightButton:(()->Void)?
+    
+    public convenience init(controller: UIViewController,_ initializer: (NavigationBarComponent)->Void = {_ in}) {
+        self.init(controller:controller, tag:"NavigationBarComponent", initializer)
+    }
+    
+    public convenience init(controller: UIViewController, tag: String? = nil,_ initializer: (NavigationBarComponent)->Void = {_ in}) {
+        self.init(tag)
+        self.controller = controller
+        initializer(self)
+    }
     
     public func onLeftButtonClick(_ callback:@escaping ()->Void)->NavigationBarComponent{
         self.callbackOnClickLeftButton = callback
@@ -27,5 +37,5 @@ public final class NavigationBarComponent: BaseComponent, ComponentType{
         self.callbackOnClickRightButton = callback
         return self
     }
-
+    
 }

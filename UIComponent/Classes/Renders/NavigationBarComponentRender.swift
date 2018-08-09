@@ -6,27 +6,13 @@
 //
 
 import Foundation
-extension NavigationBarComponent{
-    var hostController: UIViewController?{
-        return host as? UIViewController
-    }
-    
-    public convenience init(host: UIViewController,_ initializer: (NavigationBarComponent)->Void = {_ in}) {
-        self.init(nil, host, initializer)
-    }
-    
-    public convenience init(_ tag: String? = nil,_ host: UIViewController,_ initializer: (NavigationBarComponent)->Void = {_ in}) {
-        self.init(tag)
-        self.host = host
-        initializer(self)
-    }
-}
+
 extension NavigationBarComponent: UIKitRenderable {
     
     public func renderUIKit() -> UIKitRenderTree {
         let emptyView = UIView()
         emptyView.isHidden = true
-        self.setupNavigationBar(for: self)
+        self.setupNavigationBar()
         return .leaf(self, emptyView)
     }
     
@@ -35,7 +21,7 @@ extension NavigationBarComponent: UIKitRenderable {
     public func updateUIKit(_ view: UIView, change: Changes, newComponent: UIKitRenderable, renderTree: UIKitRenderTree) -> UIKitRenderTree {
         guard let navComp = newComponent as? NavigationBarComponent else {fatalError()}
         navComp.applyBaseAttributes(to: view)
-        self.setupNavigationBar(for: navComp)
+        navComp.setupNavigationBar()
         return .leaf(newComponent, view)
     }
     
@@ -52,27 +38,25 @@ extension NavigationBarComponent: UIKitRenderable {
         self.callbackOnClickRightButton?()
     }
     
-    private func setupNavigationBar(for component:NavigationBarComponent){
-        guard let controller = component.host as? UIViewController, let _ = controller.navigationController  else {fatalError()}
-        let setupTitle = component.setupTitle?()
-        if let title = setupTitle as? String{
+    private func setupNavigationBar(){
+        guard let controller = self.controller, let _ = controller.navigationController  else {fatalError()}
+        let setupTitle = self.setupTitle?()
+        if let title = setupTitle{
             controller.navigationItem.title = title
-        }else if let titleView = setupTitle as? UIView{
-            controller.navigationItem.titleView = titleView
         }
-        if let leftButton = component.setupLeftButton?(), let item = leftButton as? UIBarButtonItem{
-            item.action = #selector(NavigationBarComponent.onLeftButtonDidTouch)
-            item.target = component
-            controller.navigationItem.leftBarButtonItem = item
-        }else if let title = component.leftButtonTitle{
-            controller.navigationItem.leftBarButtonItem = createBarButton(title: title, action: #selector(NavigationBarComponent.onLeftButtonDidTouch))
+        if let leftButton = self.setupLeftButton?(){
+            leftButton.action = #selector(self.onLeftButtonDidTouch)
+            leftButton.target = self
+            controller.navigationItem.leftBarButtonItem = leftButton
+        }else if let title = self.leftButtonTitle{
+            controller.navigationItem.leftBarButtonItem = createBarButton(title: title, action: #selector(self.onLeftButtonDidTouch))
         }
-        if let rightButton = component.setupRightButton?(), let item = rightButton as? UIBarButtonItem{
-            item.action = #selector(NavigationBarComponent.onRightButtonDidTouch)
-            item.target = component
-            controller.navigationItem.rightBarButtonItem = item
-        }else if let title = component.rightButtonTitle{
-            controller.navigationItem.rightBarButtonItem = createBarButton(title: title, action: #selector(NavigationBarComponent.onRightButtonDidTouch))
+        if let rightButton = self.setupRightButton?(){
+            rightButton.action = #selector(self.onRightButtonDidTouch)
+            rightButton.target = self
+            controller.navigationItem.rightBarButtonItem = rightButton
+        }else if let title = self.rightButtonTitle{
+            controller.navigationItem.rightBarButtonItem = createBarButton(title: title, action: #selector(self.onRightButtonDidTouch))
         }
     }
 }
