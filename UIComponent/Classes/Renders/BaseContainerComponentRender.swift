@@ -22,7 +22,6 @@ extension BaseContainerComponent{
         
         var viewsToInsert: [(index: Int, view: UIView, renderTree: UIKitRenderTree)] = []
         var viewsToRemove: [(index: Int, view: UIView)] = []
-        var viewsToUpdate: [UIKitRenderTree] = children.map({return $0})
         var componentsToUpdate:[Component] = newComponent.children.map({return $0})
         
         if case let .root(changes) = change {
@@ -36,7 +35,6 @@ extension BaseContainerComponent{
                 case let .remove(index):
                     let childView = children[index].view
                     viewsToRemove.append((index, childView))
-                    viewsToUpdate.remove(at: index)
                     componentsToUpdate.remove(at: index)
                 default:
                     break
@@ -68,9 +66,6 @@ extension BaseContainerComponent{
             indexOffset -= 1
         }
         
-        for i in 0 ..< viewsToUpdate.count{
-            viewsToUpdate[i].renderable.updateUIKit(viewsToUpdate[i].view, change: Changes.update, newComponent: componentsToUpdate[i] as! UIKitRenderable, renderTree: viewsToUpdate[i])
-        }
         return children
     }
 }

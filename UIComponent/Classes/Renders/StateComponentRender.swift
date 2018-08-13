@@ -60,7 +60,7 @@ extension StateComponent:UIKitRenderable{
             }
             else {
                 if let loadingComp = (stateComp.loadingComponent as? UIKitRenderable){
-                    loadingComp.updateUIKit(cmpView.loadingTree!.view, change: change, newComponent: loadingComp, renderTree: cmpView.loadingTree!)
+                    (self.loadingComponent as? UIKitRenderable)?.updateUIKit(cmpView.loadingTree!.view, change: change, newComponent: loadingComp, renderTree: cmpView.loadingTree!)
                 }
                 children.append(cmpView.loadingTree!)
             }
@@ -73,7 +73,7 @@ extension StateComponent:UIKitRenderable{
             }
             else {
                 if let errorComp = (stateComp.errorComponent as? UIKitRenderable){
-                    errorComp.updateUIKit(cmpView.errorTree!.view, change: change, newComponent: errorComp, renderTree: cmpView.errorTree!)
+                    (self.errorComponent as? UIKitRenderable)?.updateUIKit(cmpView.errorTree!.view, change: change, newComponent: errorComp, renderTree: cmpView.errorTree!)
                 }
                 children.append(cmpView.errorTree!)
             }
@@ -87,7 +87,7 @@ extension StateComponent:UIKitRenderable{
                 }
                 else {
                     if let emptyComp = (stateComp.emptyComponent as? UIKitRenderable){
-                        emptyComp.updateUIKit(cmpView.emptyTree!.view, change: change, newComponent: emptyComp, renderTree: cmpView.emptyTree!)
+                        (self.emptyComponent as? UIKitRenderable)?.updateUIKit(cmpView.emptyTree!.view, change: change, newComponent: emptyComp, renderTree: cmpView.emptyTree!)
                     }
                     children.append(cmpView.emptyTree!)
                 }
@@ -95,10 +95,10 @@ extension StateComponent:UIKitRenderable{
                 if cmpView.dataTree == nil{
                     if let dataTree = (stateComp.dataComponent as? UIKitRenderable)?.renderUIKit(){
                         children.append(dataTree)
-                        cmpView.dataTree = dataTree                        
+                        cmpView.dataTree = dataTree
                     }
                 }else{
-                    (stateComp.dataComponent as? UIKitRenderable)?.updateUIKit(cmpView.dataTree!.view, change: change, newComponent: stateComp.dataComponent as! UIKitRenderable, renderTree: cmpView.dataTree!)
+                    (self.dataComponent as? UIKitRenderable)?.updateUIKit(cmpView.dataTree!.view, change: change, newComponent: stateComp.dataComponent as! UIKitRenderable, renderTree: cmpView.dataTree!)
                     children.append(cmpView.dataTree!)
                 }
             }
