@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 
 public final class SearchBarComponent: BaseComponent, ComponentType {
+    internal var kbTimer:Timer?
+    
     public enum ReturnKey {
         case goKey, doneKey, continueKey, googleKey, searchKey
     }
@@ -22,8 +24,9 @@ public final class SearchBarComponent: BaseComponent, ComponentType {
     public var config:((UISearchBar)->Void)?
     internal var callbackOnEndEditing: ((_ text:String?) -> Void)?
     internal var callbackOnTextChanged: ((_ text:String?) -> Void)?
+    internal var callbackOnLazyTextChanged: ((_ text:String?) -> Void)?
     internal var callbackOnCancel: (() -> Void)?
-    internal var callbackOnSearchClick: (() -> Void)?
+    internal var callbackOnSearchClick: ((String?) -> Void)?
     
     public func onEndEditing(_ callback:@escaping (_ text:String?)->Void)->SearchBarComponent{
         self.callbackOnEndEditing = callback
@@ -35,12 +38,17 @@ public final class SearchBarComponent: BaseComponent, ComponentType {
         return self
     }
     
+    public func onLazyTextChanged(_ callback:@escaping (_ text:String?)->Void)->SearchBarComponent{
+        self.callbackOnLazyTextChanged = callback
+        return self
+    }
+    
     public func onCancel(_ callback:@escaping ()->Void)->SearchBarComponent{
         self.callbackOnCancel = callback
         return self
     }
     
-    public func onSearchClick(_ callback:@escaping ()->Void)->SearchBarComponent{
+    public func onSearchClick(_ callback:@escaping (String?)->Void)->SearchBarComponent{
         self.callbackOnSearchClick = callback
         return self
     }

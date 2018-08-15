@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-extension SearchBarComponent:UIKitRenderable{    
+extension SearchBarComponent:UIKitRenderable{
     public func renderUIKit() -> UIKitRenderTree {
         let searchBar = UISearchBar()
         self.applyBaseAttributes(to: searchBar)
@@ -27,7 +27,7 @@ extension SearchBarComponent:UIKitRenderable{
     
     public func updateUIKit(_ view: UIView, change: Changes, newComponent: UIKitRenderable, renderTree: UIKitRenderTree) -> UIKitRenderTree {
         guard let searchBar = view as? UISearchBar else {fatalError()}
-        guard let searchComponent = newComponent as? SearchBarComponent else {fatalError()}        
+        guard let searchComponent = newComponent as? SearchBarComponent else {fatalError()}
         searchBar.delegate = searchComponent
         searchComponent.applyBaseAttributes(to: searchBar)
         return .leaf(searchComponent, view)
@@ -69,7 +69,7 @@ extension SearchBarComponent:UISearchBarDelegate{
     }
     
     public func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        self.callbackOnSearchClick?()
+        self.callbackOnSearchClick?(searchBar.text)
         if self.enablesReturnKeyAutomatically {
             searchBar.resignFirstResponder()
         }
@@ -77,22 +77,31 @@ extension SearchBarComponent:UISearchBarDelegate{
     
     public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.callbackOnTextChanged?(searchText)
+        kbTimer?.invalidate()
+        if #available(iOS 10.0, *) {
+            kbTimer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false, block: { (timer) in
+                self.callbackOnLazyTextChanged?(searchText)
+            })
+        } else {
+            // Fallback on earlier versions
+            // TODO: suport later
+        }
     }
 }
 
 extension SearchBarComponent.ReturnKey{
     static func from(key:SearchBarComponent.ReturnKey)->UIReturnKeyType{
         switch key {
-            case .goKey:
-                return UIReturnKeyType.go
-            case .doneKey:
-                return UIReturnKeyType.done
-            case .continueKey:
-                return UIReturnKeyType.continue
-            case .googleKey:
-                return UIReturnKeyType.google
-            case .searchKey:
-                return UIReturnKeyType.search
+        case .goKey:
+            return UIReturnKeyType.go
+        case .doneKey:
+            return UIReturnKeyType.done
+        case .continueKey:
+            return UIReturnKeyType.continue
+        case .googleKey:
+            return UIReturnKeyType.google
+        case .searchKey:
+            return UIReturnKeyType.search
         }
     }
 }

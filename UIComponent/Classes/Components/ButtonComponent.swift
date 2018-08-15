@@ -14,7 +14,7 @@ public final class ButtonComponent: BaseComponent, ComponentType{
     internal var callbackOnClick:((UIButton?)->Void)?
     public var config:((UIButton)->Void)?
     
-    func onClick(_ callback:((UIButton?)->Void)?) -> ButtonComponent{
+    public func onClick(_ callback:((UIButton?)->Void)?) -> ButtonComponent{
         callbackOnClick = callback
         return self
     }
