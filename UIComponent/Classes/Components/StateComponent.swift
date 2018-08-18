@@ -7,7 +7,7 @@
 
 import Foundation
 
-public final class StateComponent: BaseContainerComponent, ComponentType {
+public final class StateComponent: BaseComponent, ComponentType {
     public var loadingComponent:Component?
     public var errorComponent:Component?
     public var dataComponent:Component?
@@ -16,3 +16,4 @@ public final class StateComponent: BaseContainerComponent, ComponentType {
     public var isError:(()->Bool) = {return false}
     public var isEmpty:(()->Bool) = {return false}
 }
+

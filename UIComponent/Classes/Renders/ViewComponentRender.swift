@@ -84,7 +84,7 @@ extension ViewComponent: UIKitRenderable{
     }
 
     public func autoLayout(view: UIView) {
-        self.layout?(self, view)
+        self.layout?(view)
         if let trees = self.childrenTrees{
             for child in trees{
                 child.renderable.autoLayout(view: child.view)

@@ -60,7 +60,7 @@ extension IFComponent: UIKitRenderable{
             }
         }
         if let layout = self.layout{
-            layout(self, view)
+            layout(view)
         }else{
             constrain(view, replace:self.vars.containerCG){ v in
                 v.top  == v.superview!.top

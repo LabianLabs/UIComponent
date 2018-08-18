@@ -31,7 +31,7 @@ class DynamicFormContainer: BaseComponentRenderable<DynamicFormState>{
     override func render(_ state: DynamicFormState) -> ComponentContainer {
         return EmptyViewComponent(){
             $0.backgroundColor = Color.green
-            $0.layout = {c, v in
+            $0.layout = {v in
                 constrain(v){ view in
                     view.left == view.superview!.left
                     view.right == view.superview!.right

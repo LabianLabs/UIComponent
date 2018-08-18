@@ -31,7 +31,7 @@ extension StackComponent: UIKitRenderable {
     }
     
     public func autoLayout(view: UIView) {
-        self.layout?(self, view)
+        self.layout?(view)
         view.subviews.first?.loFillInParent()
         if let trees = self.childrenTrees{
             for child in trees{

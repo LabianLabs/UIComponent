@@ -26,7 +26,7 @@ class FormContainer:BaseComponentRenderable<FormViewState>{
     
     open override func render(_ state: FormViewState) -> ComponentContainer {
         return EmptyViewComponent(){
-            $0.layout = {c, v in
+            $0.layout = {v in
                 constrain(v){ view in
                     view.left == view.superview!.left
                     view.right == view.superview!.right

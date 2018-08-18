@@ -14,9 +14,12 @@ public protocol Renderer:class{
 
 public protocol ComponentRenderable {
     var renderer: Renderer? { get set }
+    weak var renderView: UIView? {get set}
 }
 
 open class BaseComponentRenderable<State>: ComponentRenderable {
+    public weak var renderView: UIView?
+    
     var _noRender = false
     var _animateChanges = false
 

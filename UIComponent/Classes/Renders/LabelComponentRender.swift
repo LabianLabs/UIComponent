@@ -48,9 +48,9 @@ extension LabelComponent: UIKitRenderable {
         return .leaf(newComponent, label)
     }
 
-    public func autoLayout( view: UIView) {
+    public func autoLayout(view: UIView) {
         if let layout = self.layout{
-            layout(self, view)
+            layout(view)
         }
     }
 }

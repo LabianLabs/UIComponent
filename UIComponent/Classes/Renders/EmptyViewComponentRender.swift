@@ -30,7 +30,7 @@ extension EmptyViewComponent: UIKitRenderable{
     
     public func autoLayout(view: UIView) {
         if let layout = self.layout{
-            layout(self, view)
+            layout(view)
         }else{
             view.loFillInParent()
         }

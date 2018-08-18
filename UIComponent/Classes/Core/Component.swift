@@ -68,6 +68,10 @@ open class BaseComponent: NSObject, Component{
     public var cornerRadius:CGFloat = -1.0
     public var borderWidth:CGFloat = -1.0
     public var borderColor:Color?
+    
+    public var onRendered:((BaseComponent, UIView)->Void)?
+    public var onUpdated:((BaseComponent, UIView)->Void)?
+    
     public required init(_ tag: String? = nil) {
         self.tag = tag
     }

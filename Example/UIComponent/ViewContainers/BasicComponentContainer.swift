@@ -25,7 +25,7 @@ class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
     
     open override func render(_ state: BasicViewState) -> ComponentContainer {
         return EmptyViewComponent(){
-            $0.layout = {c, v in
+            $0.layout = { v in
                 constrain(v){ view in
                     view.left == view.superview!.left
                     view.top == view.superview!.top + 64
@@ -35,10 +35,10 @@ class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
             }
             $0.children                
 //                +++ StateComponent(){
-//                    $0.loadingComponent = LabelComponent(){$0.text = "loading"; $0.layout = {c, v in v.loFillInParent()}}
-//                    $0.dataComponent = LabelComponent(){$0.text = "data"; $0.layout = {c, v in v.loFillInParent()}}
-//                    $0.errorComponent = LabelComponent(){$0.text = "error"; $0.layout = {c, v in v.loFillInParent()}}
-//                    $0.emptyComponent = LabelComponent(){$0.text = "empty"; $0.layout = {c, v in v.loFillInParent()}}
+//                    $0.loadingComponent = LabelComponent(){$0.text = "loading"; $0.layout = {v in v.loFillInParent()}}
+//                    $0.dataComponent = LabelComponent(){$0.text = "data"; $0.layout = {v in v.loFillInParent()}}
+//                    $0.errorComponent = LabelComponent(){$0.text = "error"; $0.layout = {v in v.loFillInParent()}}
+//                    $0.emptyComponent = LabelComponent(){$0.text = "empty"; $0.layout = {v in v.loFillInParent()}}
 //                    $0.isError = {return false}
 //                }
                 +++ LabelComponent(){

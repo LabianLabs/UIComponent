@@ -30,7 +30,7 @@ extension ButtonComponent: UIKitRenderable {
     
     public func autoLayout(view: UIView) {
         if let layout = self.layout{
-            layout(self, view)
+            layout(view)
         } else {
             constrain(view) { button in
                 button.top == button.superview!.top

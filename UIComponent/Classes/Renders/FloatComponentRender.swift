@@ -38,10 +38,10 @@ extension FloatComponent: UIKitRenderable {
         return .leaf(newComponent, view)
     }
     
-    public func autoLayout( view: UIView) {
+    public func autoLayout(view: UIView) {
         moveViewToWindow(view)
         if let layout = self.layout{
-            layout(self, view)
+            layout(view)
         }else{
             constrain(view){ v in
                 v.bottom == v.superview!.bottom
