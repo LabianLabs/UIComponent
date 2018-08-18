@@ -17,3 +17,4 @@ public final class StateComponent: BaseComponent, ComponentType {
     public var isEmpty:(()->Bool) = {return false}
 }
 
+
