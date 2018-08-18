@@ -14,8 +14,10 @@ extension StackComponent: UIKitRenderable {
         var childViews: [UIView]
 
         let childComponents = self.children.compactMap { $0 as? UIKitRenderable }
-        let children = childComponents.map { component in
-            component.renderUIKit()
+        let children = childComponents.map { component -> UIKitRenderTree in
+            let res = component.renderUIKit()
+            (component as! BaseComponent).onRendered?(component as! BaseComponent, res.view)
+            return res
         }
         childViews = children.map { $0.view }
         let container = UIView()

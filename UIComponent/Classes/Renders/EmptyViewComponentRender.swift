@@ -47,6 +47,9 @@ extension EmptyViewComponent: UIKitRenderable{
         var trees = [UIKitRenderTree]()
         for child in childComponents{
             let tree = child.renderUIKit()
+            if let baseCmp = (child as? BaseComponent){
+                baseCmp.onRendered?(baseCmp, tree.view)
+            }
             trees.append(tree)
         }
         childViews = trees.map { $0.view }

@@ -24,11 +24,13 @@ extension IFComponent: UIKitRenderable{
         var children = [UIKitRenderTree]()
         if let thenCmp = self.thenComponent, let renderThenComp = thenCmp as? UIKitRenderable{
             self.vars.thenTree = renderThenComp.renderUIKit()
+            (thenCmp as! BaseComponent).onRendered?(thenCmp as! BaseComponent, self.vars.thenTree!.view)
             children.append(self.vars.thenTree!)
             containerView.addSubview(self.vars.thenTree!.view)
         }
         if let otherComp = self.elseComponent, let renderOtherComp = otherComp as? UIKitRenderable{
             self.vars.elseTree = renderOtherComp.renderUIKit()
+            (otherComp as! BaseComponent).onRendered?(otherComp as! BaseComponent, self.vars.elseTree!.view)
             children.append(self.vars.elseTree!)
             containerView.addSubview(self.vars.elseTree!.view)
         }
@@ -42,10 +44,16 @@ extension IFComponent: UIKitRenderable{
             if let trueComp = ifComponent.thenComponent, let renderTrueComp = trueComp as? UIKitRenderable, let renderedView = self.vars.thenTree?.view{
                 children.append(self.vars.thenTree!)
                 _ = renderTrueComp.updateUIKit(renderedView, change:change, newComponent:renderTrueComp, renderTree:renderTree)
+                if let baseComp = renderTrueComp as? BaseComponent{
+                    baseComp.onRendered?(baseComp, renderedView)
+                }
             }
         } else if let otherComp = ifComponent.elseComponent, let renderOtherComp = otherComp as? UIKitRenderable, let renderedView = self.vars.elseTree?.view{
             children.append(self.vars.elseTree!)
             _ = renderOtherComp.updateUIKit(renderedView, change:change, newComponent:renderOtherComp, renderTree:renderTree)
+            if let baseComp = renderOtherComp as? BaseComponent{
+                baseComp.onRendered?(baseComp, renderedView)
+            }
         }
         return .node(ifComponent, view, children)
     }

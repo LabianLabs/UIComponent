@@ -20,8 +20,7 @@ public protocol Initializable:class{
 public protocol Component{
     var componentIdentifier: String { get }
     var tag: String? { get set}
-    init(_ tag:String?)
-    var viewByTag:(String)->Any? {get set}
+    init(_ tag:String?)    
 }
 
 public extension Component{
@@ -69,9 +68,9 @@ open class BaseComponent: NSObject, Component{
     public var borderWidth:CGFloat = -1.0
     public var borderColor:Color?
     
-    public var shouldUpdate:((BaseComponent)->Bool) = {_ in return true}
     public var onRendered:((BaseComponent, UIView)->Void)?
     public var onUpdated:((BaseComponent, UIView)->Void)?
+    public var shouldUpdate:((BaseComponent)->Bool) = {_ in return true}
     
     public required init(_ tag: String? = nil) {
         self.tag = tag

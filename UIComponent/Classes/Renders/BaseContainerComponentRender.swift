@@ -9,10 +9,10 @@ import Foundation
 import UIKit
 extension BaseContainerComponent{
     public func updateChildren(view:UIView, change: Changes,
-                        newComponent: UIKitRenderable,
-                        renderTree: UIKitRenderTree,
-                        insertSubview:((UIView,Int)->Void)?=nil,
-                        removeSubview:((UIView, Int)->Void)?=nil)->[UIKitRenderTree]{
+                               newComponent: UIKitRenderable,
+                               renderTree: UIKitRenderTree,
+                               insertSubview:((UIView,Int)->Void)?=nil,
+                               removeSubview:((UIView, Int)->Void)?=nil)->[UIKitRenderTree]{
         
         guard let newComponent = newComponent as? ComponentContainer else { fatalError() }
         
@@ -31,6 +31,9 @@ extension BaseContainerComponent{
                 switch change {
                 case let .insert(index, _):
                     let renderTreeEntry = (newComponent.children[index] as! UIKitRenderable).renderUIKit()
+                    if let newComp = newComponent.children[index] as? BaseComponent{
+                        newComp.onRendered?(newComp, renderTreeEntry.view)
+                    }
                     viewsToInsert.append((index, renderTreeEntry.view, renderTreeEntry))
                 case let .remove(index):
                     let childView = children[index].view
