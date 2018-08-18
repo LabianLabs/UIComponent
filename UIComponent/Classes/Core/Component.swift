@@ -69,6 +69,7 @@ open class BaseComponent: NSObject, Component{
     public var borderWidth:CGFloat = -1.0
     public var borderColor:Color?
     
+    public var shouldUpdate:((BaseComponent)->Bool) = {_ in return true}
     public var onRendered:((BaseComponent, UIView)->Void)?
     public var onUpdated:((BaseComponent, UIView)->Void)?
     
