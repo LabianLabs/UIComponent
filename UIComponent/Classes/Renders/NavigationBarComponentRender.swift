@@ -13,6 +13,7 @@ extension NavigationBarComponent: UIKitRenderable {
         let emptyView = UIView()
         emptyView.isHidden = true
         self.setupNavigationBar()
+        self.config?(self.controller!.navigationController!.navigationBar)
         return .leaf(self, emptyView)
     }
     

@@ -43,7 +43,7 @@ extension ComponentType where Self:BaseComponent{
  Stack Component.
 */
 public protocol ComponentContainer: Component {
-    var children: Children { get }
+    var children: Children { get set}
     func append(_ component: Component)->ComponentContainer
 }
 
@@ -78,8 +78,21 @@ open class BaseComponent: NSObject, Component{
 }
 
 open class BaseContainerComponent: BaseComponent, ComponentContainer{
-    public var children: Children = Children()
+    internal var _children: Children
     
+    open var children: Children{
+        get{
+            return _children
+        }
+        set{
+            _children = newValue
+        }
+    }
+    
+    public required init(_ tag: String?) {
+        _children = Children()
+        super.init(tag)
+    }
     public func append(_ component: Component)->ComponentContainer{
         children.append(component)
         return self

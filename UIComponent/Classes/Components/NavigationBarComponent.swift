@@ -17,6 +17,7 @@ public final class NavigationBarComponent: BaseComponent, ComponentType{
     public var setupTitle:(()->String)?
     internal var callbackOnClickLeftButton:(()->Void)?
     internal var callbackOnClickRightButton:(()->Void)?
+    public var config:((UINavigationBar)->Void)?
     
     public convenience init(controller: UIViewController,_ initializer: (NavigationBarComponent)->Void = {_ in}) {
         self.init(controller:controller, tag:"NavigationBarComponent", initializer)
@@ -28,11 +29,13 @@ public final class NavigationBarComponent: BaseComponent, ComponentType{
         initializer(self)
     }
     
+    @discardableResult
     public func onLeftButtonClick(_ callback:@escaping ()->Void)->NavigationBarComponent{
         self.callbackOnClickLeftButton = callback
         return self
     }
     
+    @discardableResult
     public func onRightButtonClick(_ callback:@escaping ()->Void)->NavigationBarComponent{
         self.callbackOnClickRightButton = callback
         return self
