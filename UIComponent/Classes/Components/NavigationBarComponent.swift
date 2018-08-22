@@ -19,11 +19,11 @@ public final class NavigationBarComponent: BaseComponent, ComponentType{
     internal var callbackOnClickRightButton:(()->Void)?
     public var config:((UINavigationBar)->Void)?
     
-    public convenience init(controller: UIViewController,_ initializer: (NavigationBarComponent)->Void = {_ in}) {
+    public convenience init(controller: UIViewController?,_ initializer: (NavigationBarComponent)->Void = {_ in}) {
         self.init(controller:controller, tag:"NavigationBarComponent", initializer)
     }
     
-    public convenience init(controller: UIViewController, tag: String? = nil,_ initializer: (NavigationBarComponent)->Void = {_ in}) {
+    public convenience init(controller: UIViewController?, tag: String? = nil,_ initializer: (NavigationBarComponent)->Void = {_ in}) {
         self.init(tag)
         self.controller = controller
         initializer(self)

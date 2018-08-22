@@ -16,14 +16,6 @@ public final class StateComponent: BaseContainerComponent, ComponentType {
     public var isError:(()->Bool) = {return false}
     public var isEmpty:(()->Bool) = {return false}
     
-    public override var children: Children{
-        get{
-            return Children()
-        }
-        set{
-            _children =  newValue
-        }
-    }
 }
 
 

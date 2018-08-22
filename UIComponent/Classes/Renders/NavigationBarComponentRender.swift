@@ -13,7 +13,9 @@ extension NavigationBarComponent: UIKitRenderable {
         let emptyView = UIView()
         emptyView.isHidden = true
         self.setupNavigationBar()
-        self.config?(self.controller!.navigationController!.navigationBar)
+        if let controller = self.controller, let navController = controller.navigationController{
+            self.config?(navController.navigationBar)
+        }
         return .leaf(self, emptyView)
     }
     
@@ -40,7 +42,7 @@ extension NavigationBarComponent: UIKitRenderable {
     }
     
     private func setupNavigationBar(){
-        guard let controller = self.controller, let _ = controller.navigationController  else {fatalError()}
+        guard let controller = self.controller, let _ = controller.navigationController  else {return}
         let setupTitle = self.setupTitle?()
         if let title = setupTitle{
             controller.navigationItem.title = title
