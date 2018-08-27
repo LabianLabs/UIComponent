@@ -73,8 +73,12 @@ extension ViewComponent: UIKitRenderable{
     private func renderChildren(in parent: UIView)-> [UIKitRenderTree]{
         var childViews: [UIView]
         let childComponents = self.children.compactMap { $0 as? UIKitRenderable }
-        let children = childComponents.map { component in
-            component.renderUIKit()
+        let children = childComponents.map { component -> UIKitRenderTree in
+            let res = component.renderUIKit()
+            if let baseCmp =  component as? BaseComponent{
+                baseCmp.onRendered?(baseCmp, res.view)
+            }
+            return res
         }
         childViews = children.map { $0.view }
         for view in childViews{
