@@ -14,12 +14,31 @@ extension UIView:Initializable /*Core*/{
 
 extension UIView /*AutoLayout*/{
     @discardableResult
+    public func loHeightInParent(_ percentage:CGFloat = 1.0)->UIView{
+        self.loBelowOf(self.superview!).loHeightWithParent(percentage)
+        return self
+    }
+    
+    @discardableResult
+    public func loBellow(_ view: UIView)->UIView{
+        constrain(self, view){ v1, v2 in
+            v1.top == v2.bottom
+            v1.left == v1.superview!.left
+            v1.width == v1.superview!.width
+            v1.bottom == v1.superview!.bottom
+        }
+        return self
+    }
+    
+    //PADDING
+    @discardableResult
     public func loTopPadding(_ topPadding: CGFloat = 0)->UIView{
         constrain(self){ v in
             v.top == v.superview!.top + topPadding
         }
         return self
     }
+    
     @discardableResult
     public func loLeftPadding(_ leftPadding: CGFloat = 0)->UIView{
         constrain(self){ v in
@@ -27,6 +46,7 @@ extension UIView /*AutoLayout*/{
         }
         return self
     }
+    
     @discardableResult
     public func loRightPadding(_ rightPadding: CGFloat = 0)->UIView{
         constrain(self){ v in
@@ -34,6 +54,7 @@ extension UIView /*AutoLayout*/{
         }
         return self
     }
+    
     @discardableResult
     public func loBottomPadding(_ bottomPadding: CGFloat = 0)->UIView{
         constrain(self){ v in
@@ -41,10 +62,11 @@ extension UIView /*AutoLayout*/{
         }
         return self
     }
+    
     @discardableResult
     public func loPaddingWithParent(left:CGFloat = 0,right:CGFloat = 0,
                                     top: CGFloat = 0,bottom: CGFloat = 0)->UIView{
-        constrain(self){ v in
+        constrain(self) { v in
             v.top == v.superview!.top + top
             v.left == v.superview!.left + left
             v.right == v.superview!.right - right
@@ -52,18 +74,22 @@ extension UIView /*AutoLayout*/{
         }
         return self
     }
+    
     //FILL IN PARENT
     @discardableResult
     public func loFillInParent()->UIView{
         self.loPaddingWithParent()
         return self
     }
+    
     @discardableResult
     public func loFillInParent(_ height: CGFloat)->UIView{
         self.loFillInParent().loHeight(height)
         return self
     }
+    
     //BELOW OF
+    
     @discardableResult
     public func loBelowOf(_ view:UIView)->UIView{
         constrain(self,view){ v1,v2 in
@@ -73,18 +99,23 @@ extension UIView /*AutoLayout*/{
         }
         return self
     }
+    
     @discardableResult
     public func loBellowOf(_ view: UIView,with height: CGFloat)->UIView{
         self.loBelowOf(view).loHeight(height)
         return self
     }
+    
+    
     @discardableResult
     public func loBellowStatusBar()->UIView{
         let statusHeight = UIApplication.shared.statusBarFrame.height
         self.loPaddingWithParent(left: 0, right: 0, top: statusHeight, bottom: 0)
         return self
     }
+    
     //RIGHT OF
+    
     @discardableResult
     public func loRightOf(_ view:UIView)->UIView{
         constrain(self,view){ v1,v2 in
@@ -94,12 +125,15 @@ extension UIView /*AutoLayout*/{
         }
         return self
     }
+    
     @discardableResult
     public func loRightOf(_ view: UIView,with width: CGFloat)->UIView{
         self.loRightOf(view).loWidth(width)
         return self
     }
+    
     //CENTER OF
+    
     @discardableResult
     public func loCenterOfParent()->UIView{
         constrain(self){ v in
@@ -107,23 +141,28 @@ extension UIView /*AutoLayout*/{
         }
         return self
     }
+    
     @discardableResult
     public func loCenterOfParent(with widthPercentage: CGFloat = 1.0,
                                  _ heightPercentage: CGFloat = 1.0)->UIView{
         self.loSizeWithParent().loCenterOfParent()
         return self
     }
+    
     //LAYOUT SIZE
+    
     @discardableResult
     public func loHeight(_ height:CGFloat)->UIView{
         constrain(self){ v in v.height == height }
         return self
     }
+    
     @discardableResult
     public func loWidth(_ width:CGFloat)->UIView{
         constrain(self){ v in v.width == width }
         return self
     }
+    
     @discardableResult
     public func loWidthWithParent(_ widthPercentage:CGFloat = 1.0)->UIView{
         constrain(self){ v in
@@ -139,50 +178,65 @@ extension UIView /*AutoLayout*/{
         }
         return self
     }
+    
     @discardableResult
     public func loSize( width:CGFloat,height: CGFloat)->UIView{
         self.loHeight(height).loWidth(width)
         return self
     }
+    
     @discardableResult
     public func loSizeWithParent(with widthPercentage: CGFloat = 1.0,
                                  _ heightPercentage: CGFloat = 1.0)->UIView{
         self.loWidthWithParent(widthPercentage).loHeightWithParent(heightPercentage)
         return self
     }
+    
     //VISIBLE AREA
+    
     @discardableResult
     public func loSafeAreaFrame()->UIView{
         if #available(iOS 11.0, *) {
-            let height =
-                UIApplication.shared.keyWindow!.safeAreaLayoutGuide.layoutFrame.height
-            let width =
-                UIApplication.shared.keyWindow!.safeAreaLayoutGuide.layoutFrame.width
+            let height = UIApplication.shared.keyWindow!.safeAreaLayoutGuide.layoutFrame.height
+            let width = UIApplication.shared.keyWindow!.safeAreaLayoutGuide.layoutFrame.width
             let statusBarHeight = UIApplication.shared.statusBarFrame.height
-            self.loTopPadding(statusBarHeight).loLeftPadding().loSize(width: width,height:
-                height)
+            self.loTopPadding(statusBarHeight).loLeftPadding().loSize(width: width,height: height)
         } else {
             self.loBellowStatusBar()
         }
         return self
     }
-
     
     @discardableResult
-    public func loHeightInParent(_ percentage:CGFloat = 1.0)->UIView{
-        constrain(self){ v1 in
-            v1.height == v1.superview!.height * percentage
+    public func loFillInVisibleArea(topBarHeight: CGFloat = 0, bottomBarHeight: CGFloat = 0)->UIView{
+        if #available(iOS 11.0, *) {
+            let height = UIApplication.shared.keyWindow!.safeAreaLayoutGuide.layoutFrame.height
+            let width = UIApplication.shared.keyWindow!.safeAreaLayoutGuide.layoutFrame.width
+            let statusHeight = UIApplication.shared.statusBarFrame.height
+            constrain(self){ v in
+                v.top == v.superview!.top + UIApplication.shared.statusBarFrame.height
+                v.left == v.superview!.left
+                v.width == width
+                v.height == height - topBarHeight - statusHeight
+            }
+        } else {
+            self.loBellowStatusBar()
         }
         return self
     }
-    
     @discardableResult
-    public func loBellow(_ view: UIView)->UIView{
-        constrain(self, view){ v1, v2 in
-            v1.left == v1.superview!.left
-            v1.top == v2.bottom
-            v1.width == v1.superview!.width
-            v1.bottom == v1.superview!.bottom
+    public func loFillSafeArea() -> UIView{
+        constrain(self){ view in
+            if #available(iOS 11.0, *) {
+                view.top == view.superview!.safeAreaLayoutGuide.top
+                view.height == view.superview!.safeAreaLayoutGuide.height
+            } else {
+                view.top == view.superview!.top + UIApplication.shared.statusBarFrame.height
+                view.height == view.superview!.height
+            }
+            view.left == view.superview!.left
+            view.width == view.superview!.width
+            
         }
         return self
     }
