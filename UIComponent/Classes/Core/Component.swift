@@ -16,15 +16,11 @@ public protocol Initializable:class{
 /**
  Type for a simple component without child components, such as a Button
  or a text field.
-*/
+ */
 public protocol Component{
-    var componentIdentifier: String { get }
+    var componentIdentifier: String { get set}
     var tag: String? { get set}
-    init(_ tag:String?)    
-}
-
-public extension Component{
-    var componentIdentifier: String { return String(describing: type(of: self)) }
+    init(_ tag:String?)
 }
 
 public protocol ComponentType{
@@ -41,7 +37,7 @@ extension ComponentType where Self:BaseComponent{
 /**
  Type for a component that manages subcomponents, such as a Table View or
  Stack Component.
-*/
+ */
 public protocol ComponentContainer: Component {
     var children: Children { get set}
     func append(_ component: Component)->ComponentContainer
@@ -56,9 +52,9 @@ public extension ComponentContainer{
 
 
 open class BaseComponent: NSObject, Component{
+    internal var _id:String?
     public var tag:String?
     public var layout:LayoutBlock?
-    public var viewByTag: (String) -> Any? = {_ in return nil }
     public var alpha:CGFloat = 1.0
     public var backgroundColor:Color?
     public var tintColor:Color?
@@ -71,6 +67,18 @@ open class BaseComponent: NSObject, Component{
     public var onRendered:((BaseComponent, UIView)->Void)?
     public var onUpdated:((BaseComponent, UIView)->Void)?
     public var shouldUpdate:((BaseComponent)->Bool) = {_ in return true}
+    
+    public var componentIdentifier: String{
+        get{
+            if _id == nil{
+                return String(describing: type(of: self))
+            }
+            return _id!
+        }
+        set{
+            _id = newValue
+        }
+    }
     
     public required init(_ tag: String? = nil) {
         self.tag = tag

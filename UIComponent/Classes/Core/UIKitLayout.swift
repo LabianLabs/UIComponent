@@ -7,7 +7,7 @@
 
 import Foundation
 
-func applyLayout(renderTree: UIKitRenderTree){
+public func applyLayout(renderTree: UIKitRenderTree){
     switch renderTree {
         case let (.node(component, view, trees)):
             component.autoLayout(view: view)

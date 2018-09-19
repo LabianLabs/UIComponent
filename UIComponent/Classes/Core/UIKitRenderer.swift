@@ -65,7 +65,7 @@ public final class RenderView: Renderer {
                 self.lastRenderTree = updates()
             }
             if let renderTree = self.lastRenderTree{
-                self.callbackOnUpdated(renderTree: renderTree)
+                callbackOnUpdated(renderTree: renderTree)
                 applyLayout(renderTree: renderTree)
             }
         } else {
@@ -76,52 +76,9 @@ public final class RenderView: Renderer {
                 }
                 self.lastRenderTree = renderTree
                 self.view.addSubview(renderTree.view)
-                self.callbackOnRendered(renderTree: renderTree)
+                callbackOnRendered(renderTree: renderTree)
                 applyLayout(renderTree: renderTree)
             }
-        }
-    }
-
-    
-    private func callbackOnRendered(renderTree: UIKitRenderTree){
-        switch renderTree {
-        case let (.node(component, view, trees)):
-            if  let c = (component as? BaseComponent){
-                c.onRendered?(c, view)
-            }
-            for tree in trees{
-                callbackOnRendered(renderTree: tree)
-            }
-            break
-        case let (.leaf(component, view)):
-            if  let c = (component as? BaseComponent){
-                c.onRendered?(c, view)
-            }
-            break
-        default:
-            break
-            
-        }
-    }
-    
-    private func callbackOnUpdated(renderTree: UIKitRenderTree){
-        switch renderTree {
-        case let (.node(component, view, trees)):
-            if  let c = (component as? BaseComponent){
-                c.onUpdated?(c, view)
-            }
-            for tree in trees{
-                callbackOnUpdated(renderTree: tree)
-            }
-            break
-        case let (.leaf(component, view)):
-            if  let c = (component as? BaseComponent){
-                c.onUpdated?(c, view)
-            }
-            break
-        default:
-            break
-            
         }
     }
 }

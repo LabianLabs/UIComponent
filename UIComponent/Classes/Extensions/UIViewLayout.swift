@@ -232,7 +232,7 @@ extension UIView /*AutoLayout*/{
                 view.height == view.superview!.safeAreaLayoutGuide.height
             } else {
                 view.top == view.superview!.top + UIApplication.shared.statusBarFrame.height
-                view.height == view.superview!.height
+                view.bottom == view.superview!.bottom
             }
             view.left == view.superview!.left
             view.width == view.superview!.width

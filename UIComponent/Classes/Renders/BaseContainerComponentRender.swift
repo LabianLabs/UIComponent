@@ -22,7 +22,6 @@ extension BaseContainerComponent{
         
         var viewsToInsert: [(index: Int, view: UIView, renderTree: UIKitRenderTree)] = []
         var viewsToRemove: [(index: Int, view: UIView)] = []
-        var componentsToUpdate:[Component] = newComponent.children.map({return $0})
         
         if case let .root(changes) = change {
             
@@ -36,9 +35,10 @@ extension BaseContainerComponent{
                     }
                     viewsToInsert.append((index, renderTreeEntry.view, renderTreeEntry))
                 case let .remove(index):
-                    let childView = children[index].view
-                    viewsToRemove.append((index, childView))
-                    componentsToUpdate.remove(at: index)
+                    if index < children.count{
+                        let childView = children[index].view
+                        viewsToRemove.append((index, childView))
+                    }
                 default:
                     break
                 }
@@ -54,8 +54,11 @@ extension BaseContainerComponent{
             }else{
                 view.insertSubview(insert.view, at: insert.index)
             }
-            children.insert(insert.renderTree, at: insert.index)
-            
+            if children.count > 0{
+                children.insert(insert.renderTree, at: insert.index)
+            }else{
+                children.append(insert.renderTree)
+            }
             indexOffset += 1
         }
         

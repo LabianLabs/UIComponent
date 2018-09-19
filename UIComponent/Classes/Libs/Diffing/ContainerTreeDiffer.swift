@@ -11,7 +11,7 @@ import Foundation
 /**
  Derives a set of changes based on a old and new `ComponentContainer`.
 */
-func diffChanges(_ oldTree: ComponentContainer, newTree: ComponentContainer) -> Changes {
+public func diffChanges(_ oldTree: ComponentContainer, newTree: ComponentContainer) -> Changes {
     var changes: [Changes] = []
 
     for component in oldTree.children {

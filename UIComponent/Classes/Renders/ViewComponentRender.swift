@@ -35,7 +35,7 @@ extension ViewComponent: UIKitRenderable{
             self.childrenTrees = children
             return .node(self, view!, children)
         }
-        return .leaf(self, view!)
+        return .node(self, view!, [UIKitRenderTree]())
     }
     
     public func updateUIKit(
@@ -49,13 +49,12 @@ extension ViewComponent: UIKitRenderable{
         guard let nibView = view as? UIViewComponent else { fatalError() }
         if self.children.count > 0{
             return self.updateContainerUIKit(view, change: change, newComponent: newComponent, renderTree: renderTree)
-        } else{
-            newComponent.applyBaseAttributes(to: view)
-            newComponent.config?(view as! T)
-            nibView.value = newComponent.value
-            nibView.update()
         }
-        return .leaf(newComponent, nibView)
+        newComponent.applyBaseAttributes(to: view)
+        newComponent.config?(view as! T)
+        nibView.value = newComponent.value
+        nibView.update()
+        return .node(newComponent, nibView, [UIKitRenderTree]())
     }
     
     private func updateContainerUIKit(
@@ -65,8 +64,11 @@ extension ViewComponent: UIKitRenderable{
         renderTree: UIKitRenderTree
         ) -> UIKitRenderTree {
         guard let newComponent = newComponent as? ViewComponent else { fatalError() }
+        newComponent.nibFile = self.nibFile
+        newComponent.value = self.value
         newComponent.applyBaseAttributes(to: view)
         let children = updateChildren(view: view, change: change, newComponent: newComponent, renderTree: renderTree)
+        newComponent.childrenTrees = children
         return .node(newComponent, view, children)
     }
     
@@ -86,7 +88,7 @@ extension ViewComponent: UIKitRenderable{
         }
         return children
     }
-
+    
     public func autoLayout(view: UIView) {
         self.layout?(view)
         if let trees = self.childrenTrees{

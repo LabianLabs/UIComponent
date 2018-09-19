@@ -7,7 +7,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'UIComponent'
-  s.version          = '0.1.43'
+  s.version          = '0.1.44'
   s.summary          = 'Lightweight UI library for iOS app'
   s.description      = <<-DESC
 This pod is Under development

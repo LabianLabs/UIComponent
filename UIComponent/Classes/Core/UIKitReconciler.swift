@@ -25,7 +25,7 @@ public enum UIKitRenderTree {
             return UIView()
         }
     }
-
+    
     public var renderable: UIKitRenderable {
         switch self {
         case let .node(renderable, _, _):
@@ -54,13 +54,13 @@ public enum Changes{
 }
 
 /// Applies the changes derived from diffing to an existing render tree.
-func applyReconcilation(
+public func applyReconcilation(
     _ renderTree: UIKitRenderTree,
     changeSet: Changes,
     newComponent: UIKitRenderable) -> UIKitRenderTree {
-
+    
     var newRenderTree: UIKitRenderTree?
-
+    
     switch (changeSet, renderTree) {
     // When we find a root change on a node, we update the node itself and all of its children.
     case let (.root(changes), .node(_, _, oldChildTree)):
@@ -81,42 +81,42 @@ func applyReconcilation(
                 // pass in the entire cached render tree
                 renderTree: renderTree
             )
-
+            
             // Make a mutable copy of the old child tree to generate the new child tree.
             // We got this child tree from the current node of the cached renter tree.
             var newChildTree = oldChildTree
-
+            
             // If the root of the new render tree is a node apply changes from the `.Root` change set to
             // its children.
             if case let .node(renderable, view, childTree) = newRenderTree! {
                 // The `childTree` of the `newRenderTree` is going to be used as base of our new child tree
                 newChildTree = childTree
-
+                
                 var removedIndexes: [Int] = []
                 var insertedIndexes: [Int] = []
-
+                
                 for (index, change) in changes.enumerated() {
                     if case .remove = change {
                         removedIndexes.append(index)
                         continue
                     }
-
+                    
                     if case .insert = change {
                         insertedIndexes.append(index)
                         continue
                     }
-
+                    
                     // Calculate mapping between index in new and old tree by counting insertions and
                     // deletions that affect the current index
                     let newComponentOffset: Int = {
                         let insertOffsets = insertedIndexes.filter { $0 <= index }.count
                         let removeOffsets = removedIndexes.filter { $0 < index }.count
-
+                        
                         return insertOffsets - removeOffsets
                     }()
-
+                    
                     let index = index + newComponentOffset
-
+                    
                     if case .update = change {
                         // Update each child view by pasing in the cached view, the change, the new component and
                         // the cached render tree.
@@ -136,14 +136,16 @@ func applyReconcilation(
                             )
                         }
                     }
-
-                    if case .root = change {
+                    
+                    if case .root = change{
                         // For root changes, call `applyReconciliation` recursively with the according child component
-                        let component = (newComponent as! ComponentContainer).children[index] as! UIKitRenderable
-                        newChildTree[index] = applyReconcilation(childTree[index], changeSet: change, newComponent: component)
+                        if index < childTree.count{
+                            let component = (newComponent as! ComponentContainer).children[index] as! UIKitRenderable
+                            newChildTree[index] = applyReconcilation(childTree[index], changeSet: change, newComponent: component)
+                        }
                     }
                 }
-
+                
                 // Update the `newRenderTree` with the changes we got from updating all children
                 newRenderTree = .node(renderable, view, newChildTree)
             }
@@ -165,6 +167,49 @@ func applyReconcilation(
     default:
         break
     }
-
+    
     return newRenderTree!
+}
+
+
+public func callbackOnRendered(renderTree: UIKitRenderTree){
+    switch renderTree {
+    case let (.node(component, view, trees)):
+        if  let c = (component as? BaseComponent){
+            c.onRendered?(c, view)
+        }
+        for tree in trees{
+            callbackOnRendered(renderTree: tree)
+        }
+        break
+    case let (.leaf(component, view)):
+        if  let c = (component as? BaseComponent){
+            c.onRendered?(c, view)
+        }
+        break
+    default:
+        break
+        
+    }
+}
+
+public func callbackOnUpdated(renderTree: UIKitRenderTree){
+    switch renderTree {
+    case let (.node(component, view, trees)):
+        if  let c = (component as? BaseComponent){
+            c.onUpdated?(c, view)
+        }
+        for tree in trees{
+            callbackOnUpdated(renderTree: tree)
+        }
+        break
+    case let (.leaf(component, view)):
+        if  let c = (component as? BaseComponent){
+            c.onUpdated?(c, view)
+        }
+        break
+    default:
+        break
+        
+    }
 }

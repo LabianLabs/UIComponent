@@ -13,52 +13,25 @@ class StateComponentView:UIView{
     var errorTree:UIKitRenderTree?
     var emptyTree:UIKitRenderTree?
     var dataTree:UIKitRenderTree?
-}
-
-public func recursiveUpdate(renderTree: UIKitRenderTree, newComponent: UIKitRenderable){
-    renderTree.renderable.updateUIKit(renderTree.view, change: Changes.update, newComponent: newComponent, renderTree: renderTree)
-    (renderTree.renderable as? BaseComponent)?.onUpdated?(newComponent as! BaseComponent, renderTree.view)
-    switch renderTree {
-        case let (.node(_, _, children)):
-            for i in 0..<children.count{
-                let childComp = (newComponent as! ComponentContainer).children[i] as! UIKitRenderable
-                recursiveUpdate(renderTree: children[i], newComponent: childComp)
-            }
-            break
-        default:
-            break
-    }
+    var lastLoadingComponent:ComponentContainer?
+    var lastErrorComponent:ComponentContainer?
+    var lastDataComponent:ComponentContainer?
+    var lastEmptyComponent:ComponentContainer?
 }
 
 extension StateComponent:UIKitRenderable{
     
     public func renderUIKit() -> UIKitRenderTree {
-        
-        guard let errorComponent = self.errorComponent,
-            let dataComponent = self.dataComponent else {fatalError()}
         let view = StateComponentView()
-        var children = [UIKitRenderTree]()
         if isLoading(){
-            if let loadingTree = (self.loadingComponent as? UIKitRenderable)?.renderUIKit(){
-                view.loadingTree = loadingTree
-                children.append(loadingTree)
-            }
+            renderLoading(view: view)
         }else if isError(){
-            if let errorTree = (errorComponent as? UIKitRenderable)?.renderUIKit(){
-                view.errorTree = errorTree
-                children.append(errorTree)
-            }
+            renderError(view: view)
         }else{
             if isEmpty(){
-                if let emptyTree = (self.emptyComponent as? UIKitRenderable)?.renderUIKit(){
-                    view.emptyTree = emptyTree
-                    children.append(emptyTree)
-                }
+                renderError(view: view)
             }else{
-                if let dataTree = (dataComponent as? UIKitRenderable)?.renderUIKit(){
-                    view.dataTree = dataTree
-                    children.append(dataTree)
-                }
+                renderData(view: view)
             }
         }
         return .leaf(self, view)
@@ -67,54 +40,38 @@ extension StateComponent:UIKitRenderable{
     public func updateUIKit(_ view: UIView, change: Changes, newComponent: UIKitRenderable, renderTree: UIKitRenderTree) -> UIKitRenderTree {
         guard let stateComp = newComponent as? StateComponent,
             let cmpView = view as? StateComponentView  else {fatalError()}
-        var children  = [UIKitRenderTree]()
         if stateComp.isLoading(){
             if cmpView.loadingTree == nil{
-                if let loadingTree = (stateComp.loadingComponent as? UIKitRenderable)?.renderUIKit(){
-                    cmpView.loadingTree = loadingTree
-                    (stateComp.loadingComponent as? BaseComponent)?.onRendered?((stateComp.loadingComponent as! BaseComponent), loadingTree.view)
-                }
+                renderLoading(view: cmpView)
             }
-            else {
-                recursiveUpdate(renderTree: cmpView.loadingTree!, newComponent: stateComp.loadingComponent as! UIKitRenderable)
+            else if let loading = stateComp.loadingComponent{
+                updateLoading(view: cmpView, newComponent: loading)
             }
-            children.append(cmpView.loadingTree!)
         }else if stateComp.isError(){
             if cmpView.errorTree == nil{
-                if let errorTree = (stateComp.errorComponent as? UIKitRenderable)?.renderUIKit(){
-                    cmpView.errorTree = errorTree
-                    (stateComp.errorComponent as? BaseComponent)?.onRendered?((stateComp.errorComponent as! BaseComponent), errorTree.view)
-                }
+                renderError(view: cmpView)
             }
-            else {
-                recursiveUpdate(renderTree: cmpView.errorTree!, newComponent: stateComp.errorComponent as! UIKitRenderable)
+            else if let error = stateComp.errorComponent{
+                updateError(view: cmpView, newComponent: error)
             }
-            children.append(cmpView.errorTree!)
         }else{
             if stateComp.isEmpty(){
                 if cmpView.emptyTree == nil{
-                    if let emptyTree = (stateComp.emptyComponent as? UIKitRenderable)?.renderUIKit(){
-                        cmpView.emptyTree = emptyTree
-                        (stateComp.emptyComponent as? BaseComponent)?.onRendered?((stateComp.emptyComponent as! BaseComponent), emptyTree.view)
-                    }
+                    renderEmpty(view: cmpView)
                 }
-                else {
-                   recursiveUpdate(renderTree: cmpView.emptyTree!, newComponent: stateComp.emptyComponent as! UIKitRenderable)
+                else if let empty = stateComp.emptyComponent{
+                    updateEmpty(view: cmpView, newComponent: empty)
                 }
-                children.append(cmpView.emptyTree!)
             }else{
                 if cmpView.dataTree == nil{
-                    if let dataTree = (stateComp.dataComponent as? UIKitRenderable)?.renderUIKit(){
-                        cmpView.dataTree = dataTree
-                        (stateComp.dataComponent as? BaseComponent)?.onUpdated?((stateComp.dataComponent as! BaseComponent), dataTree.view)
-                    }
-                }else{
-                    recursiveUpdate(renderTree: cmpView.dataTree!, newComponent: stateComp.dataComponent as! UIKitRenderable)
+                    renderData(view: cmpView)
                 }
-                children.append(cmpView.dataTree!)
+                else if let data = stateComp.dataComponent{
+                    updateData(view: cmpView, newComponent: data)
+                }
             }
         }
-        return .node(stateComp, view, children)
+        return .leaf(stateComp, view)
     }
     
     public func autoLayout(view: UIView) {
@@ -154,6 +111,62 @@ extension StateComponent:UIKitRenderable{
                     (stateView.dataTree?.renderable)?.autoLayout(view: dataView)
                 }
             }
+        }
+    }
+    
+    
+    private func renderError(view:StateComponentView){
+        view.errorTree = (errorComponent as? UIKitRenderable)?.renderUIKit()
+        view.lastErrorComponent = errorComponent
+        callbackOnRendered(renderTree: view.errorTree!)
+    }
+    
+    private func renderLoading(view:StateComponentView){
+        view.loadingTree = (self.loadingComponent as? UIKitRenderable)?.renderUIKit()
+        view.lastLoadingComponent = self.loadingComponent
+        callbackOnRendered(renderTree: view.loadingTree!)
+    }
+    private func renderEmpty(view:StateComponentView){
+        view.emptyTree = (self.emptyComponent as? UIKitRenderable)?.renderUIKit()
+        view.lastEmptyComponent = self.emptyComponent
+        callbackOnRendered(renderTree: view.emptyTree!)
+    }
+    
+    private func renderData(view:StateComponentView){
+        view.dataTree = (dataComponent as? UIKitRenderable)?.renderUIKit()
+        view.lastDataComponent = self.dataComponent
+        callbackOnRendered(renderTree: view.dataTree!)
+    }
+    
+    private func updateLoading(view:StateComponentView, newComponent:ComponentContainer){
+        if let last = view.lastLoadingComponent{
+            let changes = diffChanges(last, newTree: newComponent)
+            view.loadingTree = applyReconcilation(view.loadingTree!, changeSet: changes, newComponent: newComponent as! UIKitRenderable)
+            callbackOnUpdated(renderTree: view.loadingTree!)
+        }
+    }
+    
+    private func updateError(view:StateComponentView, newComponent:ComponentContainer){
+        if let last = view.lastErrorComponent{
+            let changes = diffChanges(last, newTree: newComponent)
+            view.errorTree = applyReconcilation(view.errorTree!, changeSet: changes, newComponent: newComponent as! UIKitRenderable)
+            callbackOnUpdated(renderTree: view.errorTree!)
+        }
+    }
+    
+    private func updateEmpty(view:StateComponentView, newComponent:ComponentContainer){
+        if let last = view.lastEmptyComponent{
+            let changes = diffChanges(last, newTree: newComponent)
+            view.emptyTree = applyReconcilation(view.emptyTree!, changeSet: changes, newComponent: newComponent as! UIKitRenderable)
+            callbackOnUpdated(renderTree: view.emptyTree!)
+        }
+    }
+    
+    private func updateData(view:StateComponentView, newComponent:ComponentContainer){
+        if let last = view.lastDataComponent{
+            let changes = diffChanges(last, newTree: newComponent)
+            view.dataTree = applyReconcilation(view.dataTree!, changeSet: changes, newComponent: newComponent as! UIKitRenderable)
+            callbackOnUpdated(renderTree: view.dataTree!)
         }
     }
     

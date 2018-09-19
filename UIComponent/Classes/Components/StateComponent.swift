@@ -8,14 +8,12 @@
 import Foundation
 
 public final class StateComponent: BaseContainerComponent, ComponentType {
-    public var loadingComponent:Component?
-    public var errorComponent:Component?
-    public var dataComponent:Component?
-    public var emptyComponent:Component?
+    public var loadingComponent:ComponentContainer?
+    public var errorComponent:ComponentContainer?
+    public var dataComponent:ComponentContainer?
+    public var emptyComponent:ComponentContainer?
     public var isLoading:(()->Bool) = {return false}
     public var isError:(()->Bool) = {return false}
     public var isEmpty:(()->Bool) = {return false}
     
 }
-
-
