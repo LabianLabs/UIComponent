@@ -7,5 +7,4 @@
 
 import Foundation
 public final class EmptyViewComponent: BaseContainerComponent, ComponentType{
-    internal var childrenTrees:[UIKitRenderTree]?
 }

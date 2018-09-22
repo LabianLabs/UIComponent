@@ -32,7 +32,6 @@ extension ViewComponent: UIKitRenderable{
         view?.setup()
         if self.children.count > 0{
             let children = self.renderChildren(in: view!)
-            self.childrenTrees = children
             return .node(self, view!, children)
         }
         return .node(self, view!, [UIKitRenderTree]())
@@ -67,8 +66,7 @@ extension ViewComponent: UIKitRenderable{
         newComponent.nibFile = self.nibFile
         newComponent.value = self.value
         newComponent.applyBaseAttributes(to: view)
-        let children = updateChildren(view: view, change: change, newComponent: newComponent, renderTree: renderTree)
-        newComponent.childrenTrees = children
+        let children = updateChildren(view: view, change: change, newComponent: newComponent, renderTree: renderTree)        
         return .node(newComponent, view, children)
     }
     
@@ -91,11 +89,6 @@ extension ViewComponent: UIKitRenderable{
     
     public func autoLayout(view: UIView) {
         self.layout?(view)
-        if let trees = self.childrenTrees{
-            for child in trees{
-                child.renderable.autoLayout(view: child.view)
-            }
-        }
     }
 }
 

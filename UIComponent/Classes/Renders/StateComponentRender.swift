@@ -91,24 +91,24 @@ extension StateComponent:UIKitRenderable{
         if isLoading(){
             if let loadingView = stateView.loadingTree?.view{
                 stateView.addSubview(loadingView)
-                (stateView.loadingTree?.renderable)?.autoLayout(view: loadingView)
+                applyLayout(renderTree: stateView.loadingTree!)
             }
         }else if isError(){
             if let errorView = stateView.errorTree?.view{
                 stateView.addSubview(errorView)
-                (stateView.errorTree?.renderable)?.autoLayout(view: errorView)
+                applyLayout(renderTree: stateView.errorTree!)
             }
         }else{
             if isEmpty(){
                 if let emptyView = stateView.emptyTree?.view{
                     stateView.addSubview(emptyView)
-                    (stateView.emptyTree?.renderable)?.autoLayout(view: emptyView)
+                    applyLayout(renderTree: stateView.emptyTree!)
                 }
             }else{
                 if let dataView = stateView.dataTree?.view{
                     dataView.removeFromSuperview()
                     stateView.addSubview(dataView)
-                    (stateView.dataTree?.renderable)?.autoLayout(view: dataView)
+                    applyLayout(renderTree: stateView.dataTree!)
                 }
             }
         }
@@ -171,4 +171,3 @@ extension StateComponent:UIKitRenderable{
     }
     
 }
-

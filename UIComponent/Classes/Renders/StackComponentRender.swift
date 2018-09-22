@@ -27,19 +27,13 @@ extension StackComponent: UIKitRenderable {
         stackView.alignment = convertAlignment(self.alignment)
         stackView.distribution = convertDistribution(self.distribution)
         container.addSubview(stackView)
-        self.applyBaseAttributes(to: container)
-        self.childrenTrees = children
+        self.applyBaseAttributes(to: container)        
         return .node(self, container, children)
     }
     
     public func autoLayout(view: UIView) {
         self.layout?(view)
         view.subviews.first?.loFillInParent()
-        if let trees = self.childrenTrees{
-            for child in trees{
-                child.renderable.autoLayout(view: child.view)
-            }
-        }
     }
 
     public func updateUIKit(

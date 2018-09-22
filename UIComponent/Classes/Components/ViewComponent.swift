@@ -7,8 +7,7 @@
 
 import Foundation
 
-public final class ViewComponent<T:Initializable>: BaseContainerComponent, ComponentType{
-    internal var childrenTrees:[UIKitRenderTree]?
+public final class ViewComponent<T:Initializable>: BaseContainerComponent, ComponentType{    
     public var nibFile:String?
     public var config:((T)->Void)?
     public var value:Any?
