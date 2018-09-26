@@ -42,32 +42,32 @@ extension StateComponent:UIKitRenderable{
             let cmpView = view as? StateComponentView  else {fatalError()}
         if stateComp.isLoading(){
             if cmpView.loadingTree == nil{
-                renderLoading(view: cmpView)
+                stateComp.renderLoading(view: cmpView)
             }
             else if let loading = stateComp.loadingComponent{
-                updateLoading(view: cmpView, newComponent: loading)
+                stateComp.updateLoading(view: cmpView, newComponent: loading)
             }
         }else if stateComp.isError(){
             if cmpView.errorTree == nil{
-                renderError(view: cmpView)
+                stateComp.renderError(view: cmpView)
             }
             else if let error = stateComp.errorComponent{
-                updateError(view: cmpView, newComponent: error)
+                stateComp.updateError(view: cmpView, newComponent: error)
             }
         }else{
             if stateComp.isEmpty(){
                 if cmpView.emptyTree == nil{
-                    renderEmpty(view: cmpView)
+                    stateComp.renderEmpty(view: cmpView)
                 }
                 else if let empty = stateComp.emptyComponent{
-                    updateEmpty(view: cmpView, newComponent: empty)
+                    stateComp.updateEmpty(view: cmpView, newComponent: empty)
                 }
             }else{
                 if cmpView.dataTree == nil{
-                    renderData(view: cmpView)
+                    stateComp.renderData(view: cmpView)
                 }
                 else if let data = stateComp.dataComponent{
-                    updateData(view: cmpView, newComponent: data)
+                    stateComp.updateData(view: cmpView, newComponent: data)
                 }
             }
         }
