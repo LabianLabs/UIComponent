@@ -240,7 +240,7 @@ extension UIView /*AutoLayout*/{
                     height += 44
                 }
                 view.top == view.superview!.top + height
-                view.bottom == view.superview!.bottom
+                view.bottom == view.superview!.bottom + 49 // tabbar height
             }
             view.left == view.superview!.left
             view.width == view.superview!.width
