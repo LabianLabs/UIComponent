@@ -227,6 +227,8 @@ extension UIView /*AutoLayout*/{
             view.top == view.superview!.top + height
             if !underTabbar{
                 view.bottom == view.superview!.bottom - 49 // tabbar height
+            }else{
+                view.bottom == view.superview!.bottom
             }
             view.left == view.superview!.left
             view.width == view.superview!.width
