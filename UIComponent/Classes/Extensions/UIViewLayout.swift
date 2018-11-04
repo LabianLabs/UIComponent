@@ -75,19 +75,6 @@ extension UIView /*AutoLayout*/{
         return self
     }
     
-    //FILL IN PARENT
-    @discardableResult
-    public func loFillInParent()->UIView{
-        self.loPaddingWithParent()
-        return self
-    }
-    
-    @discardableResult
-    public func loFillInParent(_ height: CGFloat)->UIView{
-        self.loFillInParent().loHeight(height)
-        return self
-    }
-    
     //BELOW OF
     
     @discardableResult
@@ -192,36 +179,15 @@ extension UIView /*AutoLayout*/{
         return self
     }
     
-    //VISIBLE AREA
-    
+    //FILL
     @discardableResult
-    public func loSafeAreaFrame()->UIView{
-        if #available(iOS 11.0, *) {
-            let height = UIApplication.shared.keyWindow!.safeAreaLayoutGuide.layoutFrame.height
-            let width = UIApplication.shared.keyWindow!.safeAreaLayoutGuide.layoutFrame.width
-            let statusBarHeight = UIApplication.shared.statusBarFrame.height
-            self.loTopPadding(statusBarHeight).loLeftPadding().loSize(width: width,height: height)
-        } else {
-            self.loBellowStatusBar()
-        }
-        return self
+    public func loFillInParent()->UIView{
+        return self.loPaddingWithParent()
     }
     
     @discardableResult
-    public func loFillInVisibleArea(topBarHeight: CGFloat = 0, bottomBarHeight: CGFloat = 0)->UIView{
-        if #available(iOS 11.0, *) {
-            let height = UIApplication.shared.keyWindow!.safeAreaLayoutGuide.layoutFrame.height
-            let width = UIApplication.shared.keyWindow!.safeAreaLayoutGuide.layoutFrame.width
-            let statusHeight = UIApplication.shared.statusBarFrame.height
-            constrain(self){ v in
-                v.top == v.superview!.top + UIApplication.shared.statusBarFrame.height
-                v.left == v.superview!.left
-                v.width == width
-                v.height == height - topBarHeight - statusHeight
-            }
-        } else {
-            self.loBellowStatusBar()
-        }
+    public func loFillInParent(_ height: CGFloat)->UIView{
+        self.loFillInParent().loHeight(height)
         return self
     }
     
@@ -241,6 +207,26 @@ extension UIView /*AutoLayout*/{
                 if embeddedInTabeBar{
                     view.bottom == view.superview!.bottom - 49 // tabbar height
                 }
+            }
+            view.left == view.superview!.left
+            view.width == view.superview!.width
+        }
+        return self
+    }
+    
+    @discardableResult
+    public func loFillFullScreen(underStatusBar:Bool=true, underNavigationBar:Bool=true, underTabbar:Bool=true) -> UIView{
+        constrain(self){ view in
+            var height: CGFloat = 0
+            if !underStatusBar{
+                height += UIApplication.shared.statusBarFrame.height
+            }
+            if !underNavigationBar{
+                height += 44
+            }
+            view.top == view.superview!.top + height
+            if !underTabbar{
+                view.bottom == view.superview!.bottom - 49 // tabbar height
             }
             view.left == view.superview!.left
             view.width == view.superview!.width
