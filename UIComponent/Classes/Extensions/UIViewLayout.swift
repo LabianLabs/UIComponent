@@ -226,21 +226,21 @@ extension UIView /*AutoLayout*/{
     }
     
     @discardableResult
-    public func loFillSafeArea(bellowStatusBar:Bool=true, bellowNavigationBar:Bool=true) -> UIView{
+    public func loFillSafeArea(embeddedInNavigationBar:Bool=true, embeddedInTabeBar:Bool=false) -> UIView{
         constrain(self){ view in
             if #available(iOS 11.0, *) {
                 view.top == view.superview!.safeAreaLayoutGuide.top
                 view.bottom == view.superview!.safeAreaLayoutGuide.bottom
             } else {
                 var height: CGFloat = 0
-                if bellowStatusBar{
-                    height += UIApplication.shared.statusBarFrame.height
-                }
-                if bellowNavigationBar{
+                height += UIApplication.shared.statusBarFrame.height
+                if embeddedInNavigationBar{
                     height += 44
                 }
                 view.top == view.superview!.top + height
-                view.bottom == view.superview!.bottom - 49 // tabbar height
+                if embeddedInTabeBar{
+                    view.bottom == view.superview!.bottom - 49 // tabbar height
+                }
             }
             view.left == view.superview!.left
             view.width == view.superview!.width
