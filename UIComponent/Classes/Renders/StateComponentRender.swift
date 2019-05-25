@@ -142,6 +142,7 @@ extension StateComponent:UIKitRenderable{
         if let last = view.lastLoadingComponent{
             let changes = diffChanges(last, newTree: newComponent)
             view.loadingTree = applyReconcilation(view.loadingTree!, changeSet: changes, newComponent: newComponent as! UIKitRenderable)
+            view.lastDataComponent = newComponent
             callbackOnUpdated(renderTree: view.loadingTree!)
         }
     }
@@ -150,6 +151,7 @@ extension StateComponent:UIKitRenderable{
         if let last = view.lastErrorComponent{
             let changes = diffChanges(last, newTree: newComponent)
             view.errorTree = applyReconcilation(view.errorTree!, changeSet: changes, newComponent: newComponent as! UIKitRenderable)
+            view.lastDataComponent = newComponent
             callbackOnUpdated(renderTree: view.errorTree!)
         }
     }
@@ -158,6 +160,7 @@ extension StateComponent:UIKitRenderable{
         if let last = view.lastEmptyComponent{
             let changes = diffChanges(last, newTree: newComponent)
             view.emptyTree = applyReconcilation(view.emptyTree!, changeSet: changes, newComponent: newComponent as! UIKitRenderable)
+            view.lastDataComponent = newComponent
             callbackOnUpdated(renderTree: view.emptyTree!)
         }
     }
@@ -166,6 +169,7 @@ extension StateComponent:UIKitRenderable{
         if let last = view.lastDataComponent{
             let changes = diffChanges(last, newTree: newComponent)
             view.dataTree = applyReconcilation(view.dataTree!, changeSet: changes, newComponent: newComponent as! UIKitRenderable)
+            view.lastDataComponent = newComponent
             callbackOnUpdated(renderTree: view.dataTree!)
         }
     }

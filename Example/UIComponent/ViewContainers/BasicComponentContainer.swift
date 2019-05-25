@@ -33,14 +33,7 @@ class BasicComponentContainer:BaseComponentRenderable<BasicViewState>{
                     view.bottom == view.superview!.bottom
                 }
             }
-            $0.children                
-//                +++ StateComponent(){
-//                    $0.loadingComponent = LabelComponent(){$0.text = "loading"; $0.layout = {v in v.loFillInParent()}}
-//                    $0.dataComponent = LabelComponent(){$0.text = "data"; $0.layout = {v in v.loFillInParent()}}
-//                    $0.errorComponent = LabelComponent(){$0.text = "error"; $0.layout = {v in v.loFillInParent()}}
-//                    $0.emptyComponent = LabelComponent(){$0.text = "empty"; $0.layout = {v in v.loFillInParent()}}
-//                    $0.isError = {return false}
-//                }
+            $0.children
                 +++ LabelComponent(){
                     $0.text = state.step == 3 ? "3":"Not 3"
                     print($0)
