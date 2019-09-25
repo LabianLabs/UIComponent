@@ -7,7 +7,8 @@
 
 import Foundation
 
-public final class ViewComponent<T:Initializable>: BaseContainerComponent, ComponentType{    
+public final class ViewComponent<T:Initializable>: BaseContainerComponent, ComponentType, UIKitRenderable{
+    public var bundle:Bundle?
     public var nibFile:String?
     public var config:((T)->Void)?
     public var value:Any?

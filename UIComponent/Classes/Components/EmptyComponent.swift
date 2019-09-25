@@ -6,5 +6,5 @@
 //
 
 import Foundation
-public final class EmptyViewComponent: BaseContainerComponent, ComponentType{
+public final class EmptyViewComponent: BaseContainerComponent, ComponentType, UIKitRenderable{
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-extension EmptyViewComponent: UIKitRenderable{
+extension EmptyViewComponent{
     public func renderUIKit() -> UIKitRenderTree {
         let view = UIView()
         self.applyBaseAttributes(to: view)

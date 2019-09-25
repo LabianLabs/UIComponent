@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension LabelComponent: UIKitRenderable {
+extension LabelComponent {
     public func renderUIKit() -> UIKitRenderTree {
         let alignText:((TextAlignment) -> NSTextAlignment) = { align in
             switch align {

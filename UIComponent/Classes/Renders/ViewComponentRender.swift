@@ -13,12 +13,15 @@ open class UIViewComponent: UIView{
     open func update(){}
 }
 
-extension ViewComponent: UIKitRenderable{
+extension ViewComponent{
     
     public func renderUIKit() -> UIKitRenderTree {
         var view:UIViewComponent?
         if let nibFile = self.nibFile {
-            let bundle = Bundle(for: (T.self as AnyClass))
+            var bundle = Bundle(for: (T.self as AnyClass))
+            if self.bundle != nil{
+                bundle = self.bundle!
+            }
             view = bundle.loadNibNamed(nibFile, owner: nil, options: nil)?.first as? UIViewComponent
         } else{
             view = T() as? UIViewComponent
